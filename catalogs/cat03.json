@@ -1,0 +1,503 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat03",
+  "sunatCatalog": "03",
+  "name": "Unidad de Medida Comercial",
+  "source": "UN/ECE Recommendation 20 revision 13, which is what catálogo 03 defers to — SUNAT's anexo gives only the reference, not a list. Transcribed from perunio-frontend/src/data/sunat/catalogo-06.ts (misnamed: it held catálogo 03), the longest of the copies at 41 entries. The Go pipeline had no list at all and accepted any string as a unitCode. Several codes share a wording because UN/ECE genuinely defines both — M2/MTK for metro cuadrado, M3/MTQ for metro cúbico, PR/PAR for par — so the código is what disambiguates them in a picker. KGM alone carries `gre-weight`: it is the only unidad the GRE validator accepts for a guía's peso bruto.",
+  "codePattern": "^[A-Z0-9]{2,3}$",
+  "entries": [
+    {
+      "code": "NIU",
+      "label": "Unidad (Bienes)",
+      "description": "Unidad (Bienes)",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "NIU"
+    },
+    {
+      "code": "ZZ",
+      "label": "Unidad (Servicios)",
+      "description": "Unidad (Servicios)",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "ZZ"
+    },
+    {
+      "code": "KGM",
+      "label": "Kilogramo",
+      "description": "Kilogramo",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-weight"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "KGM"
+    },
+    {
+      "code": "MTR",
+      "label": "Metro",
+      "description": "Metro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MTR"
+    },
+    {
+      "code": "LTR",
+      "label": "Litro",
+      "description": "Litro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "LTR"
+    },
+    {
+      "code": "GLL",
+      "label": "Galón",
+      "description": "Galón",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "GLL"
+    },
+    {
+      "code": "TNE",
+      "label": "Tonelada métrica",
+      "description": "Tonelada métrica",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "TNE"
+    },
+    {
+      "code": "BLL",
+      "label": "Barril",
+      "description": "Barril",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "BLL"
+    },
+    {
+      "code": "DZN",
+      "label": "Docena",
+      "description": "Docena",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DZN"
+    },
+    {
+      "code": "SET",
+      "label": "Conjunto",
+      "description": "Conjunto",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "SET"
+    },
+    {
+      "code": "UND",
+      "label": "Unidad",
+      "description": "Unidad",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "UND"
+    },
+    {
+      "code": "PK",
+      "label": "Paquete",
+      "description": "Paquete",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "PK"
+    },
+    {
+      "code": "CJ",
+      "label": "Caja",
+      "description": "Caja",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "CJ"
+    },
+    {
+      "code": "PR",
+      "label": "Par",
+      "description": "Par",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "PR"
+    },
+    {
+      "code": "PAR",
+      "label": "Par",
+      "description": "Par",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "PAR"
+    },
+    {
+      "code": "DCN",
+      "label": "Decena",
+      "description": "Decena",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DCN"
+    },
+    {
+      "code": "CEN",
+      "label": "Ciento",
+      "description": "Ciento",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "CEN"
+    },
+    {
+      "code": "MLL",
+      "label": "Millar",
+      "description": "Millar",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MLL"
+    },
+    {
+      "code": "CM",
+      "label": "Centímetro",
+      "description": "Centímetro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "CM"
+    },
+    {
+      "code": "M2",
+      "label": "Metro cuadrado",
+      "description": "Metro cuadrado",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "M2"
+    },
+    {
+      "code": "M3",
+      "label": "Metro cúbico",
+      "description": "Metro cúbico",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "M3"
+    },
+    {
+      "code": "HUR",
+      "label": "Hora",
+      "description": "Hora",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "HUR"
+    },
+    {
+      "code": "MIN",
+      "label": "Minuto",
+      "description": "Minuto",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MIN"
+    },
+    {
+      "code": "DAY",
+      "label": "Día",
+      "description": "Día",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DAY"
+    },
+    {
+      "code": "MON",
+      "label": "Mes",
+      "description": "Mes",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MON"
+    },
+    {
+      "code": "ANN",
+      "label": "Año",
+      "description": "Año",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "ANN"
+    },
+    {
+      "code": "KWH",
+      "label": "Kilovatio hora",
+      "description": "Kilovatio hora",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "KWH"
+    },
+    {
+      "code": "MWH",
+      "label": "Megavatio hora",
+      "description": "Megavatio hora",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MWH"
+    },
+    {
+      "code": "GWH",
+      "label": "Gigavatio hora",
+      "description": "Gigavatio hora",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "GWH"
+    },
+    {
+      "code": "GRM",
+      "label": "Gramo",
+      "description": "Gramo",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "GRM"
+    },
+    {
+      "code": "MLT",
+      "label": "Mililitro",
+      "description": "Mililitro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MLT"
+    },
+    {
+      "code": "MTK",
+      "label": "Metro cuadrado",
+      "description": "Metro cuadrado",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MTK"
+    },
+    {
+      "code": "MTQ",
+      "label": "Metro cúbico",
+      "description": "Metro cúbico",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "MTQ"
+    },
+    {
+      "code": "FOT",
+      "label": "Pie",
+      "description": "Pie",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "FOT"
+    },
+    {
+      "code": "INH",
+      "label": "Pulgada",
+      "description": "Pulgada",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "INH"
+    },
+    {
+      "code": "BX",
+      "label": "Caja (box)",
+      "description": "Caja (box)",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "BX"
+    },
+    {
+      "code": "BO",
+      "label": "Botella",
+      "description": "Botella",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "BO"
+    },
+    {
+      "code": "CY",
+      "label": "Cilindro",
+      "description": "Cilindro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "CY"
+    },
+    {
+      "code": "DR",
+      "label": "Tambor",
+      "description": "Tambor",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DR"
+    },
+    {
+      "code": "SA",
+      "label": "Saco",
+      "description": "Saco",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "SA"
+    },
+    {
+      "code": "RO",
+      "label": "Rollo",
+      "description": "Rollo",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "RO"
+    }
+  ]
+}

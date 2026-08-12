@@ -28,6 +28,18 @@
       "import": "./gen/ts/cat01.js",
       "default": "./gen/ts/cat01.js"
     },
+    "./cat02": {
+      "types": "./gen/ts/cat02.d.ts",
+      "require": "./gen/ts/cat02.cjs",
+      "import": "./gen/ts/cat02.js",
+      "default": "./gen/ts/cat02.js"
+    },
+    "./cat03": {
+      "types": "./gen/ts/cat03.d.ts",
+      "require": "./gen/ts/cat03.cjs",
+      "import": "./gen/ts/cat03.js",
+      "default": "./gen/ts/cat03.js"
+    },
     "./cat05": {
       "types": "./gen/ts/cat05.d.ts",
       "require": "./gen/ts/cat05.cjs",

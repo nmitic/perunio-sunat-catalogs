@@ -1,0 +1,85 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat02",
+  "sunatCatalog": "02",
+  "name": "Tipo de Moneda",
+  "source": "ISO 4217 alpha-3, which is what catálogo 02 defers to — SUNAT's anexo gives no list of its own, only the ISO reference. Scoped to the currencies this platform can actually handle: `select` on the three the issuance UI offers (PEN, USD, EUR), and the rest display-only. flags.priceable marks the currencies perunio-backend/src/services/tipo-cambio-bcrp.service.ts can fetch a rate for (MONEDA_CONFIG), which is the real constraint on emitting in a currency: a detracción must be converted to PEN. Currency SYMBOLS are deliberately absent — they are typographic convention, not catalog data, and the repo's README rules them out.",
+  "codePattern": "^[A-Z]{3}$",
+  "entries": [
+    {
+      "code": "PEN",
+      "label": "Soles",
+      "description": "Sol peruano",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "PEN"
+    },
+    {
+      "code": "USD",
+      "label": "Dólares",
+      "description": "Dólar estadounidense",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "USD"
+    },
+    {
+      "code": "EUR",
+      "label": "Euros",
+      "description": "Euro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "EUR"
+    },
+    {
+      "code": "GBP",
+      "label": "Libras esterlinas",
+      "description": "Libra esterlina",
+      "capabilities": [],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "GBP"
+    },
+    {
+      "code": "JPY",
+      "label": "Yenes",
+      "description": "Yen japonés",
+      "capabilities": [],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "JPY"
+    },
+    {
+      "code": "MXN",
+      "label": "Pesos mexicanos",
+      "description": "Peso mexicano",
+      "capabilities": [],
+      "flags": {
+        "priceable": true
+      },
+      "props": {},
+      "goName": "MXN"
+    }
+  ]
+}

@@ -11,6 +11,8 @@
 // Catálogos in this package:
 //
 //	cat01      Cat.01           Tipo de Documento (41 entries)
+//	cat02      Cat.02           Tipo de Moneda (6 entries)
+//	cat03      Cat.03           Unidad de Medida Comercial (41 entries)
 //	cat05      Cat.05           Código de Tributos (9 entries)
 //	cat06      Cat.06           Tipo de Documento de Identidad (13 entries)
 //	cat07      Cat.07           Tipo de Afectación del IGV (19 entries)
