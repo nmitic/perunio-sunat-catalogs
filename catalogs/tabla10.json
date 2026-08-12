@@ -1,0 +1,452 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "tabla10",
+  "sunatCatalog": null,
+  "name": "Tipo de Comprobante de Pago o Documento (PLE tabla 10)",
+  "source": "SUNAT PLE tabla 10, transcribed from perunio-frontend/src/lib/invoice-type-utils.ts, which is the list the RCE/RVIE listings are actually rendered against. IMPORTANT: this is NOT catálogo 01 and the two must not be merged. They overlap heavily but disagree — código 40 is 'Comprobante de Percepción' in catálogo 01 and 'Constancia de Depósito - IVAP' here — and each contains códigos the other does not: tabla 10 has the DUA/DSI import declarations (50, 52, 53, 54), the no-domiciliado documents (91, 96, 97, 98) and recibo por arrendamiento (10), while catálogo 01 has the electronic-emission codes 41, 42, 43, 45, 55, 56, 71 and 72. Catálogo 01 describes what may be *emitted*; this table describes what may *appear in a ledger*. Only `download` is meaningful here — nothing in this table is ever emitted, so no entry carries `emit` or `select`.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Factura",
+      "description": "Factura",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "Factura"
+    },
+    {
+      "code": "02",
+      "label": "Recibo por Honorarios",
+      "description": "Recibo por Honorarios",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "ReciboPorHonorarios"
+    },
+    {
+      "code": "03",
+      "label": "Boleta de Venta",
+      "description": "Boleta de Venta",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "BoletaDeVenta"
+    },
+    {
+      "code": "04",
+      "label": "Liquidación de Compra",
+      "description": "Liquidación de compra",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "LiquidacionDeCompra"
+    },
+    {
+      "code": "05",
+      "label": "Boleto de Aviación",
+      "description": "Boleto de compañía de aviación comercial por el servicio de transporte aéreo de pasajeros",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "BoletoDeAviacion"
+    },
+    {
+      "code": "06",
+      "label": "Carta de Porte Aéreo",
+      "description": "Carta de porte aéreo por el servicio de transporte de carga aérea",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "CartaDePorteAereo"
+    },
+    {
+      "code": "07",
+      "label": "Nota de Crédito",
+      "description": "Nota de crédito",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeCredito"
+    },
+    {
+      "code": "08",
+      "label": "Nota de Débito",
+      "description": "Nota de débito",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeDebito"
+    },
+    {
+      "code": "09",
+      "label": "Guía de Remisión - Remitente",
+      "description": "Guía de remisión - Remitente",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "GuiaDeRemisionRemitente"
+    },
+    {
+      "code": "10",
+      "label": "Recibo por Arrendamiento",
+      "description": "Recibo por Arrendamiento",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ReciboPorArrendamiento"
+    },
+    {
+      "code": "11",
+      "label": "Póliza de Bolsa de Valores",
+      "description": "Póliza emitida por las Bolsas de Valores, Bolsas de Productos o Agentes de Intermediación por operaciones realizadas en las Bolsas de Valores o Productos o fuera de las mismas, autorizadas por CONASEV",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "PolizaDeBolsaDeValores"
+    },
+    {
+      "code": "12",
+      "label": "Ticket de Máquina Registradora",
+      "description": "Ticket o cinta emitido por máquina registradora",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "TicketDeMaquinaRegistradora"
+    },
+    {
+      "code": "13",
+      "label": "Documento de Bancos/Seguros",
+      "description": "Documento emitido por bancos, instituciones financieras, crediticias y de seguros que se encuentren bajo el control de la Superintendencia de Banca y Seguros",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoDeBancosSeguros"
+    },
+    {
+      "code": "14",
+      "label": "Recibo por Servicios Públicos",
+      "description": "Recibo por servicios públicos de suministro de energía eléctrica, agua, teléfono, telex y telegráficos y otros servicios complementarios que se incluyen en el recibo de servicio público",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ReciboPorServiciosPublicos"
+    },
+    {
+      "code": "15",
+      "label": "Boleto Transporte Urbano",
+      "description": "Boleto emitido por las empresas de transporte público urbano de pasajeros",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "BoletoTransporteUrbano"
+    },
+    {
+      "code": "16",
+      "label": "Boleto Viaje Interprovincial",
+      "description": "Boleto de viaje emitido por las empresas de transporte público interprovincial de pasajeros dentro del país",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "BoletoViajeInterprovincial"
+    },
+    {
+      "code": "17",
+      "label": "Documento Iglesia Católica",
+      "description": "Documento emitido por la Iglesia Católica por el arrendamiento de bienes inmuebles",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoIglesiaCatolica"
+    },
+    {
+      "code": "18",
+      "label": "Documento AFP",
+      "description": "Documento emitido por las Administradoras Privadas de Fondo de Pensiones que se encuentran bajo la supervisión de la Superintendencia de Administradoras Privadas de Fondos de Pensiones",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoAfp"
+    },
+    {
+      "code": "19",
+      "label": "Boleto de Espectáculos",
+      "description": "Boleto o entrada por atracciones y espectáculos públicos",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "BoletoDeEspectaculos"
+    },
+    {
+      "code": "20",
+      "label": "Comprobante de Retención",
+      "description": "Comprobante de Retención",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ComprobanteDeRetencion"
+    },
+    {
+      "code": "21",
+      "label": "Conocimiento de Embarque",
+      "description": "Conocimiento de embarque por el servicio de transporte de carga marítima",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ConocimientoDeEmbarque"
+    },
+    {
+      "code": "22",
+      "label": "Comprobante Op. No Habituales",
+      "description": "Comprobante por Operaciones No Habituales",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ComprobanteOpNoHabituales"
+    },
+    {
+      "code": "23",
+      "label": "Pólizas de Adjudicación",
+      "description": "Pólizas de Adjudicación emitidas con ocasión del remate o adjudicación de bienes por venta forzada, por los martilleros o las entidades que rematen o subasten bienes por cuenta de terceros",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "PolizasDeAdjudicacion"
+    },
+    {
+      "code": "24",
+      "label": "Certificado de Regalías",
+      "description": "Certificado de pago de regalías emitidas por PERUPETRO S.A",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "CertificadoDeRegalias"
+    },
+    {
+      "code": "25",
+      "label": "Documento de Atribución",
+      "description": "Documento de Atribución (Ley del Impuesto General a las Ventas e Impuesto Selectivo al Consumo, Art. 19º, último párrafo, R.S. N° 022-98-SUNAT)",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoDeAtribucion"
+    },
+    {
+      "code": "26",
+      "label": "Recibo Tarifa Uso de Agua",
+      "description": "Recibo por el Pago de la Tarifa por Uso de Agua Superficial con fines agrarios y por el pago de la Cuota para la ejecución de una determinada obra o actividad acordada por la Asamblea General de la Comisión de Regantes o Resolución expedida por el Jefe de la Unidad de Aguas y de Riego (Decreto Supremo N° 003-90-AG, Arts. 28 y 48)",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ReciboTarifaUsoDeAgua"
+    },
+    {
+      "code": "27",
+      "label": "Seguro Complementario",
+      "description": "Seguro Complementario de Trabajo de Riesgo",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "SeguroComplementario"
+    },
+    {
+      "code": "28",
+      "label": "Tarifa Uso de Aeropuerto",
+      "description": "Tarifa Unificada de Uso de Aeropuerto",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "TarifaUsoDeAeropuerto"
+    },
+    {
+      "code": "29",
+      "label": "Documentos COFOPRI",
+      "description": "Documentos emitidos por la COFOPRI en calidad de oferta de venta de terrenos, los correspondientes a las subastas públicas y a la retribución de los servicios que presta",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentosCofopri"
+    },
+    {
+      "code": "30",
+      "label": "Documento Tarjetas Crédito/Débito",
+      "description": "Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoTarjetasCreditoDebito"
+    },
+    {
+      "code": "31",
+      "label": "Guía de Remisión - Transportista",
+      "description": "Guía de Remisión - Transportista",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "GuiaDeRemisionTransportista"
+    },
+    {
+      "code": "32",
+      "label": "Documento Garantía Red Principal",
+      "description": "Documentos emitidos por las empresas recaudadoras de la denominada Garantía de Red Principal a la que hace referencia el numeral 7.6 del artículo 7° de la Ley N° 27133 – Ley de Promoción del Desarrollo de la Industria del Gas Natural",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoGarantiaRedPrincipal"
+    },
+    {
+      "code": "34",
+      "label": "Documento del Operador",
+      "description": "Documento del Operador",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoDelOperador"
+    },
+    {
+      "code": "35",
+      "label": "Documento del Partícipe",
+      "description": "Documento del Partícipe",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoDelParticipe"
+    },
+    {
+      "code": "36",
+      "label": "Recibo Gas Natural",
+      "description": "Recibo de Distribución de Gas Natural",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ReciboGasNatural"
+    },
+    {
+      "code": "37",
+      "label": "Documento Revisión Técnica",
+      "description": "Documentos que emitan los concesionarios del servicio de revisiones técnicas vehiculares, por la prestación de dicho servicio",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DocumentoRevisionTecnica"
+    },
+    {
+      "code": "40",
+      "label": "Constancia de Depósito - IVAP",
+      "description": "Constancia de Depósito - IVAP (Ley 28211)",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ConstanciaDeDepositoIvap"
+    },
+    {
+      "code": "50",
+      "label": "DUA - Importación Definitiva",
+      "description": "Declaración Única de Aduanas - Importación definitiva",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DuaImportacionDefinitiva"
+    },
+    {
+      "code": "52",
+      "label": "Despacho Simplificado",
+      "description": "Despacho Simplificado - Importación Simplificada",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DespachoSimplificado"
+    },
+    {
+      "code": "53",
+      "label": "Declaración Mensajería/Courier",
+      "description": "Declaración de Mensajería o Courier",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "DeclaracionMensajeriaCourier"
+    },
+    {
+      "code": "54",
+      "label": "Liquidación de Cobranza",
+      "description": "Liquidación de Cobranza",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "LiquidacionDeCobranza"
+    },
+    {
+      "code": "87",
+      "label": "Nota de Crédito Especial",
+      "description": "Nota de Crédito Especial",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeCreditoEspecial"
+    },
+    {
+      "code": "88",
+      "label": "Nota de Débito Especial",
+      "description": "Nota de Débito Especial",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeDebitoEspecial"
+    },
+    {
+      "code": "91",
+      "label": "Comprobante de No Domiciliado",
+      "description": "Comprobante de No Domiciliado",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ComprobanteDeNoDomiciliado"
+    },
+    {
+      "code": "96",
+      "label": "Exceso Crédito Fiscal",
+      "description": "Exceso de crédito fiscal por retiro de bienes",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "ExcesoCreditoFiscal"
+    },
+    {
+      "code": "97",
+      "label": "Nota de Crédito - No Domiciliado",
+      "description": "Nota de Crédito - No Domiciliado",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeCreditoNoDomiciliado"
+    },
+    {
+      "code": "98",
+      "label": "Nota de Débito - No Domiciliado",
+      "description": "Nota de Débito - No Domiciliado",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "NotaDeDebitoNoDomiciliado"
+    },
+    {
+      "code": "99",
+      "label": "Otros - Consolidado BV",
+      "description": "Otros - Consolidado de Boletas de Venta",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "OtrosConsolidadoBv"
+    }
+  ]
+}

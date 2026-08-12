@@ -52,6 +52,12 @@
       "import": "./gen/ts/cat16.js",
       "default": "./gen/ts/cat16.js"
     },
+    "./tabla10": {
+      "types": "./gen/ts/tabla10.d.ts",
+      "require": "./gen/ts/tabla10.cjs",
+      "import": "./gen/ts/tabla10.js",
+      "default": "./gen/ts/tabla10.js"
+    },
     "./ubl-document": {
       "types": "./gen/ts/ubl-document.d.ts",
       "require": "./gen/ts/ubl-document.cjs",

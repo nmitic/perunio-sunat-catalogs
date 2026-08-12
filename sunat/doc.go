@@ -15,6 +15,7 @@
 //	cat06      Cat.06           Tipo de Documento de Identidad (13 entries)
 //	cat07      Cat.07           Tipo de Afectación del IGV (19 entries)
 //	cat16      Cat.16           Tipo de Precio de Venta Unitario (3 entries)
+//	tabla10    perunio-internal Tipo de Comprobante de Pago o Documento (PLE tabla 10) (48 entries)
 //	ubl-document perunio-internal Documento UBL (6 entries)
 //	ubl-namespace perunio-internal Prefijo de namespace UBL (5 entries)
 package sunat
