@@ -39,6 +39,21 @@ scheme := sunat.Cat07TaxScheme(code)
 Import one catalog at a time. Each is its own export subpath and the package sets
 `sideEffects: false`, so a bundle only carries the catálogos it actually uses.
 
+Each catalog ships three files: `.js` (ESM, what Node and Vite load), `.cjs` for
+CommonJS runtimes that cannot load ESM at all — jest, run without
+`--experimental-vm-modules`, is the one that matters — and `.d.ts` for types. Both
+JavaScript builds are rendered from a single body, so they cannot drift apart.
+
+> **Consuming from jest / ts-jest.** The runtime resolves the `require` condition
+> and needs no transform, but ts-jest coerces `module` to CommonJS and that
+> coercion falls back to Node10 resolution, which ignores `exports` maps — so
+> types stop resolving under ts-jest even though `tsc` is fine. Map them directly
+> in the test tsconfig:
+>
+> ```jsonc
+> "paths": { "sunat-catalogs/*": ["../node_modules/sunat-catalogs/gen/ts/*"] }
+> ```
+
 ## What is in a catalog file
 
 ```jsonc

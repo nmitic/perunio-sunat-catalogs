@@ -24,6 +24,8 @@
   "exports": {
     "./cat16": {
       "types": "./gen/ts/cat16.d.ts",
+      "require": "./gen/ts/cat16.cjs",
+      "import": "./gen/ts/cat16.js",
       "default": "./gen/ts/cat16.js"
     }
   }

@@ -9,6 +9,9 @@ that narrows what the UI offers or what the pipeline accepts.
 ### Added
 
 - Repository, spec format, validator and both generators.
+- Dual-format TypeScript output: `.js` (ESM), `.cjs` (CommonJS) and `.d.ts`, with
+  `import`/`require`/`types` export conditions. The CommonJS build lets
+  perunio-backend's jest load the package with no transform configuration.
 - `cat16` — Tipo de Precio de Venta Unitario (3 entries). Seeded to prove the
   pipeline end to end. Includes code `03`, which
   `perunio-facturador/internal/xmlbuilder/invoice.go` already accepts but

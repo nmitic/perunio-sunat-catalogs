@@ -1,9 +1,14 @@
 #!/usr/bin/env node
-// Emits gen/ts/<id>.js and gen/ts/<id>.d.ts for every catalog, plus the package
-// `exports` map. JavaScript and declarations are written side by side rather than
+// Emits gen/ts/<id>.{js,cjs,d.ts} for every catalog, plus the package `exports`
+// map. JavaScript and declarations are written side by side rather than
 // TypeScript on purpose: it removes any build step from this repo, and it lets
 // perunio-backend consume the package without touching its tsconfig, whose
 // rootDir ("./src") makes a .ts import from outside src/ a TS6059 error.
+//
+// The .cjs twin exists for CommonJS runtimes that cannot load ESM — jest, which
+// perunio-backend runs without --experimental-vm-modules, is the one that
+// matters. Both formats are rendered from one body (see renderBody), so they
+// cannot disagree about the data.
 //
 // Usage:  node tools/gen-ts.mjs [--check]
 //   --check  render into memory and diff against disk; exit 1 on any difference.
@@ -55,52 +60,83 @@ function subsets(cat) {
   return out
 }
 
-function renderJs(cat) {
+/**
+ * The runtime body, as declarations with no module syntax, plus the names to
+ * export. Rendered once and wrapped twice (ESM and CommonJS) so the two formats
+ * can never disagree about the data.
+ */
+function renderBody(cat) {
   const C = screaming(cat.id)
   const P = pascal(cat.id)
   const f = fields(cat)
-  const out = [HEADER]
+  const fn = cat.id.replace(/-(.)/g, (_, c) => c.toUpperCase())
+  const out = []
+  const names = []
 
   out.push(`/** ${cat.name}${cat.sunatCatalog ? ` — SUNAT catálogo ${cat.sunatCatalog}` : ''}. */`)
-  out.push(`export const ${C}_CODES = [${cat.codes.map(lit).join(', ')}];`, '')
+  out.push(`const ${C}_CODES = [${cat.codes.map(lit).join(', ')}];`, '')
+  names.push(`${C}_CODES`)
 
-  out.push(`export const ${C} = {`)
+  out.push(`const ${C} = {`)
   for (const e of cat.entries) {
     const parts = [`code: ${lit(e.code)}`, `label: ${lit(e.label)}`, `description: ${lit(e.description)}`]
     for (const { key, kind } of f) parts.push(`${key}: ${lit(kind === 'flag' ? e.flags[key] : e.props[key])}`)
     out.push(`  ${lit(e.code)}: { ${parts.join(', ')} },`)
   }
   out.push('};', '')
+  names.push(C)
 
   out.push(`/** Every entry, in catálogo order. Same object identities as ${C}. */`)
-  out.push(`export const ${C}_ENTRIES = [${cat.codes.map((c) => `${C}[${lit(c)}]`).join(', ')}];`, '')
+  out.push(`const ${C}_ENTRIES = [${cat.codes.map((c) => `${C}[${lit(c)}]`).join(', ')}];`, '')
+  names.push(`${C}_ENTRIES`)
 
-  out.push(`export function is${P}Code(value) {`)
+  out.push(`function is${P}Code(value) {`)
   out.push(`  return ${C}_CODES.includes(value);`)
   out.push('}', '')
+  names.push(`is${P}Code`)
+
   out.push(`/** Entry for an untrusted string, or undefined. */`)
-  out.push(`export function ${cat.id.replace(/-(.)/g, (_, c) => c.toUpperCase())}(value) {`)
+  out.push(`function ${fn}(value) {`)
   out.push(`  return is${P}Code(value) ? ${C}[value] : undefined;`)
   out.push('}')
+  names.push(fn)
 
   for (const s of subsets(cat)) {
-    out.push('', `export const ${C}_${s.name}_CODES = [${s.codes.map(lit).join(', ')}];`)
+    out.push('', `const ${C}_${s.name}_CODES = [${s.codes.map(lit).join(', ')}];`)
+    names.push(`${C}_${s.name}_CODES`)
     if (s.type) {
-      out.push(`export const ${C}_${s.name}_ENTRIES = [${s.codes.map((c) => `${C}[${lit(c)}]`).join(', ')}];`)
-      out.push(`export function is${P}${pascal(s.name.toLowerCase())}Code(value) {`)
+      const guard = `is${P}${pascal(s.name.toLowerCase())}Code`
+      out.push(`const ${C}_${s.name}_ENTRIES = [${s.codes.map((c) => `${C}[${lit(c)}]`).join(', ')}];`)
+      out.push(`function ${guard}(value) {`)
       out.push(`  return ${C}_${s.name}_CODES.includes(value);`)
       out.push('}')
+      names.push(`${C}_${s.name}_ENTRIES`, guard)
     }
   }
 
   for (const key of cat.propKeys) {
     out.push('', `/** ${cat.name} → ${key}. */`)
-    out.push(`export const ${C}_${constCase(key)} = {`)
+    out.push(`const ${C}_${constCase(key)} = {`)
     for (const e of cat.entries) out.push(`  ${lit(e.code)}: ${lit(e.props[key])},`)
     out.push('};')
+    names.push(`${C}_${constCase(key)}`)
   }
 
-  return out.join('\n') + '\n'
+  return { lines: out, names }
+}
+
+function renderJs(cat) {
+  const { lines, names } = renderBody(cat)
+  return [HEADER, ...lines, '', `export { ${names.join(', ')} };`].join('\n') + '\n'
+}
+
+// CommonJS twin. Node and Vite take the ESM build; this exists for CommonJS
+// runtimes that cannot load ESM at all — notably jest, which perunio-backend runs
+// without --experimental-vm-modules. Shipping it here beats asking every such
+// consumer to configure a transform for a dependency that is pure data.
+function renderCjs(cat) {
+  const { lines, names } = renderBody(cat)
+  return [HEADER, "'use strict';", '', ...lines, '', `module.exports = { ${names.join(', ')} };`].join('\n') + '\n'
 }
 
 function renderDts(cat) {
@@ -160,8 +196,17 @@ function renderDts(cat) {
 function renderPackageJson(catalogs) {
   const path = join(REPO_ROOT, 'package.json')
   const pkg = JSON.parse(readFileSync(path, 'utf8'))
+  // Order matters: "types" must come first, and "default" last.
   pkg.exports = Object.fromEntries(
-    catalogs.map((c) => [`./${c.id}`, { types: `./gen/ts/${c.id}.d.ts`, default: `./gen/ts/${c.id}.js` }]),
+    catalogs.map((c) => [
+      `./${c.id}`,
+      {
+        types: `./gen/ts/${c.id}.d.ts`,
+        require: `./gen/ts/${c.id}.cjs`,
+        import: `./gen/ts/${c.id}.js`,
+        default: `./gen/ts/${c.id}.js`,
+      },
+    ]),
   )
   return JSON.stringify(pkg, null, 2) + '\n'
 }
@@ -183,6 +228,7 @@ try {
 const rendered = new Map()
 for (const cat of catalogs) {
   rendered.set(join(OUT_DIR, `${cat.id}.js`), renderJs(cat))
+  rendered.set(join(OUT_DIR, `${cat.id}.cjs`), renderCjs(cat))
   rendered.set(join(OUT_DIR, `${cat.id}.d.ts`), renderDts(cat))
 }
 rendered.set(join(REPO_ROOT, 'package.json'), renderPackageJson(catalogs))
