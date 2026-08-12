@@ -1,0 +1,14 @@
+{
+  "display": "May be rendered or labelled anywhere: RCE/RVIE listings, PDFs, Excel exports, historical rows. Implicit on every entry — never write it in a catalog file, the generator adds it.",
+  "emit": "The facturador may put this code on the wire to SUNAT.",
+  "select": "The issuance UI may offer this code in a picker. Implies `emit`.",
+  "download": "A CPE of this type is retrievable from SUNAT's consultacpe service (XML/PDF/CDR).",
+  "void": "May appear in a Comunicación de Baja (RA).",
+  "retired": "SUNAT withdrew this code. Never emit it; still display it so historical rows render. Mutually exclusive with `emit`.",
+  "internal": "A Perunio-internal marker that never reaches the wire. The entry must carry `props.wireEquivalent` naming the code sent instead.",
+  "on-boleta": "Valid when the nota references a boleta (Cat.01 code 03).",
+  "on-factura": "Valid when the nota references a factura (Cat.01 code 01).",
+  "full-reversal": "This nota motivo reverses the whole referenced document.",
+  "line-selection": "This nota motivo credits only the lines the user selects.",
+  "gre-weight": "May be used as the unidad de medida for a guía de remisión's gross weight."
+}

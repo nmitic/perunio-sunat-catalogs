@@ -1,0 +1,30 @@
+{
+  "name": "sunat-catalogs",
+  "version": "0.1.0",
+  "description": "SUNAT catálogos (códigos y tablas) as versioned JSON, with generated TypeScript and Go bindings.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmitic/perunio-sunat-catalogs.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "gen",
+    "catalogs",
+    "meta"
+  ],
+  "scripts": {
+    "validate": "node validate.mjs",
+    "gen:ts": "node tools/gen-ts.mjs",
+    "gen:go": "go run ./tools/gensunat",
+    "gen": "npm run validate && npm run gen:ts && npm run gen:go",
+    "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check"
+  },
+  "exports": {
+    "./cat16": {
+      "types": "./gen/ts/cat16.d.ts",
+      "default": "./gen/ts/cat16.js"
+    }
+  }
+}

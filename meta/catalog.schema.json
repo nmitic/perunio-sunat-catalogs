@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/nmitic/perunio-sunat-catalogs/main/meta/catalog.schema.json",
+  "title": "SUNAT catalog",
+  "description": "One SUNAT catálogo (or Perunio-internal enum). Editors validate against this live; validate.mjs re-checks it plus the rules JSON Schema cannot express (cross-catalog references, uniform entry shape, capability vocabulary).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "sunatCatalog", "name", "source", "codePattern", "entries"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable identifier. Drives every generated symbol and the package export subpath: `cat07` yields CAT07_CODES, Cat07Code, sunat-catalogs/cat07."
+    },
+    "sunatCatalog": {
+      "type": ["string", "null"],
+      "description": "The SUNAT catálogo number as printed in the anexo ('07', '51'). null for Perunio-internal enums."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human name, used in generated doc comments."
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Where the data came from. Cite the resolución or the checked-in file under perunio-facturador/resources/ — never 'the frontend had this list'."
+    },
+    "codePattern": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Regex every code must match. Anchored."
+    },
+    "propRefs": {
+      "type": "object",
+      "description": "Declares which props are cross-catalog references: { \"taxSchemeCode\": \"cat05\" }. validate.mjs resolves them; the generators type them.",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/entry" }
+    }
+  },
+  "definitions": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "label", "description", "capabilities", "flags", "props", "goName"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The wire value, always a string: '0', '01', '1000', 'NIU'."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short Spanish label for pickers, badges and table cells."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SUNAT's own full wording. May equal label."
+        },
+        "capabilities": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "emit",
+              "select",
+              "download",
+              "void",
+              "retired",
+              "internal",
+              "on-boleta",
+              "on-factura",
+              "full-reversal",
+              "line-selection",
+              "gre-weight"
+            ]
+          },
+          "description": "Tokens from meta/capabilities.json. 'display' is implicit — do not write it."
+        },
+        "flags": {
+          "type": "object",
+          "description": "Booleans only. Every entry in a file must carry the same keys.",
+          "additionalProperties": { "type": "boolean" }
+        },
+        "props": {
+          "type": "object",
+          "description": "Scalars and cross-catalog code references. Every entry in a file must carry the same keys; defaults are materialised, absent values are explicit null.",
+          "additionalProperties": { "type": ["string", "number", "boolean", "null"] }
+        },
+        "goName": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "description": "Suffix of the generated Go constant: 'GravadoOnerosa' yields Cat07GravadoOnerosa. Set it to preserve the name the Go code already uses."
+        }
+      }
+    }
+  }
+}

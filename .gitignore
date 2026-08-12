@@ -1,0 +1,5 @@
+node_modules/
+
+# gen/ and sunat/ are deliberately committed — they are the artifacts consumers
+# install. Nothing here builds on `npm install`, which is what lets the three
+# services depend on a git tag with no build step and no deploy configuration.

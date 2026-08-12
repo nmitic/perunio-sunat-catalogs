@@ -1,0 +1,37 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat16",
+  "sunatCatalog": "16",
+  "name": "Tipo de Precio de Venta Unitario",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 16. Code 03 is accepted by internal/xmlbuilder/invoice.go:729-741 (validPriceTypeCodes) but is not named in internal/model/catalog.go — confirm against resources/AjustesValidacionesCPEv20260212.xlsx before batch 6.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Precio unitario",
+      "description": "Precio unitario (incluye el IGV)",
+      "capabilities": ["emit", "select"],
+      "flags": { "referencial": false },
+      "props": {},
+      "goName": "PrecioUnitario"
+    },
+    {
+      "code": "02",
+      "label": "Valor referencial",
+      "description": "Valor referencial unitario en operaciones no onerosas",
+      "capabilities": ["emit", "select"],
+      "flags": { "referencial": true },
+      "props": {},
+      "goName": "ValorReferencial"
+    },
+    {
+      "code": "03",
+      "label": "Valor referencial de exportación",
+      "description": "Valor referencial unitario en operaciones de exportación",
+      "capabilities": ["emit"],
+      "flags": { "referencial": true },
+      "props": {},
+      "goName": "ValorReferencialExportacion"
+    }
+  ]
+}

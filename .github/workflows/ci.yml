@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: validate + regenerate + diff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      # The spec must be well formed before anything is rendered from it.
+      - name: Validate catalogs
+        run: node validate.mjs
+
+      # Each generator re-renders into memory and diffs against the committed
+      # artifacts, so a spec change without a regenerate fails here.
+      - name: Check TypeScript artifacts
+        run: node tools/gen-ts.mjs --check
+
+      - name: Check Go artifacts
+        run: go run ./tools/gensunat --check
+
+      - name: Vet
+        run: go vet ./...
+
+      # Belt and braces: catches anything a --check mode did not model, such as a
+      # hand-edited file the generator does not own.
+      - name: Working tree is clean
+        run: git diff --exit-code
