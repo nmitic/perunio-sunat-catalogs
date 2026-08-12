@@ -1,0 +1,88 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "ubl-document",
+  "sunatCatalog": null,
+  "name": "Documento UBL",
+  "source": "The UBL root element SUNAT expects per document kind, with its namespace, cbc:UBLVersionID and cbc:CustomizationID. Transcribed from perunio-facturador/internal/xmlbuilder/namespace.go plus the six builders that set the pair: invoice.go:134, creditnote.go:58, debitnote.go:63, summary.go:126 (RC) and :~ (RA), despatch_common.go:434-446. Not a SUNAT catálogo — a Perunio-internal table that exists because getting one row wrong is the #1 cause of silent rejections: RC and RA are UBL 2.0, everything else is 2.1.",
+  "codePattern": "^[A-Z][A-Za-z]+$",
+  "entries": [
+    {
+      "code": "Invoice",
+      "label": "Factura / boleta",
+      "description": "Comprobante de pago electrónico: factura (Cat.01 01) y boleta de venta (Cat.01 03)",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+        "ublVersion": "2.1",
+        "customizationId": "2.0"
+      },
+      "goName": "Invoice"
+    },
+    {
+      "code": "CreditNote",
+      "label": "Nota de crédito",
+      "description": "Nota de crédito electrónica (Cat.01 07)",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2",
+        "ublVersion": "2.1",
+        "customizationId": "2.0"
+      },
+      "goName": "CreditNote"
+    },
+    {
+      "code": "DebitNote",
+      "label": "Nota de débito",
+      "description": "Nota de débito electrónica (Cat.01 08)",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2",
+        "ublVersion": "2.1",
+        "customizationId": "2.0"
+      },
+      "goName": "DebitNote"
+    },
+    {
+      "code": "DespatchAdvice",
+      "label": "Guía de remisión electrónica",
+      "description": "Guía de remisión remitente, transportista y por eventos (GRE)",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2",
+        "ublVersion": "2.1",
+        "customizationId": "2.0"
+      },
+      "goName": "DespatchAdvice"
+    },
+    {
+      "code": "SummaryDocuments",
+      "label": "Resumen diario de boletas",
+      "description": "Resumen diario (RC). UBL 2.0, not 2.1 — sending 2.1 is silently rejected",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1",
+        "ublVersion": "2.0",
+        "customizationId": "1.1"
+      },
+      "goName": "SummaryDocuments"
+    },
+    {
+      "code": "VoidedDocuments",
+      "label": "Comunicación de baja",
+      "description": "Comunicación de baja (RA). UBL 2.0, not 2.1 — sending 2.1 is silently rejected",
+      "capabilities": ["emit"],
+      "flags": {},
+      "props": {
+        "namespace": "urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1",
+        "ublVersion": "2.0",
+        "customizationId": "1.0"
+      },
+      "goName": "VoidedDocuments"
+    }
+  ]
+}

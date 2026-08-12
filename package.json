@@ -22,11 +22,29 @@
     "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check"
   },
   "exports": {
+    "./cat05": {
+      "types": "./gen/ts/cat05.d.ts",
+      "require": "./gen/ts/cat05.cjs",
+      "import": "./gen/ts/cat05.js",
+      "default": "./gen/ts/cat05.js"
+    },
     "./cat16": {
       "types": "./gen/ts/cat16.d.ts",
       "require": "./gen/ts/cat16.cjs",
       "import": "./gen/ts/cat16.js",
       "default": "./gen/ts/cat16.js"
+    },
+    "./ubl-document": {
+      "types": "./gen/ts/ubl-document.d.ts",
+      "require": "./gen/ts/ubl-document.cjs",
+      "import": "./gen/ts/ubl-document.js",
+      "default": "./gen/ts/ubl-document.js"
+    },
+    "./ubl-namespace": {
+      "types": "./gen/ts/ubl-namespace.d.ts",
+      "require": "./gen/ts/ubl-namespace.cjs",
+      "import": "./gen/ts/ubl-namespace.js",
+      "default": "./gen/ts/ubl-namespace.js"
     }
   }
 }

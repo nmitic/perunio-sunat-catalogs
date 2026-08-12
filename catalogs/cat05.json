@@ -1,0 +1,91 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat05",
+  "sunatCatalog": "05",
+  "name": "Código de Tributos",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 05. Transcribed from perunio-facturador/internal/model/catalog.go:23-33 (TaxScheme* var block), the only place all nine were named together. The dead UNECEID field of TaxSchemeType is not carried over: it duplicated Code on every row and was never read. props.rate is the tributo's own statutory rate and is null wherever no such rate exists: ISC varies by sistema de cálculo, and 9996 (gratuito) declares whichever rate the underlying operación would have carried — 18.00 for gravado-gratuito, 0.00 for exonerado/inafecto gratuito — which is a Cat.07 property, not a Cat.05 one.",
+  "codePattern": "^[0-9]{4}$",
+  "entries": [
+    {
+      "code": "1000",
+      "label": "IGV",
+      "description": "Impuesto General a las Ventas",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "IGV", "taxTypeCode": "VAT", "taxCategoryId": "S", "rate": "18.00" },
+      "goName": "IGV"
+    },
+    {
+      "code": "1016",
+      "label": "IVAP",
+      "description": "Impuesto a la Venta Arroz Pilado",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "IVAP", "taxTypeCode": "VAT", "taxCategoryId": "S", "rate": "4.00" },
+      "goName": "IVAP"
+    },
+    {
+      "code": "2000",
+      "label": "ISC",
+      "description": "Impuesto Selectivo al Consumo",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "ISC", "taxTypeCode": "EXC", "taxCategoryId": "S", "rate": null },
+      "goName": "ISC"
+    },
+    {
+      "code": "7152",
+      "label": "ICBPER",
+      "description": "Impuesto a la bolsa de plástico",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "ICBPER", "taxTypeCode": "OTH", "taxCategoryId": "S", "rate": null },
+      "goName": "ICBPER"
+    },
+    {
+      "code": "9995",
+      "label": "EXP",
+      "description": "Exportación",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "EXP", "taxTypeCode": "FRE", "taxCategoryId": "G", "rate": null },
+      "goName": "Exportacion"
+    },
+    {
+      "code": "9996",
+      "label": "GRA",
+      "description": "Gratuito",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": true },
+      "props": { "name": "GRA", "taxTypeCode": "FRE", "taxCategoryId": "E", "rate": null },
+      "goName": "Gratuita"
+    },
+    {
+      "code": "9997",
+      "label": "EXO",
+      "description": "Exonerado",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "EXO", "taxTypeCode": "VAT", "taxCategoryId": "E", "rate": null },
+      "goName": "Exonerado"
+    },
+    {
+      "code": "9998",
+      "label": "INA",
+      "description": "Inafecto",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "INA", "taxTypeCode": "FRE", "taxCategoryId": "O", "rate": null },
+      "goName": "Inafecto"
+    },
+    {
+      "code": "9999",
+      "label": "OTROS",
+      "description": "Otros tributos",
+      "capabilities": ["emit"],
+      "flags": { "gratuito": false },
+      "props": { "name": "OTROS", "taxTypeCode": "OTH", "taxCategoryId": "S", "rate": null },
+      "goName": "Otros"
+    }
+  ]
+}

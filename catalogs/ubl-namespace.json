@@ -1,0 +1,55 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "ubl-namespace",
+  "sunatCatalog": null,
+  "name": "Prefijo de namespace UBL",
+  "source": "The prefixed XML namespaces every SUNAT document declares on its root element. Transcribed from perunio-facturador/internal/xmlbuilder/namespace.go:8-16. Keyed by prefix rather than by URI so both bindings can name one: Go gets the prefix as a constant and the URI from UblNamespaceUri, TypeScript gets UBL_NAMESPACE_URI['cac'] with the prefix checked at compile time. The default (unprefixed) namespace of each root element lives in ubl-document.json instead — it varies per document, these do not.",
+  "codePattern": "^[a-z]{2,3}$",
+  "entries": [
+    {
+      "code": "cac",
+      "label": "CommonAggregateComponents",
+      "description": "UBL 2.1 common aggregate components — every cac:* element",
+      "capabilities": ["emit"],
+      "flags": { "sunatOwned": false },
+      "props": { "uri": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" },
+      "goName": "CAC"
+    },
+    {
+      "code": "cbc",
+      "label": "CommonBasicComponents",
+      "description": "UBL 2.1 common basic components — every cbc:* element",
+      "capabilities": ["emit"],
+      "flags": { "sunatOwned": false },
+      "props": { "uri": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" },
+      "goName": "CBC"
+    },
+    {
+      "code": "ext",
+      "label": "CommonExtensionComponents",
+      "description": "UBL 2.1 extension components — carries the ds:Signature block",
+      "capabilities": ["emit"],
+      "flags": { "sunatOwned": false },
+      "props": { "uri": "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" },
+      "goName": "EXT"
+    },
+    {
+      "code": "ds",
+      "label": "XML Digital Signature",
+      "description": "W3C XMLDSig — the enveloped RSA-SHA1 signature SUNAT requires",
+      "capabilities": ["emit"],
+      "flags": { "sunatOwned": false },
+      "props": { "uri": "http://www.w3.org/2000/09/xmldsig#" },
+      "goName": "DS"
+    },
+    {
+      "code": "sac",
+      "label": "SunatAggregateComponents",
+      "description": "SUNAT's own aggregate components — sac:AdditionalMonetaryTotal, sac:SUNATTransaction and the RC/RA line elements",
+      "capabilities": ["emit"],
+      "flags": { "sunatOwned": true },
+      "props": { "uri": "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" },
+      "goName": "SAC"
+    }
+  ]
+}

@@ -10,5 +10,8 @@
 //
 // Catálogos in this package:
 //
+//	cat05      Cat.05           Código de Tributos (9 entries)
 //	cat16      Cat.16           Tipo de Precio de Venta Unitario (3 entries)
+//	ubl-document perunio-internal Documento UBL (6 entries)
+//	ubl-namespace perunio-internal Prefijo de namespace UBL (5 entries)
 package sunat
