@@ -22,6 +22,12 @@
     "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check"
   },
   "exports": {
+    "./cat01": {
+      "types": "./gen/ts/cat01.d.ts",
+      "require": "./gen/ts/cat01.cjs",
+      "import": "./gen/ts/cat01.js",
+      "default": "./gen/ts/cat01.js"
+    },
     "./cat05": {
       "types": "./gen/ts/cat05.d.ts",
       "require": "./gen/ts/cat05.cjs",

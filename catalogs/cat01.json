@@ -1,0 +1,533 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat01",
+  "sunatCatalog": "01",
+  "name": "Tipo de Documento",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 01, transcribed from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx (40 rows). Código 02 (recibo por honorarios) is the one entry NOT in that sheet: SUNAT dropped it from the anexo but still returns it in RCE/RVIE listings, and perunio-backend's DOWNLOADABLE_CDP_CODES already treated it as retrievable. It is display+download only and carries no `emit`, which is exactly the case the capability model exists for. `label` is a short form for tables and badges — SUNAT's descripciones for the documentos autorizados run past 200 characters — and `description` keeps SUNAT's own wording. Capabilities: `emit` is what the pipeline puts on the wire, `download` is perunio-backend/src/utils/comprobante-types.ts, `void` is the VoidableDocTypes map from perunio-facturador/internal/model/catalog.go.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Factura",
+      "description": "Factura",
+      "capabilities": [
+        "emit",
+        "select",
+        "download",
+        "void"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "Factura"
+    },
+    {
+      "code": "02",
+      "label": "Recibo por honorarios",
+      "description": "Recibo por Honorarios",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ReciboHonorarios"
+    },
+    {
+      "code": "03",
+      "label": "Boleta de venta",
+      "description": "Boleta de venta",
+      "capabilities": [
+        "emit",
+        "select",
+        "download"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "Boleta"
+    },
+    {
+      "code": "04",
+      "label": "Liquidación de compra",
+      "description": "Liquidación de compra",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "LiquidacionCompra"
+    },
+    {
+      "code": "05",
+      "label": "Boleto de transporte aéreo",
+      "description": "Boletos de Transporte Aéreo que emiten las Compañías de Aviación Comercial por el servicio de transporte aéreo regular de pasajeros, emitido de manera manual, mecanizada o por medios electrónicos (BME)",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BoletoTransporteAereo"
+    },
+    {
+      "code": "06",
+      "label": "Carta de porte aéreo",
+      "description": "Carta de porte aéreo",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "CartaPorteAereo"
+    },
+    {
+      "code": "07",
+      "label": "Nota de crédito",
+      "description": "Nota de crédito",
+      "capabilities": [
+        "emit",
+        "select",
+        "download",
+        "void"
+      ],
+      "flags": {
+        "nota": true,
+        "guia": false
+      },
+      "props": {},
+      "goName": "NotaCredito"
+    },
+    {
+      "code": "08",
+      "label": "Nota de débito",
+      "description": "Nota de débito",
+      "capabilities": [
+        "emit",
+        "select",
+        "download",
+        "void"
+      ],
+      "flags": {
+        "nota": true,
+        "guia": false
+      },
+      "props": {},
+      "goName": "NotaDebito"
+    },
+    {
+      "code": "09",
+      "label": "Guía de remisión remitente",
+      "description": "Guía de remisión remitente",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": true
+      },
+      "props": {},
+      "goName": "GuiaRemisionRemitente"
+    },
+    {
+      "code": "11",
+      "label": "Póliza de Bolsa de Valores",
+      "description": "Póliza emitida por las Bolsas de Valores",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "PolizaBolsaValores"
+    },
+    {
+      "code": "12",
+      "label": "Ticket de máquina registradora",
+      "description": "Ticket de máquina registradora",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "TicketMaquinaRegistradora"
+    },
+    {
+      "code": "13",
+      "label": "Documento bancario o de seguros",
+      "description": "Documento emitido por bancos, instituciones financieras, crediticias y de seguros que se encuentren bajo el control de la Superintendencia de Banca y Seguros",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoBancario"
+    },
+    {
+      "code": "14",
+      "label": "Recibo de servicios públicos",
+      "description": "Recibo servicios públicos",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ReciboServiciosPublicos"
+    },
+    {
+      "code": "15",
+      "label": "Boleto de transporte urbano",
+      "description": "Boletos emitidos por el servicio de transporte terrestre regular urbano de pasajeros y el ferroviario público de pasajeros prestado en vía férrea local",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BoletoTransporteUrbano"
+    },
+    {
+      "code": "16",
+      "label": "Boleto de transporte interprovincial",
+      "description": "Boleto de viaje emitido por las empresas de transporte público interprovincial de pasajeros",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BoletoTransporteInterprovincial"
+    },
+    {
+      "code": "18",
+      "label": "Documento de AFP",
+      "description": "Documentos emitidos por las AFP",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoAFP"
+    },
+    {
+      "code": "19",
+      "label": "Boleto de espectáculo público",
+      "description": "Boleto por atracciones y espectáculos públicos",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BoletoEspectaculoPublico"
+    },
+    {
+      "code": "20",
+      "label": "Comprobante de retención",
+      "description": "Comprobante de retención",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ComprobanteRetencion"
+    },
+    {
+      "code": "21",
+      "label": "Conocimiento de embarque marítimo",
+      "description": "Conocimiento de embarque por el servicio de transporte de carga marítima",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ConocimientoEmbarque"
+    },
+    {
+      "code": "23",
+      "label": "Póliza de adjudicación",
+      "description": "Pólizas de Adjudicación por remate o adjudicación de bienes",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "PolizaAdjudicacion"
+    },
+    {
+      "code": "24",
+      "label": "Certificado de regalías PERUPETRO",
+      "description": "Certificado de pago de regalías emitidas por PERUPETRO S.A.",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "CertificadoRegalias"
+    },
+    {
+      "code": "28",
+      "label": "Etiqueta TUUA",
+      "description": "Etiquetas por el pago de la Tarifa Unificada de Uso de Aeropuerto – TUUA",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "EtiquetaTUUA"
+    },
+    {
+      "code": "29",
+      "label": "Documento de COFOPRI",
+      "description": "Documentos emitidos por la COFOPRI",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoCOFOPRI"
+    },
+    {
+      "code": "30",
+      "label": "Documento de rol adquirente",
+      "description": "Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito, emitidas por bancos e instituciones financieras o crediticias, domiciliados o no en el país.",
+      "capabilities": [
+        "void"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoRolAdquirente"
+    },
+    {
+      "code": "31",
+      "label": "Guía de remisión transportista",
+      "description": "Guía de remisión transportista",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": true
+      },
+      "props": {},
+      "goName": "GuiaRemisionTransportista"
+    },
+    {
+      "code": "32",
+      "label": "Documento de Garantía de Red Principal",
+      "description": "Documentos emitidos por recaudadoras de la Garantía de Red Principal",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoGarantiaRedPrincipal"
+    },
+    {
+      "code": "34",
+      "label": "Documento del Operador",
+      "description": "Documento del Operador",
+      "capabilities": [
+        "void"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoOperador"
+    },
+    {
+      "code": "35",
+      "label": "Documento del Partícipe",
+      "description": "Documento del Partícipe",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoParticipe"
+    },
+    {
+      "code": "36",
+      "label": "Recibo de distribución de gas natural",
+      "description": "Recibo de Distribución de Gas Natural",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ReciboGasNatural"
+    },
+    {
+      "code": "37",
+      "label": "Documento de revisiones técnicas",
+      "description": "Documentos que emitan los concesionarios del servicio de revisiones técnicas",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoRevisionesTecnicas"
+    },
+    {
+      "code": "40",
+      "label": "Comprobante de percepción",
+      "description": "Comprobante de Percepción",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ComprobantePercepcion"
+    },
+    {
+      "code": "41",
+      "label": "Comprobante de percepción (físico)",
+      "description": "Comprobante de Percepción – Venta interna ( físico - formato impreso)",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ComprobantePercepcionFisico"
+    },
+    {
+      "code": "42",
+      "label": "Documento de tarjeta de crédito propia",
+      "description": "Documentos emitidos por los adq. en los sistemas de pago por tarj. de crédito emitidas por ellas mismas",
+      "capabilities": [
+        "void"
+      ],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoTarjetaCreditoPropia"
+    },
+    {
+      "code": "43",
+      "label": "Boleto de aviación no regular",
+      "description": "Boleto de compañías de aviación transporte aéreo no regular",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BoletoAviacionNoRegular"
+    },
+    {
+      "code": "45",
+      "label": "Documento de centro educativo",
+      "description": "Documentos emitidos por centros educativos y culturales, universidades, asociaciones y fundaciones",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "DocumentoCentroEducativo"
+    },
+    {
+      "code": "55",
+      "label": "BVME transporte ferroviario",
+      "description": "BVME para transporte ferroviario de pasajeros",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "BVMEFerroviario"
+    },
+    {
+      "code": "56",
+      "label": "Comprobante de pago SEAE",
+      "description": "Comprobante de pago SEAE",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": false
+      },
+      "props": {},
+      "goName": "ComprobantePagoSEAE"
+    },
+    {
+      "code": "71",
+      "label": "Guía de remisión remitente complementaria",
+      "description": "Guía de remisión remitente complementaria",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": true
+      },
+      "props": {},
+      "goName": "GuiaRemisionRemitenteComplementaria"
+    },
+    {
+      "code": "72",
+      "label": "Guía de remisión transportista complementaria",
+      "description": "Guía de remisión transportista complementaria",
+      "capabilities": [],
+      "flags": {
+        "nota": false,
+        "guia": true
+      },
+      "props": {},
+      "goName": "GuiaRemisionTransportistaComplementaria"
+    },
+    {
+      "code": "87",
+      "label": "Nota de crédito especial",
+      "description": "Nota de crédito especial",
+      "capabilities": [],
+      "flags": {
+        "nota": true,
+        "guia": false
+      },
+      "props": {},
+      "goName": "NotaCreditoEspecial"
+    },
+    {
+      "code": "88",
+      "label": "Nota de débito especial",
+      "description": "Nota de débito especial",
+      "capabilities": [],
+      "flags": {
+        "nota": true,
+        "guia": false
+      },
+      "props": {},
+      "goName": "NotaDebitoEspecial"
+    }
+  ]
+}
