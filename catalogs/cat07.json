@@ -1,0 +1,355 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat07",
+  "sunatCatalog": "07",
+  "name": "Tipo de Afectación del IGV",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 07, transcribed from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx, which lists código, descripción and código de tributo together. That sheet is what settles code 37 (Inafecto - Transferencia gratuita, tributo 9996): both frontend lists stopped at 36 by omission while Go and the backend already accepted it. SUNAT writes 17 as '1016 o 9996' and 40 as '9995 o 9996' — the second of each applies only to a gratuito line, which is what codes 11-16, 21 and 31-37 already are, so props.taxSchemeCode carries the first. props.percent is the cbc:Percent the line declares, and null means the element is omitted entirely; SUNAT requires the rate tag on every tributo that has one (fault 2992), and gravado-gratuito declares the 18.00 it would have carried. SUNAT's own sheet mixes hyphens and en dashes in the descriptions; normalised to a plain hyphen here.",
+  "codePattern": "^[0-9]{2}$",
+  "propRefs": {
+    "taxSchemeCode": "cat05"
+  },
+  "entries": [
+    {
+      "code": "10",
+      "label": "Gravado - Operación Onerosa",
+      "description": "Gravado - Operación Onerosa",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": false,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "1000",
+        "percent": "18.00"
+      },
+      "goName": "GravadoOnerosa"
+    },
+    {
+      "code": "11",
+      "label": "Gravado - Retiro por premio",
+      "description": "Gravado - Retiro por premio",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoRetiroPremio"
+    },
+    {
+      "code": "12",
+      "label": "Gravado - Retiro por donación",
+      "description": "Gravado - Retiro por donación",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoRetiroDonacion"
+    },
+    {
+      "code": "13",
+      "label": "Gravado - Retiro",
+      "description": "Gravado - Retiro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoRetiro"
+    },
+    {
+      "code": "14",
+      "label": "Gravado - Retiro por publicidad",
+      "description": "Gravado - Retiro por publicidad",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoRetiroPublicidad"
+    },
+    {
+      "code": "15",
+      "label": "Gravado - Bonificaciones",
+      "description": "Gravado - Bonificaciones",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoBonificaciones"
+    },
+    {
+      "code": "16",
+      "label": "Gravado - Retiro por entrega a trabajadores",
+      "description": "Gravado - Retiro por entrega a trabajadores",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": true
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "18.00"
+      },
+      "goName": "GravadoRetiroTrabajadores"
+    },
+    {
+      "code": "17",
+      "label": "Gravado - IVAP",
+      "description": "Gravado - IVAP",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": false,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "1016",
+        "percent": "4.00"
+      },
+      "goName": "GravadoIVAP"
+    },
+    {
+      "code": "20",
+      "label": "Exonerado - Operación Onerosa",
+      "description": "Exonerado - Operación Onerosa",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": false,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9997",
+        "percent": null
+      },
+      "goName": "ExoneradoOnerosa"
+    },
+    {
+      "code": "21",
+      "label": "Exonerado - Transferencia gratuita",
+      "description": "Exonerado - Transferencia gratuita",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "ExoneradoTransferenciaGratuita"
+    },
+    {
+      "code": "30",
+      "label": "Inafecto - Operación Onerosa",
+      "description": "Inafecto - Operación Onerosa",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": false,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9998",
+        "percent": null
+      },
+      "goName": "InafectoOnerosa"
+    },
+    {
+      "code": "31",
+      "label": "Inafecto - Retiro por Bonificación",
+      "description": "Inafecto - Retiro por Bonificación",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiroBonificacion"
+    },
+    {
+      "code": "32",
+      "label": "Inafecto - Retiro",
+      "description": "Inafecto - Retiro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiro"
+    },
+    {
+      "code": "33",
+      "label": "Inafecto - Retiro por Muestras Médicas",
+      "description": "Inafecto - Retiro por Muestras Médicas",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiroMuestrasMedicas"
+    },
+    {
+      "code": "34",
+      "label": "Inafecto - Retiro por Convenio Colectivo",
+      "description": "Inafecto - Retiro por Convenio Colectivo",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiroConvenioColectivo"
+    },
+    {
+      "code": "35",
+      "label": "Inafecto - Retiro por premio",
+      "description": "Inafecto - Retiro por premio",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiroPremio"
+    },
+    {
+      "code": "36",
+      "label": "Inafecto - Retiro por publicidad",
+      "description": "Inafecto - Retiro por publicidad",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoRetiroPublicidad"
+    },
+    {
+      "code": "37",
+      "label": "Inafecto - Transferencia gratuita",
+      "description": "Inafecto - Transferencia gratuita",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": true,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9996",
+        "percent": "0.00"
+      },
+      "goName": "InafectoTransferenciaGratuita"
+    },
+    {
+      "code": "40",
+      "label": "Exportación de Bienes o Servicios",
+      "description": "Exportación de Bienes o Servicios",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "gratuito": false,
+        "gravadoGratuito": false
+      },
+      "props": {
+        "taxSchemeCode": "9995",
+        "percent": null
+      },
+      "goName": "Exportacion"
+    }
+  ]
+}
