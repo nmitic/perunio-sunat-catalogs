@@ -1,0 +1,240 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat53",
+  "sunatCatalog": "53",
+  "name": "Código de Cargo o Descuento",
+  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 53, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (16 códigos), including the 'Nivel' column the anexo publishes — props.nivel is Item or Global and decides whether the cac:AllowanceCharge hangs off a line or the document. flags.afectaBase is the other half of every descripción and is what SUNAT reconciles the base imponible against. Only 00 (descuento por ítem), 02 (descuento global) and 04 (anticipos gravados) carry `emit`: those are the three this pipeline builds. The rest are display-only until it does.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "00",
+      "label": "Descuento por ítem",
+      "description": "Descuentos que afectan la base imponible del IGV/IVAP",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "DescuentoItem"
+    },
+    {
+      "code": "01",
+      "label": "Descuento por ítem (no afecta base)",
+      "description": "Descuentos que no afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "DescuentoItemNoAfecta"
+    },
+    {
+      "code": "02",
+      "label": "Descuento global",
+      "description": "Descuentos globales que afectan la base imponible del IGV/IVAP",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "DescuentoGlobal"
+    },
+    {
+      "code": "03",
+      "label": "Descuento global (no afecta base)",
+      "description": "Descuentos globales que no afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "DescuentoGlobalNoAfecta"
+    },
+    {
+      "code": "04",
+      "label": "Descuento global por anticipos gravados",
+      "description": "Descuentos globales por anticipos gravados que afectan la base imponible del IGV/IVAP",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "AnticipoGravado"
+    },
+    {
+      "code": "05",
+      "label": "Descuento global por anticipos exonerados",
+      "description": "Descuentos globales por anticipos exonerados",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "AnticipoExonerado"
+    },
+    {
+      "code": "06",
+      "label": "Descuento global por anticipos inafectos",
+      "description": "Descuentos globales por anticipos inafectos",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "AnticipoInafecto"
+    },
+    {
+      "code": "45",
+      "label": "FISE",
+      "description": "FISE",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "FISE"
+    },
+    {
+      "code": "46",
+      "label": "Recargo al consumo y/o propinas",
+      "description": "Recargo al consumo y/o propinas",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "RecargoConsumo"
+    },
+    {
+      "code": "47",
+      "label": "Cargo por ítem",
+      "description": "Cargos que afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": true
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "CargoItem"
+    },
+    {
+      "code": "48",
+      "label": "Cargo por ítem (no afecta base)",
+      "description": "Cargos que no afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": true
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "CargoItemNoAfecta"
+    },
+    {
+      "code": "49",
+      "label": "Cargo global",
+      "description": "Cargos globales que afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": true
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "CargoGlobal"
+    },
+    {
+      "code": "50",
+      "label": "Cargo global (no afecta base)",
+      "description": "Cargos globales que no afectan la base imponible del IGV/IVAP",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": true
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "CargoGlobalNoAfecta"
+    },
+    {
+      "code": "51",
+      "label": "Percepción venta interna",
+      "description": "Percepción venta interna",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "PercepcionVentaInterna"
+    },
+    {
+      "code": "52",
+      "label": "Percepción a la adquisición de combustible",
+      "description": "Percepción a la adquisición de combustible",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "PercepcionCombustible"
+    },
+    {
+      "code": "53",
+      "label": "Percepción con tasa especial",
+      "description": "Percepción realizada al agente de percepción con tasa especial",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "PercepcionTasaEspecial"
+    }
+  ]
+}

@@ -186,8 +186,12 @@ function checkFile(raw, path, file, knownCaps, problems) {
       if (caps.includes('display')) {
         problems.push(`${at}: "display" is implicit — remove it`)
       }
-      if (caps.includes('select') && !caps.includes('emit')) {
-        problems.push(`${at}: has "select" without "emit" — a code the UI offers must be emittable`)
+      // A picker must never offer a code the pipeline cannot send. `internal` is
+      // the one exception and the reason that capability exists: the código is
+      // selectable, but what reaches the wire is props.wireEquivalent, so the
+      // entry itself is deliberately not emittable.
+      if (caps.includes('select') && !caps.includes('emit') && !caps.includes('internal')) {
+        problems.push(`${at}: has "select" without "emit" — a code the UI offers must be emittable, unless it is "internal" with a wireEquivalent`)
       }
       if (caps.includes('retired') && caps.includes('emit')) {
         problems.push(`${at}: has both "retired" and "emit" — SUNAT rejects retired codes`)

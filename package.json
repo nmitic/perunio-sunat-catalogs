@@ -94,6 +94,30 @@
       "import": "./gen/ts/cat20.js",
       "default": "./gen/ts/cat20.js"
     },
+    "./cat51": {
+      "types": "./gen/ts/cat51.d.ts",
+      "require": "./gen/ts/cat51.cjs",
+      "import": "./gen/ts/cat51.js",
+      "default": "./gen/ts/cat51.js"
+    },
+    "./cat52": {
+      "types": "./gen/ts/cat52.d.ts",
+      "require": "./gen/ts/cat52.cjs",
+      "import": "./gen/ts/cat52.js",
+      "default": "./gen/ts/cat52.js"
+    },
+    "./cat53": {
+      "types": "./gen/ts/cat53.d.ts",
+      "require": "./gen/ts/cat53.cjs",
+      "import": "./gen/ts/cat53.js",
+      "default": "./gen/ts/cat53.js"
+    },
+    "./cat54": {
+      "types": "./gen/ts/cat54.d.ts",
+      "require": "./gen/ts/cat54.cjs",
+      "import": "./gen/ts/cat54.js",
+      "default": "./gen/ts/cat54.js"
+    },
     "./gre-doc-type": {
       "types": "./gen/ts/gre-doc-type.d.ts",
       "require": "./gen/ts/gre-doc-type.cjs",

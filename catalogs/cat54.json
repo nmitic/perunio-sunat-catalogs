@@ -1,0 +1,607 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat54",
+  "sunatCatalog": "54",
+  "name": "Bienes y Servicios sujetos a Detracción (SPOT)",
+  "source": "Anexos 2 y 3 del SPOT, catálogo 54, from resources/AnexosIyII_Formato1.3.4.xlsx (34 códigos) — NOT from perunio-frontend/src/data/sunat/detracciones.ts, which disagreed with it systematically. That file's descripciones were shifted across códigos (its 036 is this 031, its 041 is this 036, its 039 is this 040), it carried a código 041 the anexo does not define, it omitted 028 entirely even though the pipeline pins that one to Cat.51 1003, and several rates were the pre-2023 12% where the anexo says 10%. props.porcentaje is null for the six códigos whose Tasa % the anexo leaves blank (002, 011, 013, 015, 016, 028); those carry no `emit` or `select`, because offering a detracción without knowing its rate would guess at money withheld from a supplier. Fill the rate and add the capabilities together. props.umbral is the importe de la operación above which the detracción applies: S/700 by default, S/400 for transporte de carga (027) and none for the primera venta de inmuebles (040). **The umbral is measured against the operación, not against each comprobante** (Informe 103-2013-SUNAT) — that logic stays in resolveDetraccion; only the numbers live here. props.operationType is the Cat.51 código the operación must declare; any other pairing for the three pinned códigos is fault 3129.",
+  "codePattern": "^[0-9]{3}$",
+  "propRefs": {
+    "operationType": "cat51"
+  },
+  "entries": [
+    {
+      "code": "001",
+      "label": "Azúcar y melaza de caña",
+      "description": "Azúcar y melaza de caña",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "AzucarYMelazaDeCana"
+    },
+    {
+      "code": "002",
+      "label": "Arroz",
+      "description": "Arroz",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "Arroz"
+    },
+    {
+      "code": "003",
+      "label": "Alcohol etílico",
+      "description": "Alcohol etílico",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "AlcoholEtilico"
+    },
+    {
+      "code": "004",
+      "label": "Recursos hidrobiológicos",
+      "description": "Recursos hidrobiológicos",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": true
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1002"
+      },
+      "goName": "RecursosHidrobiologicos"
+    },
+    {
+      "code": "005",
+      "label": "Maíz amarillo duro",
+      "description": "Maíz amarillo duro",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "MaizAmarilloDuro"
+    },
+    {
+      "code": "007",
+      "label": "Caña de azúcar",
+      "description": "Caña de azúcar",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "CanaDeAzucar"
+    },
+    {
+      "code": "008",
+      "label": "Madera",
+      "description": "Madera",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "Madera"
+    },
+    {
+      "code": "009",
+      "label": "Arena y piedra",
+      "description": "Arena y piedra",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ArenaYPiedra"
+    },
+    {
+      "code": "010",
+      "label": "Residuos, subproductos, desechos, recortes y desperdicios",
+      "description": "Residuos, subproductos, desechos, recortes y desperdicios",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 15.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ResiduosSubproductosDesechosRecortesYDesperd"
+    },
+    {
+      "code": "011",
+      "label": "Bienes gravados con el IGV, o renuncia a la exoneración",
+      "description": "Bienes gravados con el IGV, o renuncia a la exoneración",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "BienesGravadosConElIgvORenunciaALaExoneracio"
+    },
+    {
+      "code": "012",
+      "label": "Intermediación laboral y tercerización",
+      "description": "Intermediación laboral y tercerización",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "IntermediacionLaboralYTercerizacion"
+    },
+    {
+      "code": "013",
+      "label": "Animales vivos",
+      "description": "Animales vivos",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "AnimalesVivos"
+    },
+    {
+      "code": "014",
+      "label": "Carnes y despojos comestibles",
+      "description": "Carnes y despojos comestibles",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "CarnesYDespojosComestibles"
+    },
+    {
+      "code": "015",
+      "label": "Abonos, cueros y pieles de origen animal",
+      "description": "Abonos, cueros y pieles de origen animal",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "AbonosCuerosYPielesDeOrigenAnimal"
+    },
+    {
+      "code": "016",
+      "label": "Aceite de pescado",
+      "description": "Aceite de pescado",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "AceiteDePescado"
+    },
+    {
+      "code": "017",
+      "label": "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados",
+      "description": "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "HarinaPolvoYPelletsDePescadoCrustaceosMolusc"
+    },
+    {
+      "code": "019",
+      "label": "Arrendamiento de bienes muebles",
+      "description": "Arrendamiento de bienes muebles",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ArrendamientoDeBienesMuebles"
+    },
+    {
+      "code": "020",
+      "label": "Mantenimiento y reparación de bienes muebles",
+      "description": "Mantenimiento y reparación de bienes muebles",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "MantenimientoYReparacionDeBienesMuebles"
+    },
+    {
+      "code": "021",
+      "label": "Movimiento de carga",
+      "description": "Movimiento de carga",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "MovimientoDeCarga"
+    },
+    {
+      "code": "022",
+      "label": "Otros servicios empresariales",
+      "description": "Otros servicios empresariales",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "OtrosServiciosEmpresariales"
+    },
+    {
+      "code": "023",
+      "label": "Leche",
+      "description": "Leche",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "Leche"
+    },
+    {
+      "code": "024",
+      "label": "Comisión mercantil",
+      "description": "Comisión mercantil",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ComisionMercantil"
+    },
+    {
+      "code": "025",
+      "label": "Fabricación de bienes por encargo",
+      "description": "Fabricación de bienes por encargo",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "FabricacionDeBienesPorEncargo"
+    },
+    {
+      "code": "026",
+      "label": "Servicio de transporte de personas",
+      "description": "Servicio de transporte de personas",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ServicioDeTransporteDePersonas"
+    },
+    {
+      "code": "027",
+      "label": "Servicio de transporte de carga",
+      "description": "Servicio de transporte de carga",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": true
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 400,
+        "operationType": "1004"
+      },
+      "goName": "ServicioDeTransporteDeCarga"
+    },
+    {
+      "code": "028",
+      "label": "Transporte de pasajeros",
+      "description": "Transporte de pasajeros",
+      "capabilities": [],
+      "flags": {
+        "pinnedOperationType": true
+      },
+      "props": {
+        "porcentaje": null,
+        "umbral": 700,
+        "operationType": "1003"
+      },
+      "goName": "TransporteDePasajeros"
+    },
+    {
+      "code": "030",
+      "label": "Contratos de construcción",
+      "description": "Contratos de construcción",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "ContratosDeConstruccion"
+    },
+    {
+      "code": "031",
+      "label": "Oro gravado con el IGV",
+      "description": "Oro gravado con el IGV",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "OroGravadoConElIgv"
+    },
+    {
+      "code": "034",
+      "label": "Minerales metálicos no auríferos",
+      "description": "Minerales metálicos no auríferos",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "MineralesMetalicosNoAuriferos"
+    },
+    {
+      "code": "035",
+      "label": "Bienes exonerados del IGV",
+      "description": "Bienes exonerados del IGV",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 1.5,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "BienesExoneradosDelIgv"
+    },
+    {
+      "code": "036",
+      "label": "Oro y demás minerales metálicos exonerados del IGV",
+      "description": "Oro y demás minerales metálicos exonerados del IGV",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 1.5,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "OroYDemasMineralesMetalicosExoneradosDelIgv"
+    },
+    {
+      "code": "037",
+      "label": "Demás servicios gravados con el IGV",
+      "description": "Demás servicios gravados con el IGV",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "DemasServiciosGravadosConElIgv"
+    },
+    {
+      "code": "039",
+      "label": "Minerales no metálicos",
+      "description": "Minerales no metálicos",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 10.0,
+        "umbral": 700,
+        "operationType": "1001"
+      },
+      "goName": "MineralesNoMetalicos"
+    },
+    {
+      "code": "040",
+      "label": "Bien inmueble gravado con IGV",
+      "description": "Bien inmueble gravado con IGV",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "pinnedOperationType": false
+      },
+      "props": {
+        "porcentaje": 4.0,
+        "umbral": 0,
+        "operationType": "1001"
+      },
+      "goName": "BienInmuebleGravadoConIgv"
+    }
+  ]
+}

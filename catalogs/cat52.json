@@ -1,0 +1,192 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat52",
+  "sunatCatalog": "52",
+  "name": "Código de Leyenda",
+  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 52, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (14 códigos). internal/model/catalog.go named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null.",
+  "codePattern": "^[0-9]{4}$",
+  "entries": [
+    {
+      "code": "1000",
+      "label": "Monto en letras",
+      "description": "Monto en Letras",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "MontoLetras"
+    },
+    {
+      "code": "1002",
+      "label": "Transferencia gratuita",
+      "description": "Leyenda \"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE\"",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "TransfGratuita"
+    },
+    {
+      "code": "2000",
+      "label": "Comprobante de percepción",
+      "description": "Leyenda “COMPROBANTE DE PERCEPCIÓN”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "Percepcion"
+    },
+    {
+      "code": "2001",
+      "label": "Bienes transferidos en la Amazonía",
+      "description": "Leyenda “BIENES TRANSFERIDOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA\"",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "AmazoniaBienes"
+    },
+    {
+      "code": "2002",
+      "label": "Servicios prestados en la Amazonía",
+      "description": "Leyenda “SERVICIOS PRESTADOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "AmazoniaServicios"
+    },
+    {
+      "code": "2003",
+      "label": "Contratos de construcción en la Amazonía",
+      "description": "Leyenda “CONTRATOS DE CONSTRUCCIÓN EJECUTADOS EN LA AMAZONÍA REGIÓN SELVA”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "AmazoniaConstruccion"
+    },
+    {
+      "code": "2004",
+      "label": "Agencia de viaje - paquete turístico",
+      "description": "Leyenda “Agencia de Viaje - Paquete turístico”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "PaqueteTuristico"
+    },
+    {
+      "code": "2005",
+      "label": "Venta realizada por emisor itinerante",
+      "description": "Leyenda “Venta realizada por emisor itinerante”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "EmisorItinerante"
+    },
+    {
+      "code": "2006",
+      "label": "Operación sujeta a detracción",
+      "description": "Leyenda \"Operación sujeta a detracción\"",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": "Operación sujeta a detracción"
+      },
+      "goName": "Detraccion"
+    },
+    {
+      "code": "2007",
+      "label": "Operación sujeta al IVAP",
+      "description": "Leyenda \"Operación sujeta al IVAP\"",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "IVAP"
+    },
+    {
+      "code": "2008",
+      "label": "Venta exonerada - zona comercial de Tacna",
+      "description": "Leyenda: “VENTA EXONERADA DEL IGV-ISC-IPM. PROHIBIDA LA VENTA FUERA DE LA ZONA COMERCIAL DE TACNA”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "Tacna"
+    },
+    {
+      "code": "2009",
+      "label": "Primera venta de mercancía identificable",
+      "description": "Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "PrimeraVenta"
+    },
+    {
+      "code": "2010",
+      "label": "Restitución simplificada de derechos arancelarios",
+      "description": "Restitucion Simplificado de Derechos Arancelarios",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "Restitucion"
+    },
+    {
+      "code": "2011",
+      "label": "Exportación de servicios - D.L. 919",
+      "description": "Leyenda “EXPORTACION DE SERVICIOS - DECRETO LEGISLATIVO Nº 919”",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "ExportacionDL919"
+    }
+  ]
+}

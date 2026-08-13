@@ -1,0 +1,398 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat51",
+  "sunatCatalog": "51",
+  "name": "Tipo de Operación",
+  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one.",
+  "codePattern": "^[0-9]{4}$",
+  "entries": [
+    {
+      "code": "0101",
+      "label": "Venta interna",
+      "description": "Venta interna",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "VentaInterna"
+    },
+    {
+      "code": "0112",
+      "label": "Venta interna - sustenta gastos deducibles persona natural",
+      "description": "Venta Interna - Sustenta Gastos Deducibles Persona Natural",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "VentaInternaGastosDeducibles"
+    },
+    {
+      "code": "0113",
+      "label": "Venta interna - NRUS",
+      "description": "Venta Interna-NRUS",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "VentaInternaNRUS"
+    },
+    {
+      "code": "0200",
+      "label": "Exportación de bienes",
+      "description": "Exportación de Bienes",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionBienes"
+    },
+    {
+      "code": "0201",
+      "label": "Exportación de servicios - prestados íntegramente en el país",
+      "description": "Exportación de Servicios – Prestación servicios realizados íntegramente en el país",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionServicios"
+    },
+    {
+      "code": "0202",
+      "label": "Exportación de servicios - hospedaje a no domiciliado",
+      "description": "Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionHospedaje"
+    },
+    {
+      "code": "0203",
+      "label": "Exportación de servicios - transporte de navieras",
+      "description": "Exportación de Servicios – Transporte de navieras",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionNavieras"
+    },
+    {
+      "code": "0204",
+      "label": "Exportación de servicios - naves y aeronaves extranjeras",
+      "description": "Exportación de Servicios – Servicios a naves y aeronaves de bandera extranjera",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionNavesAeronaves"
+    },
+    {
+      "code": "0205",
+      "label": "Exportación de servicios - paquete turístico",
+      "description": "Exportación de Servicios - Servicios que conformen un Paquete Turístico",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionPaqueteTuristico"
+    },
+    {
+      "code": "0206",
+      "label": "Exportación de servicios - complementarios al transporte de carga",
+      "description": "Exportación de Servicios – Servicios complementarios al transporte de carga",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionComplementarios"
+    },
+    {
+      "code": "0207",
+      "label": "Exportación de servicios - energía eléctrica a ZED",
+      "description": "Exportación de Servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionEnergiaZED"
+    },
+    {
+      "code": "0208",
+      "label": "Exportación de servicios - prestados parcialmente en el extranjero",
+      "description": "Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": true
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportacionParcialExtranjero"
+    },
+    {
+      "code": "0301",
+      "label": "Operaciones con carta de porte aéreo nacional",
+      "description": "Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CartaPorteAereo"
+    },
+    {
+      "code": "0302",
+      "label": "Transporte ferroviario de pasajeros",
+      "description": "Operaciones de Transporte ferroviario de pasajeros",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "TransporteFerroviario"
+    },
+    {
+      "code": "0303",
+      "label": "Pago de regalía petrolera",
+      "description": "Operaciones de Pago de regalía petrolera",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "RegaliaPetrolera"
+    },
+    {
+      "code": "0401",
+      "label": "Ventas a no domiciliados que no califican como exportación",
+      "description": "Ventas no domiciliados que no califican como exportación",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "VentaNoDomiciliados"
+    },
+    {
+      "code": "1001",
+      "label": "Operación sujeta a detracción",
+      "description": "Operación Sujeta a Detracción",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": true,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "DetraccionGeneral"
+    },
+    {
+      "code": "1002",
+      "label": "Detracción - recursos hidrobiológicos",
+      "description": "Operación Sujeta a Detracción- Recursos Hidrobiológicos",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": true,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "DetraccionHidrobiologicos"
+    },
+    {
+      "code": "1003",
+      "label": "Detracción - transporte de pasajeros",
+      "description": "Operación Sujeta a Detracción- Servicios de Transporte Pasajeros",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": true,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "DetraccionPasajeros"
+    },
+    {
+      "code": "1004",
+      "label": "Detracción - transporte de carga",
+      "description": "Operación Sujeta a Detracción- Servicios de Transporte Carga",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": true,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "DetraccionTransporteCarga"
+    },
+    {
+      "code": "2001",
+      "label": "Operación sujeta a percepción",
+      "description": "Operación Sujeta a Percepción",
+      "capabilities": [
+        "emit"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "Percepcion"
+    },
+    {
+      "code": "0102",
+      "label": "Exportación de bienes (retirado)",
+      "description": "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206",
+      "capabilities": [
+        "retired"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ExportBienesRetirado"
+    },
+    {
+      "code": "0103",
+      "label": "Operaciones con no domiciliados (retirado)",
+      "description": "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206",
+      "capabilities": [
+        "retired"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "NoDomiciliadosRetirado"
+    },
+    {
+      "code": "0104",
+      "label": "Factura de anticipo (marcador interno)",
+      "description": "Marcador Perunio para una factura de anticipo. Retirado del catálogo 51, así que se almacena y reporta pero viaja como 0101",
+      "capabilities": [
+        "select",
+        "internal"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": "0101"
+      },
+      "goName": "Anticipos"
+    }
+  ]
+}
