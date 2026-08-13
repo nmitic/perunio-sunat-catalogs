@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url'
 export const REPO_ROOT = fileURLToPath(new URL('..', import.meta.url))
 
 const ENTRY_KEYS = ['code', 'label', 'description', 'capabilities', 'flags', 'props', 'goName']
-const FILE_KEYS = ['$schema', 'id', 'sunatCatalog', 'name', 'source', 'codePattern', 'propRefs', 'entries']
+const FILE_KEYS = ['$schema', 'id', 'sunatCatalog', 'name', 'source', 'codePattern', 'goConsts', 'propRefs', 'entries']
 const REQUIRED_FILE_KEYS = ['id', 'sunatCatalog', 'name', 'source', 'codePattern', 'entries']
 
 /** Thrown with every problem found, not just the first. */
@@ -114,6 +114,11 @@ function checkFile(raw, path, file, knownCaps, problems) {
     }
   }
 
+  // Large reference datasets opt out of one named Go constant per row; their
+  // entries carry no goName at all.
+  const goConsts = raw.goConsts ?? true
+  if (typeof goConsts !== 'boolean') problems.push(`${path}: goConsts must be a boolean`)
+
   const propRefs = raw.propRefs ?? {}
   if (!isPlainObject(propRefs)) problems.push(`${path}: propRefs must be an object`)
 
@@ -154,6 +159,7 @@ function checkFile(raw, path, file, knownCaps, problems) {
       if (!ENTRY_KEYS.includes(key)) problems.push(`${at}: unknown key "${key}"`)
     }
     for (const key of ENTRY_KEYS) {
+      if (key === 'goName' && goConsts === false) continue
       if (!(key in entry)) problems.push(`${at}: missing required key "${key}"`)
     }
 
@@ -171,7 +177,9 @@ function checkFile(raw, path, file, knownCaps, problems) {
         problems.push(`${at}: ${key} must be a non-empty string`)
       }
     }
-    if (typeof entry.goName !== 'string' || !/^[A-Z][A-Za-z0-9]*$/.test(entry.goName)) {
+    if (goConsts === false) {
+      if ('goName' in entry) problems.push(`${at}: goConsts is false, so goName must be omitted`)
+    } else if (typeof entry.goName !== 'string' || !/^[A-Z][A-Za-z0-9]*$/.test(entry.goName)) {
       problems.push(`${at}: goName must match /^[A-Z][A-Za-z0-9]*$/`)
     }
 
@@ -243,6 +251,18 @@ function checkFile(raw, path, file, knownCaps, problems) {
     if (propKeys.includes(key)) problems.push(`${path}: "${key}" is declared as both a flag and a prop`)
   }
 
+  // The Go generator turns each flag into a CatNN<Flag>(code) predicate, so a
+  // goName equal to a flag's PascalCase name collides with it. This surfaced
+  // three times as a `redeclared in this block` build failure before becoming a
+  // rule; catching it here names the actual problem instead.
+  const pascal = (k) => k.split('-').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join('')
+  const flagNames = new Set([...flagKeys, ...propKeys].map(pascal))
+  for (const entry of entries) {
+    if (flagNames.has(entry.goName)) {
+      problems.push(`${path}: entry ${entry.code} goName "${entry.goName}" collides with the accessor generated for the flag/prop of the same name`)
+    }
+  }
+
   const codes = entries.map((e) => e.code)
   const capabilityCodes = { display: [...codes] }
   for (const cap of knownCaps) {
@@ -259,6 +279,7 @@ function checkFile(raw, path, file, knownCaps, problems) {
     path,
     id,
     sunatCatalog: raw.sunatCatalog,
+    goConsts,
     name: raw.name,
     source: raw.source,
     codePattern: raw.codePattern,

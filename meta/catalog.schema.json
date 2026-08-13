@@ -34,6 +34,10 @@
       "minLength": 1,
       "description": "Regex every code must match. Anchored."
     },
+    "goConsts": {
+      "type": "boolean",
+      "description": "Emit a named Go constant per entry (default true). Set false on a large geographic or reference dataset where one constant per row would be noise; the map, Codes slice and lookups are still generated. Entries in such a file omit goName."
+    },
     "propRefs": {
       "type": "object",
       "description": "Declares which props are cross-catalog references: { \"taxSchemeCode\": \"cat05\" }. validate.mjs resolves them; the generators type them.",

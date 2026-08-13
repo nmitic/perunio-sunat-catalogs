@@ -40,6 +40,7 @@ type catalog struct {
 	Name         string            `json:"name"`
 	Source       string            `json:"source"`
 	CodePattern  string            `json:"codePattern"`
+	GoConsts     *bool             `json:"goConsts"`
 	PropRefs     map[string]string `json:"propRefs"`
 	Entries      []entry           `json:"entries"`
 
@@ -47,6 +48,11 @@ type catalog struct {
 	propKeys []string
 	caps     []string
 }
+
+// goNames reports whether this catalog emits one named constant per entry.
+// Large reference datasets (ubigeo) set goConsts:false — 1874 constants would be
+// noise, and nothing refers to a district by name.
+func (c *catalog) goNames() bool { return c.GoConsts == nil || *c.GoConsts }
 
 func main() {
 	if err := run(slices.Contains(os.Args[1:], "--check")); err != nil {
@@ -208,8 +214,11 @@ func (c *catalog) prepare() error {
 	seen := map[string]bool{}
 	caps := map[string]bool{}
 	for _, e := range c.Entries {
-		if e.Code == "" || e.GoName == "" {
-			return fmt.Errorf("entry %q: code and goName are required", e.Code)
+		if e.Code == "" {
+			return fmt.Errorf("entry: code is required")
+		}
+		if e.GoName == "" && c.goNames() {
+			return fmt.Errorf("entry %q: goName is required unless goConsts is false", e.Code)
 		}
 		if seen[e.Code] {
 			return fmt.Errorf("duplicate code %q", e.Code)

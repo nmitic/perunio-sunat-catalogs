@@ -172,6 +172,24 @@
       "import": "./gen/ts/tabla10.js",
       "default": "./gen/ts/tabla10.js"
     },
+    "./ubigeo-departamento": {
+      "types": "./gen/ts/ubigeo-departamento.d.ts",
+      "require": "./gen/ts/ubigeo-departamento.cjs",
+      "import": "./gen/ts/ubigeo-departamento.js",
+      "default": "./gen/ts/ubigeo-departamento.js"
+    },
+    "./ubigeo-distrito": {
+      "types": "./gen/ts/ubigeo-distrito.d.ts",
+      "require": "./gen/ts/ubigeo-distrito.cjs",
+      "import": "./gen/ts/ubigeo-distrito.js",
+      "default": "./gen/ts/ubigeo-distrito.js"
+    },
+    "./ubigeo-provincia": {
+      "types": "./gen/ts/ubigeo-provincia.d.ts",
+      "require": "./gen/ts/ubigeo-provincia.cjs",
+      "import": "./gen/ts/ubigeo-provincia.js",
+      "default": "./gen/ts/ubigeo-provincia.js"
+    },
     "./ubl-document": {
       "types": "./gen/ts/ubl-document.d.ts",
       "require": "./gen/ts/ubl-document.cjs",

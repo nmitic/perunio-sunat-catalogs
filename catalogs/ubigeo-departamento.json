@@ -1,0 +1,211 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "ubigeo-departamento",
+  "sunatCatalog": null,
+  "name": "Departamento (INEI)",
+  "source": "INEI ubigeo, 2016 revision — the last INEI published — via github.com/ernestorivero/Ubigeo-Peru (json/ubigeo_peru_2016_*.json). Validated structurally before use: 25 departamentos, 196 provincias, 1874 distritos, every child resolving to a real parent, every código prefix-consistent with its parents (010101 -> 0101 -> 01), no duplicates. 1874 is the published INEI count. NOT taken from perunio-frontend/src/data/ubigeo-peru.ts, which covered 536 distritos and was wrong about them: 55 carried the código of a different district (it placed CHIMBOTE at 022001 when INEI has it at 021801) and 29 códigos were not INEI ubigeos at all. goConsts is false: nothing refers to a distrito by name, and 1874 named Go constants would be noise. The map, Codes slice and lookups are still generated, which is what the GRE validator needs.",
+  "codePattern": "^[0-9]{2}$",
+  "goConsts": false,
+  "entries": [
+    {
+      "code": "01",
+      "label": "Amazonas",
+      "description": "Amazonas",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "02",
+      "label": "Áncash",
+      "description": "Áncash",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "03",
+      "label": "Apurímac",
+      "description": "Apurímac",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "04",
+      "label": "Arequipa",
+      "description": "Arequipa",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "05",
+      "label": "Ayacucho",
+      "description": "Ayacucho",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "06",
+      "label": "Cajamarca",
+      "description": "Cajamarca",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "07",
+      "label": "Callao",
+      "description": "Callao",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "08",
+      "label": "Cusco",
+      "description": "Cusco",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "09",
+      "label": "Huancavelica",
+      "description": "Huancavelica",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "10",
+      "label": "Huánuco",
+      "description": "Huánuco",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "11",
+      "label": "Ica",
+      "description": "Ica",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "12",
+      "label": "Junín",
+      "description": "Junín",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "13",
+      "label": "La Libertad",
+      "description": "La Libertad",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "14",
+      "label": "Lambayeque",
+      "description": "Lambayeque",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "15",
+      "label": "Lima",
+      "description": "Lima",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "16",
+      "label": "Loreto",
+      "description": "Loreto",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "17",
+      "label": "Madre de Dios",
+      "description": "Madre de Dios",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "18",
+      "label": "Moquegua",
+      "description": "Moquegua",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "19",
+      "label": "Pasco",
+      "description": "Pasco",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "20",
+      "label": "Piura",
+      "description": "Piura",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "21",
+      "label": "Puno",
+      "description": "Puno",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "22",
+      "label": "San Martín",
+      "description": "San Martín",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "23",
+      "label": "Tacna",
+      "description": "Tacna",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "24",
+      "label": "Tumbes",
+      "description": "Tumbes",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    },
+    {
+      "code": "25",
+      "label": "Ucayali",
+      "description": "Ucayali",
+      "capabilities": [],
+      "flags": {},
+      "props": {}
+    }
+  ]
+}

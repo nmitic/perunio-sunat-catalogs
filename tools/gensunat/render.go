@@ -48,11 +48,15 @@ func renderCatalog(c *catalog) ([]byte, error) {
 	b.WriteString(header)
 	b.WriteString("package sunat\n\n")
 
-	fmt.Fprintf(&b, "// %s.\n//\n// Source: %s\nconst (\n", title, c.Source)
-	for _, e := range c.Entries {
-		fmt.Fprintf(&b, "\t// %s\n\t%s%s = %s\n", e.Description, p, e.GoName, strconv.Quote(e.Code))
+	if c.goNames() {
+		fmt.Fprintf(&b, "// %s.\n//\n// Source: %s\nconst (\n", title, c.Source)
+		for _, e := range c.Entries {
+			fmt.Fprintf(&b, "\t// %s\n\t%s%s = %s\n", e.Description, p, e.GoName, strconv.Quote(e.Code))
+		}
+		b.WriteString(")\n\n")
+	} else {
+		fmt.Fprintf(&b, "// %s.\n//\n// Source: %s\n//\n// This catalog sets goConsts:false — too large for one named constant per\n// entry. Use the lookup functions below.\n\n", title, c.Source)
 	}
-	b.WriteString(")\n\n")
 
 	fmt.Fprintf(&b, "// %sEntry describes one %s code.\ntype %sEntry struct {\n", p, short, p)
 	b.WriteString("\tCode        string\n\tLabel       string\n\tDescription string\n")

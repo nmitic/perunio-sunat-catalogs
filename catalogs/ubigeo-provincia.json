@@ -1,0 +1,1974 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "ubigeo-provincia",
+  "sunatCatalog": null,
+  "name": "Provincia (INEI)",
+  "source": "INEI ubigeo, 2016 revision — the last INEI published — via github.com/ernestorivero/Ubigeo-Peru (json/ubigeo_peru_2016_*.json). Validated structurally before use: 25 departamentos, 196 provincias, 1874 distritos, every child resolving to a real parent, every código prefix-consistent with its parents (010101 -> 0101 -> 01), no duplicates. 1874 is the published INEI count. NOT taken from perunio-frontend/src/data/ubigeo-peru.ts, which covered 536 distritos and was wrong about them: 55 carried the código of a different district (it placed CHIMBOTE at 022001 when INEI has it at 021801) and 29 códigos were not INEI ubigeos at all. goConsts is false: nothing refers to a distrito by name, and 1874 named Go constants would be noise. The map, Codes slice and lookups are still generated, which is what the GRE validator needs.",
+  "codePattern": "^[0-9]{4}$",
+  "goConsts": false,
+  "propRefs": {
+    "departamento": "ubigeo-departamento"
+  },
+  "entries": [
+    {
+      "code": "0101",
+      "label": "Chachapoyas",
+      "description": "Chachapoyas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0102",
+      "label": "Bagua",
+      "description": "Bagua",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0103",
+      "label": "Bongará",
+      "description": "Bongará",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0104",
+      "label": "Condorcanqui",
+      "description": "Condorcanqui",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0105",
+      "label": "Luya",
+      "description": "Luya",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0106",
+      "label": "Rodríguez de Mendoza",
+      "description": "Rodríguez de Mendoza",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0107",
+      "label": "Utcubamba",
+      "description": "Utcubamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "01"
+      }
+    },
+    {
+      "code": "0201",
+      "label": "Huaraz",
+      "description": "Huaraz",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0202",
+      "label": "Aija",
+      "description": "Aija",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0203",
+      "label": "Antonio Raymondi",
+      "description": "Antonio Raymondi",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0204",
+      "label": "Asunción",
+      "description": "Asunción",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0205",
+      "label": "Bolognesi",
+      "description": "Bolognesi",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0206",
+      "label": "Carhuaz",
+      "description": "Carhuaz",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0207",
+      "label": "Carlos Fermín Fitzcarrald",
+      "description": "Carlos Fermín Fitzcarrald",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0208",
+      "label": "Casma",
+      "description": "Casma",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0209",
+      "label": "Corongo",
+      "description": "Corongo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0210",
+      "label": "Huari",
+      "description": "Huari",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0211",
+      "label": "Huarmey",
+      "description": "Huarmey",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0212",
+      "label": "Huaylas",
+      "description": "Huaylas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0213",
+      "label": "Mariscal Luzuriaga",
+      "description": "Mariscal Luzuriaga",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0214",
+      "label": "Ocros",
+      "description": "Ocros",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0215",
+      "label": "Pallasca",
+      "description": "Pallasca",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0216",
+      "label": "Pomabamba",
+      "description": "Pomabamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0217",
+      "label": "Recuay",
+      "description": "Recuay",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0218",
+      "label": "Santa",
+      "description": "Santa",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0219",
+      "label": "Sihuas",
+      "description": "Sihuas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0220",
+      "label": "Yungay",
+      "description": "Yungay",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "02"
+      }
+    },
+    {
+      "code": "0301",
+      "label": "Abancay",
+      "description": "Abancay",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0302",
+      "label": "Andahuaylas",
+      "description": "Andahuaylas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0303",
+      "label": "Antabamba",
+      "description": "Antabamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0304",
+      "label": "Aymaraes",
+      "description": "Aymaraes",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0305",
+      "label": "Cotabambas",
+      "description": "Cotabambas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0306",
+      "label": "Chincheros",
+      "description": "Chincheros",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0307",
+      "label": "Grau",
+      "description": "Grau",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "03"
+      }
+    },
+    {
+      "code": "0401",
+      "label": "Arequipa",
+      "description": "Arequipa",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0402",
+      "label": "Camaná",
+      "description": "Camaná",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0403",
+      "label": "Caravelí",
+      "description": "Caravelí",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0404",
+      "label": "Castilla",
+      "description": "Castilla",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0405",
+      "label": "Caylloma",
+      "description": "Caylloma",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0406",
+      "label": "Condesuyos",
+      "description": "Condesuyos",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0407",
+      "label": "Islay",
+      "description": "Islay",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0408",
+      "label": "La Uniòn",
+      "description": "La Uniòn",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "04"
+      }
+    },
+    {
+      "code": "0501",
+      "label": "Huamanga",
+      "description": "Huamanga",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0502",
+      "label": "Cangallo",
+      "description": "Cangallo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0503",
+      "label": "Huanca Sancos",
+      "description": "Huanca Sancos",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0504",
+      "label": "Huanta",
+      "description": "Huanta",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0505",
+      "label": "La Mar",
+      "description": "La Mar",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0506",
+      "label": "Lucanas",
+      "description": "Lucanas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0507",
+      "label": "Parinacochas",
+      "description": "Parinacochas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0508",
+      "label": "Pàucar del Sara Sara",
+      "description": "Pàucar del Sara Sara",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0509",
+      "label": "Sucre",
+      "description": "Sucre",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0510",
+      "label": "Víctor Fajardo",
+      "description": "Víctor Fajardo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0511",
+      "label": "Vilcas Huamán",
+      "description": "Vilcas Huamán",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "05"
+      }
+    },
+    {
+      "code": "0601",
+      "label": "Cajamarca",
+      "description": "Cajamarca",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0602",
+      "label": "Cajabamba",
+      "description": "Cajabamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0603",
+      "label": "Celendín",
+      "description": "Celendín",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0604",
+      "label": "Chota",
+      "description": "Chota",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0605",
+      "label": "Contumazá",
+      "description": "Contumazá",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0606",
+      "label": "Cutervo",
+      "description": "Cutervo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0607",
+      "label": "Hualgayoc",
+      "description": "Hualgayoc",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0608",
+      "label": "Jaén",
+      "description": "Jaén",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0609",
+      "label": "San Ignacio",
+      "description": "San Ignacio",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0610",
+      "label": "San Marcos",
+      "description": "San Marcos",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0611",
+      "label": "San Miguel",
+      "description": "San Miguel",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0612",
+      "label": "San Pablo",
+      "description": "San Pablo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0613",
+      "label": "Santa Cruz",
+      "description": "Santa Cruz",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "06"
+      }
+    },
+    {
+      "code": "0701",
+      "label": "Prov. Const. del Callao",
+      "description": "Prov. Const. del Callao",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "07"
+      }
+    },
+    {
+      "code": "0801",
+      "label": "Cusco",
+      "description": "Cusco",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0802",
+      "label": "Acomayo",
+      "description": "Acomayo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0803",
+      "label": "Anta",
+      "description": "Anta",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0804",
+      "label": "Calca",
+      "description": "Calca",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0805",
+      "label": "Canas",
+      "description": "Canas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0806",
+      "label": "Canchis",
+      "description": "Canchis",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0807",
+      "label": "Chumbivilcas",
+      "description": "Chumbivilcas",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0808",
+      "label": "Espinar",
+      "description": "Espinar",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0809",
+      "label": "La Convención",
+      "description": "La Convención",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0810",
+      "label": "Paruro",
+      "description": "Paruro",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0811",
+      "label": "Paucartambo",
+      "description": "Paucartambo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0812",
+      "label": "Quispicanchi",
+      "description": "Quispicanchi",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0813",
+      "label": "Urubamba",
+      "description": "Urubamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "08"
+      }
+    },
+    {
+      "code": "0901",
+      "label": "Huancavelica",
+      "description": "Huancavelica",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0902",
+      "label": "Acobamba",
+      "description": "Acobamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0903",
+      "label": "Angaraes",
+      "description": "Angaraes",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0904",
+      "label": "Castrovirreyna",
+      "description": "Castrovirreyna",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0905",
+      "label": "Churcampa",
+      "description": "Churcampa",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0906",
+      "label": "Huaytará",
+      "description": "Huaytará",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "0907",
+      "label": "Tayacaja",
+      "description": "Tayacaja",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "09"
+      }
+    },
+    {
+      "code": "1001",
+      "label": "Huánuco",
+      "description": "Huánuco",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1002",
+      "label": "Ambo",
+      "description": "Ambo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1003",
+      "label": "Dos de Mayo",
+      "description": "Dos de Mayo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1004",
+      "label": "Huacaybamba",
+      "description": "Huacaybamba",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1005",
+      "label": "Huamalíes",
+      "description": "Huamalíes",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1006",
+      "label": "Leoncio Prado",
+      "description": "Leoncio Prado",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1007",
+      "label": "Marañón",
+      "description": "Marañón",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1008",
+      "label": "Pachitea",
+      "description": "Pachitea",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1009",
+      "label": "Puerto Inca",
+      "description": "Puerto Inca",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1010",
+      "label": "Lauricocha ",
+      "description": "Lauricocha ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1011",
+      "label": "Yarowilca ",
+      "description": "Yarowilca ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "10"
+      }
+    },
+    {
+      "code": "1101",
+      "label": "Ica ",
+      "description": "Ica ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "11"
+      }
+    },
+    {
+      "code": "1102",
+      "label": "Chincha ",
+      "description": "Chincha ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "11"
+      }
+    },
+    {
+      "code": "1103",
+      "label": "Nasca ",
+      "description": "Nasca ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "11"
+      }
+    },
+    {
+      "code": "1104",
+      "label": "Palpa ",
+      "description": "Palpa ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "11"
+      }
+    },
+    {
+      "code": "1105",
+      "label": "Pisco ",
+      "description": "Pisco ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "11"
+      }
+    },
+    {
+      "code": "1201",
+      "label": "Huancayo ",
+      "description": "Huancayo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1202",
+      "label": "Concepción ",
+      "description": "Concepción ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1203",
+      "label": "Chanchamayo ",
+      "description": "Chanchamayo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1204",
+      "label": "Jauja ",
+      "description": "Jauja ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1205",
+      "label": "Junín ",
+      "description": "Junín ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1206",
+      "label": "Satipo ",
+      "description": "Satipo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1207",
+      "label": "Tarma ",
+      "description": "Tarma ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1208",
+      "label": "Yauli ",
+      "description": "Yauli ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1209",
+      "label": "Chupaca ",
+      "description": "Chupaca ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "12"
+      }
+    },
+    {
+      "code": "1301",
+      "label": "Trujillo ",
+      "description": "Trujillo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1302",
+      "label": "Ascope ",
+      "description": "Ascope ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1303",
+      "label": "Bolívar ",
+      "description": "Bolívar ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1304",
+      "label": "Chepén ",
+      "description": "Chepén ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1305",
+      "label": "Julcán ",
+      "description": "Julcán ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1306",
+      "label": "Otuzco ",
+      "description": "Otuzco ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1307",
+      "label": "Pacasmayo ",
+      "description": "Pacasmayo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1308",
+      "label": "Pataz ",
+      "description": "Pataz ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1309",
+      "label": "Sánchez Carrión ",
+      "description": "Sánchez Carrión ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1310",
+      "label": "Santiago de Chuco ",
+      "description": "Santiago de Chuco ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1311",
+      "label": "Gran Chimú ",
+      "description": "Gran Chimú ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1312",
+      "label": "Virú ",
+      "description": "Virú ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "13"
+      }
+    },
+    {
+      "code": "1401",
+      "label": "Chiclayo ",
+      "description": "Chiclayo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "14"
+      }
+    },
+    {
+      "code": "1402",
+      "label": "Ferreñafe ",
+      "description": "Ferreñafe ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "14"
+      }
+    },
+    {
+      "code": "1403",
+      "label": "Lambayeque ",
+      "description": "Lambayeque ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "14"
+      }
+    },
+    {
+      "code": "1501",
+      "label": "Lima ",
+      "description": "Lima ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1502",
+      "label": "Barranca ",
+      "description": "Barranca ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1503",
+      "label": "Cajatambo ",
+      "description": "Cajatambo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1504",
+      "label": "Canta ",
+      "description": "Canta ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1505",
+      "label": "Cañete ",
+      "description": "Cañete ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1506",
+      "label": "Huaral ",
+      "description": "Huaral ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1507",
+      "label": "Huarochirí ",
+      "description": "Huarochirí ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1508",
+      "label": "Huaura ",
+      "description": "Huaura ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1509",
+      "label": "Oyón ",
+      "description": "Oyón ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1510",
+      "label": "Yauyos ",
+      "description": "Yauyos ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "15"
+      }
+    },
+    {
+      "code": "1601",
+      "label": "Maynas ",
+      "description": "Maynas ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1602",
+      "label": "Alto Amazonas ",
+      "description": "Alto Amazonas ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1603",
+      "label": "Loreto ",
+      "description": "Loreto ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1604",
+      "label": "Mariscal Ramón Castilla ",
+      "description": "Mariscal Ramón Castilla ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1605",
+      "label": "Requena ",
+      "description": "Requena ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1606",
+      "label": "Ucayali ",
+      "description": "Ucayali ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1607",
+      "label": "Datem del Marañón ",
+      "description": "Datem del Marañón ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1608",
+      "label": "Putumayo",
+      "description": "Putumayo",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "16"
+      }
+    },
+    {
+      "code": "1701",
+      "label": "Tambopata ",
+      "description": "Tambopata ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "17"
+      }
+    },
+    {
+      "code": "1702",
+      "label": "Manu ",
+      "description": "Manu ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "17"
+      }
+    },
+    {
+      "code": "1703",
+      "label": "Tahuamanu ",
+      "description": "Tahuamanu ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "17"
+      }
+    },
+    {
+      "code": "1801",
+      "label": "Mariscal Nieto ",
+      "description": "Mariscal Nieto ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "18"
+      }
+    },
+    {
+      "code": "1802",
+      "label": "General Sánchez Cerro ",
+      "description": "General Sánchez Cerro ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "18"
+      }
+    },
+    {
+      "code": "1803",
+      "label": "Ilo ",
+      "description": "Ilo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "18"
+      }
+    },
+    {
+      "code": "1901",
+      "label": "Pasco ",
+      "description": "Pasco ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "19"
+      }
+    },
+    {
+      "code": "1902",
+      "label": "Daniel Alcides Carrión ",
+      "description": "Daniel Alcides Carrión ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "19"
+      }
+    },
+    {
+      "code": "1903",
+      "label": "Oxapampa ",
+      "description": "Oxapampa ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "19"
+      }
+    },
+    {
+      "code": "2001",
+      "label": "Piura ",
+      "description": "Piura ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2002",
+      "label": "Ayabaca ",
+      "description": "Ayabaca ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2003",
+      "label": "Huancabamba ",
+      "description": "Huancabamba ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2004",
+      "label": "Morropón ",
+      "description": "Morropón ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2005",
+      "label": "Paita ",
+      "description": "Paita ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2006",
+      "label": "Sullana ",
+      "description": "Sullana ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2007",
+      "label": "Talara ",
+      "description": "Talara ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2008",
+      "label": "Sechura ",
+      "description": "Sechura ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "20"
+      }
+    },
+    {
+      "code": "2101",
+      "label": "Puno ",
+      "description": "Puno ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2102",
+      "label": "Azángaro ",
+      "description": "Azángaro ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2103",
+      "label": "Carabaya ",
+      "description": "Carabaya ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2104",
+      "label": "Chucuito ",
+      "description": "Chucuito ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2105",
+      "label": "El Collao ",
+      "description": "El Collao ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2106",
+      "label": "Huancané ",
+      "description": "Huancané ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2107",
+      "label": "Lampa ",
+      "description": "Lampa ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2108",
+      "label": "Melgar ",
+      "description": "Melgar ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2109",
+      "label": "Moho ",
+      "description": "Moho ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2110",
+      "label": "San Antonio de Putina ",
+      "description": "San Antonio de Putina ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2111",
+      "label": "San Román ",
+      "description": "San Román ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2112",
+      "label": "Sandia ",
+      "description": "Sandia ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2113",
+      "label": "Yunguyo ",
+      "description": "Yunguyo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "21"
+      }
+    },
+    {
+      "code": "2201",
+      "label": "Moyobamba ",
+      "description": "Moyobamba ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2202",
+      "label": "Bellavista ",
+      "description": "Bellavista ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2203",
+      "label": "El Dorado ",
+      "description": "El Dorado ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2204",
+      "label": "Huallaga ",
+      "description": "Huallaga ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2205",
+      "label": "Lamas ",
+      "description": "Lamas ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2206",
+      "label": "Mariscal Cáceres ",
+      "description": "Mariscal Cáceres ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2207",
+      "label": "Picota ",
+      "description": "Picota ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2208",
+      "label": "Rioja ",
+      "description": "Rioja ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2209",
+      "label": "San Martín ",
+      "description": "San Martín ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2210",
+      "label": "Tocache ",
+      "description": "Tocache ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "22"
+      }
+    },
+    {
+      "code": "2301",
+      "label": "Tacna ",
+      "description": "Tacna ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "23"
+      }
+    },
+    {
+      "code": "2302",
+      "label": "Candarave ",
+      "description": "Candarave ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "23"
+      }
+    },
+    {
+      "code": "2303",
+      "label": "Jorge Basadre ",
+      "description": "Jorge Basadre ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "23"
+      }
+    },
+    {
+      "code": "2304",
+      "label": "Tarata ",
+      "description": "Tarata ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "23"
+      }
+    },
+    {
+      "code": "2401",
+      "label": "Tumbes ",
+      "description": "Tumbes ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "24"
+      }
+    },
+    {
+      "code": "2402",
+      "label": "Contralmirante Villar ",
+      "description": "Contralmirante Villar ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "24"
+      }
+    },
+    {
+      "code": "2403",
+      "label": "Zarumilla ",
+      "description": "Zarumilla ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "24"
+      }
+    },
+    {
+      "code": "2501",
+      "label": "Coronel Portillo ",
+      "description": "Coronel Portillo ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "25"
+      }
+    },
+    {
+      "code": "2502",
+      "label": "Atalaya ",
+      "description": "Atalaya ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "25"
+      }
+    },
+    {
+      "code": "2503",
+      "label": "Padre Abad ",
+      "description": "Padre Abad ",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "25"
+      }
+    },
+    {
+      "code": "2504",
+      "label": "Purús",
+      "description": "Purús",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "departamento": "25"
+      }
+    }
+  ]
+}

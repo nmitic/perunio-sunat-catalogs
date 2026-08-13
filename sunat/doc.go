@@ -35,6 +35,9 @@
 //	gre-doc-type perunio-internal Tipo de Guía de Remisión (3 entries)
 //	registro   perunio-internal Registro Electrónico (RCE / RVIE) (2 entries)
 //	tabla10    perunio-internal Tipo de Comprobante de Pago o Documento (PLE tabla 10) (48 entries)
+//	ubigeo-departamento perunio-internal Departamento (INEI) (25 entries)
+//	ubigeo-distrito perunio-internal Distrito (INEI) (1874 entries)
+//	ubigeo-provincia perunio-internal Provincia (INEI) (196 entries)
 //	ubl-document perunio-internal Documento UBL (6 entries)
 //	ubl-namespace perunio-internal Prefijo de namespace UBL (5 entries)
 package sunat
