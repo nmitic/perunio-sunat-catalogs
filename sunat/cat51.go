@@ -5,7 +5,7 @@ package sunat
 
 // Cat.51 — Tipo de Operación.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one.
+// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one. `on-factura` and `on-boleta` are a straight transcription of the anexo's 'Tipo de Comprobante asociado' column: 0112 is factura-only and 0113 is boleta-only, everything else carries both. 0104 mirrors 0101 because that is what it becomes on the wire; the two `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a factura can still declare 0113. Wiring that up is a behaviour change and needs a beta CDR behind it.
 const (
 	// Venta interna
 	Cat51VentaInterna = "0101"
@@ -201,6 +201,116 @@ var cat51InternalSet = map[string]struct{}{
 // Cat51Internal reports whether code has the "internal" capability: it is a Perunio marker that never reaches the wire.
 func Cat51Internal(code string) bool {
 	_, ok := cat51InternalSet[code]
+	return ok
+}
+
+// Cat51OnBoletaCodes lists the Cat.51 codes with the "on-boleta" capability.
+var Cat51OnBoletaCodes = []string{
+	"0101",
+	"0113",
+	"0200",
+	"0201",
+	"0202",
+	"0203",
+	"0204",
+	"0205",
+	"0206",
+	"0207",
+	"0208",
+	"0301",
+	"0302",
+	"0303",
+	"0401",
+	"1001",
+	"1002",
+	"1003",
+	"1004",
+	"2001",
+	"0104",
+}
+
+var cat51OnBoletaSet = map[string]struct{}{
+	"0101": {},
+	"0113": {},
+	"0200": {},
+	"0201": {},
+	"0202": {},
+	"0203": {},
+	"0204": {},
+	"0205": {},
+	"0206": {},
+	"0207": {},
+	"0208": {},
+	"0301": {},
+	"0302": {},
+	"0303": {},
+	"0401": {},
+	"1001": {},
+	"1002": {},
+	"1003": {},
+	"1004": {},
+	"2001": {},
+	"0104": {},
+}
+
+// Cat51OnBoleta reports whether code has the "on-boleta" capability: see meta/capabilities.json.
+func Cat51OnBoleta(code string) bool {
+	_, ok := cat51OnBoletaSet[code]
+	return ok
+}
+
+// Cat51OnFacturaCodes lists the Cat.51 codes with the "on-factura" capability.
+var Cat51OnFacturaCodes = []string{
+	"0101",
+	"0112",
+	"0200",
+	"0201",
+	"0202",
+	"0203",
+	"0204",
+	"0205",
+	"0206",
+	"0207",
+	"0208",
+	"0301",
+	"0302",
+	"0303",
+	"0401",
+	"1001",
+	"1002",
+	"1003",
+	"1004",
+	"2001",
+	"0104",
+}
+
+var cat51OnFacturaSet = map[string]struct{}{
+	"0101": {},
+	"0112": {},
+	"0200": {},
+	"0201": {},
+	"0202": {},
+	"0203": {},
+	"0204": {},
+	"0205": {},
+	"0206": {},
+	"0207": {},
+	"0208": {},
+	"0301": {},
+	"0302": {},
+	"0303": {},
+	"0401": {},
+	"1001": {},
+	"1002": {},
+	"1003": {},
+	"1004": {},
+	"2001": {},
+	"0104": {},
+}
+
+// Cat51OnFactura reports whether code has the "on-factura" capability: see meta/capabilities.json.
+func Cat51OnFactura(code string) bool {
+	_, ok := cat51OnFacturaSet[code]
 	return ok
 }
 

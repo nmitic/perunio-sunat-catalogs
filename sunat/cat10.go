@@ -5,7 +5,7 @@ package sunat
 
 // Cat.10 — Tipo de Nota de Débito Electrónica.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 10, from the same sheet (5 códigos). SUNAT defines five but this pipeline emits two: model.ValidNDType accepted only 01 and 02, and the issuance form offered only those. Giving 03, 11 and 12 `emit` would widen what the validator accepts, so they are display-only until the pipeline actually supports them — the point of `emit` is that it describes this service, not SUNAT.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 10, from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 142-146): five códigos, matching resources/AjustesValidacionesCPEv20260212.xlsx exactly. SUNAT defines five but this pipeline emits two: model.ValidNDType accepted only 01 and 02, and the issuance form offered only those. Giving 03, 11 and 12 `emit` would widen what the validator accepts, so they are display-only until the pipeline actually supports them — the point of `emit` is that it describes this service, not SUNAT.
 const (
 	// Intereses por mora
 	Cat10InteresesMora = "01"

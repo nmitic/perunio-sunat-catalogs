@@ -3,7 +3,7 @@
   "id": "cat51",
   "sunatCatalog": "51",
   "name": "Tipo de Operación",
-  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one.",
+  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one. `on-factura` and `on-boleta` are a straight transcription of the anexo's 'Tipo de Comprobante asociado' column: 0112 is factura-only and 0113 is boleta-only, everything else carries both. 0104 mirrors 0101 because that is what it becomes on the wire; the two `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a factura can still declare 0113. Wiring that up is a behaviour change and needs a beta CDR behind it.",
   "codePattern": "^[0-9]{4}$",
   "entries": [
     {
@@ -12,7 +12,9 @@
       "description": "Venta interna",
       "capabilities": [
         "emit",
-        "select"
+        "select",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -28,7 +30,8 @@
       "label": "Venta interna - sustenta gastos deducibles persona natural",
       "description": "Venta Interna - Sustenta Gastos Deducibles Persona Natural",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura"
       ],
       "flags": {
         "detraccion": false,
@@ -44,7 +47,8 @@
       "label": "Venta interna - NRUS",
       "description": "Venta Interna-NRUS",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -61,7 +65,9 @@
       "description": "Exportación de Bienes",
       "capabilities": [
         "emit",
-        "select"
+        "select",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -78,7 +84,9 @@
       "description": "Exportación de Servicios – Prestación servicios realizados íntegramente en el país",
       "capabilities": [
         "emit",
-        "select"
+        "select",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -94,7 +102,9 @@
       "label": "Exportación de servicios - hospedaje a no domiciliado",
       "description": "Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -110,7 +120,9 @@
       "label": "Exportación de servicios - transporte de navieras",
       "description": "Exportación de Servicios – Transporte de navieras",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -126,7 +138,9 @@
       "label": "Exportación de servicios - naves y aeronaves extranjeras",
       "description": "Exportación de Servicios – Servicios a naves y aeronaves de bandera extranjera",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -142,7 +156,9 @@
       "label": "Exportación de servicios - paquete turístico",
       "description": "Exportación de Servicios - Servicios que conformen un Paquete Turístico",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -158,7 +174,9 @@
       "label": "Exportación de servicios - complementarios al transporte de carga",
       "description": "Exportación de Servicios – Servicios complementarios al transporte de carga",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -174,7 +192,9 @@
       "label": "Exportación de servicios - energía eléctrica a ZED",
       "description": "Exportación de Servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -190,7 +210,9 @@
       "label": "Exportación de servicios - prestados parcialmente en el extranjero",
       "description": "Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -206,7 +228,9 @@
       "label": "Operaciones con carta de porte aéreo nacional",
       "description": "Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -222,7 +246,9 @@
       "label": "Transporte ferroviario de pasajeros",
       "description": "Operaciones de Transporte ferroviario de pasajeros",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -238,7 +264,9 @@
       "label": "Pago de regalía petrolera",
       "description": "Operaciones de Pago de regalía petrolera",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -254,7 +282,9 @@
       "label": "Ventas a no domiciliados que no califican como exportación",
       "description": "Ventas no domiciliados que no califican como exportación",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -270,7 +300,9 @@
       "label": "Operación sujeta a detracción",
       "description": "Operación Sujeta a Detracción",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": true,
@@ -286,7 +318,9 @@
       "label": "Detracción - recursos hidrobiológicos",
       "description": "Operación Sujeta a Detracción- Recursos Hidrobiológicos",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": true,
@@ -302,7 +336,9 @@
       "label": "Detracción - transporte de pasajeros",
       "description": "Operación Sujeta a Detracción- Servicios de Transporte Pasajeros",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": true,
@@ -318,7 +354,9 @@
       "label": "Detracción - transporte de carga",
       "description": "Operación Sujeta a Detracción- Servicios de Transporte Carga",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": true,
@@ -334,7 +372,9 @@
       "label": "Operación sujeta a percepción",
       "description": "Operación Sujeta a Percepción",
       "capabilities": [
-        "emit"
+        "emit",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,
@@ -383,7 +423,9 @@
       "description": "Marcador Perunio para una factura de anticipo. Retirado del catálogo 51, así que se almacena y reporta pero viaja como 0101",
       "capabilities": [
         "select",
-        "internal"
+        "internal",
+        "on-factura",
+        "on-boleta"
       ],
       "flags": {
         "detraccion": false,

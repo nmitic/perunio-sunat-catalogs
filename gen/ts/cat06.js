@@ -8,7 +8,7 @@ const CAT06 = {
   "0": { code: "0", label: "Sin documento", description: "DOC.TRIB.NO.DOM.SIN.RUC", identifica: false, numberPattern: null },
   "1": { code: "1", label: "DNI", description: "Documento Nacional de Identidad", identifica: true, numberPattern: "^\\d{8}$" },
   "4": { code: "4", label: "Carnet de extranjería", description: "Carnet de extranjería", identifica: true, numberPattern: null },
-  "6": { code: "6", label: "RUC", description: "Registro Unico de Contribuyentes", identifica: true, numberPattern: "^\\d{11}$" },
+  "6": { code: "6", label: "RUC", description: "Registro Unico de Contributentes", identifica: true, numberPattern: "^\\d{11}$" },
   "7": { code: "7", label: "Pasaporte", description: "Pasaporte", identifica: true, numberPattern: null },
   "A": { code: "A", label: "Cédula diplomática", description: "Cédula Diplomática de identidad", identifica: true, numberPattern: null },
   "B": { code: "B", label: "Doc. país de residencia", description: "DOC.IDENT.PAIS.RESIDENCIA-NO.D", identifica: true, numberPattern: null },

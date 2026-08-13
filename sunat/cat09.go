@@ -5,13 +5,13 @@ package sunat
 
 // Cat.09 — Tipo de Nota de Crédito Electrónica.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 09, from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx (13 códigos). Only 01-09 carry `emit`: that is what internal/model ValidNCType accepted and what the issuance form offered, and both agreed already. 10-13 are display-only so an imported or historical nota still renders a name. The `on-boleta` capability is the positive form of model.NCTypesNotAllowedOnBoleta, a negative map of {04,05,08} — SUNAT rejects a descuento or bonificación against a boleta. `full-reversal` and `line-selection` come from the frontend's NC_CODES_FULL_REVERSAL and NC_CODES_LINE_SELECTION: the first group must mirror the original comprobante exactly, the second credits only the lines the user ticks.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 09. Authority is the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 126-137), which lists twelve códigos, 01 through 12. Código 13 (corrección del monto neto pendiente de pago y/o fecha de vencimiento) is NOT in it: it comes from the newer resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12), which the anexo predates. It is kept — withdrawing an NC motivo that SUNAT currently accepts would be a regression — but it carries no `emit`, so nothing can put it on the wire until that is a deliberate decision. Only 01-09 carry `emit`: that is what internal/model ValidNCType accepted and what the issuance form offered, and both agreed already. 10-13 are display-only so an imported or historical nota still renders a name. The `on-boleta` capability is the positive form of model.NCTypesNotAllowedOnBoleta, a negative map of {04,05,08} — SUNAT rejects a descuento or bonificación against a boleta. `full-reversal` and `line-selection` come from the frontend's NC_CODES_FULL_REVERSAL and NC_CODES_LINE_SELECTION: the first group must mirror the original comprobante exactly, the second credits only the lines the user ticks.
 const (
 	// Anulación de la operación
 	Cat09Anulacion = "01"
 	// Anulación por error en el RUC
 	Cat09AnulacionErrorRUC = "02"
-	// Corrección por error en la descripción o atención de reclamo respecto de bienes adquiridos o servicios prestados
+	// Corrección por error en la descripción
 	Cat09CorreccionDescripcion = "03"
 	// Descuento global
 	Cat09DescuentoGlobal = "04"
@@ -62,7 +62,7 @@ var Cat09Codes = []string{
 var cat09 = map[string]Cat09Entry{
 	"01": {Code: "01", Label: "Anulación de la operación", Description: "Anulación de la operación"},
 	"02": {Code: "02", Label: "Anulación por error en el RUC", Description: "Anulación por error en el RUC"},
-	"03": {Code: "03", Label: "Corrección por error en la descripción", Description: "Corrección por error en la descripción o atención de reclamo respecto de bienes adquiridos o servicios prestados"},
+	"03": {Code: "03", Label: "Corrección por error en la descripción", Description: "Corrección por error en la descripción"},
 	"04": {Code: "04", Label: "Descuento global", Description: "Descuento global"},
 	"05": {Code: "05", Label: "Descuento por ítem", Description: "Descuento por ítem"},
 	"06": {Code: "06", Label: "Devolución total", Description: "Devolución total"},

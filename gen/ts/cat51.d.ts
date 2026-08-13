@@ -41,6 +41,16 @@ export type Cat51InternalCode = (typeof CAT51_INTERNAL_CODES)[number];
 export declare const CAT51_INTERNAL_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51InternalCode(value: string): value is Cat51InternalCode;
 
+export declare const CAT51_ON_BOLETA_CODES: readonly ["0101", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
+export type Cat51OnBoletaCode = (typeof CAT51_ON_BOLETA_CODES)[number];
+export declare const CAT51_ON_BOLETA_ENTRIES: readonly Cat51Entry[];
+export declare function isCat51OnBoletaCode(value: string): value is Cat51OnBoletaCode;
+
+export declare const CAT51_ON_FACTURA_CODES: readonly ["0101", "0112", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
+export type Cat51OnFacturaCode = (typeof CAT51_ON_FACTURA_CODES)[number];
+export declare const CAT51_ON_FACTURA_ENTRIES: readonly Cat51Entry[];
+export declare function isCat51OnFacturaCode(value: string): value is Cat51OnFacturaCode;
+
 export declare const CAT51_DETRACCION_CODES: readonly ["1001", "1002", "1003", "1004"];
 
 export declare const CAT51_EXPORTACION_CODES: readonly ["0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208"];

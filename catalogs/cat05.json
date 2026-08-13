@@ -3,13 +3,13 @@
   "id": "cat05",
   "sunatCatalog": "05",
   "name": "Código de Tributos",
-  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 05. Transcribed from perunio-facturador/internal/model/catalog.go:23-33 (TaxScheme* var block), the only place all nine were named together. The dead UNECEID field of TaxSchemeType is not carried over: it duplicated Code on every row and was never read. props.rate is the tributo's own statutory rate and is null wherever no such rate exists: ISC varies by sistema de cálculo, and 9996 (gratuito) declares whichever rate the underlying operación would have carried — 18.00 for gravado-gratuito, 0.00 for exonerado/inafecto gratuito — which is a Cat.07 property, not a Cat.05 one.",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 05, reconciled against the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 69-77): same nine códigos, and the descripciones are now the anexo's verbatim — including the 'IGV'/'ISC' prefixes on 1000 and 2000 and SUNAT's own spelling of 'Impuesto a la bolsa plastica'. The códigos were first transcribed from perunio-facturador/internal/model/catalog.go:23-33 (TaxScheme* var block), the only place all nine were named together. Note that resources/AjustesValidacionesCPEv20260212.xlsx adds a tenth, 3000 (Impuesto a la Renta); it is absent from the anexo and nothing in this platform emits it. The dead UNECEID field of TaxSchemeType is not carried over: it duplicated Code on every row and was never read. props.rate is the tributo's own statutory rate and is null wherever no such rate exists: ISC varies by sistema de cálculo, and 9996 (gratuito) declares whichever rate the underlying operación would have carried — 18.00 for gravado-gratuito, 0.00 for exonerado/inafecto gratuito — which is a Cat.07 property, not a Cat.05 one.",
   "codePattern": "^[0-9]{4}$",
   "entries": [
     {
       "code": "1000",
       "label": "IGV",
-      "description": "Impuesto General a las Ventas",
+      "description": "IGV Impuesto General a las Ventas",
       "capabilities": ["emit"],
       "flags": { "gratuito": false },
       "props": { "name": "IGV", "taxTypeCode": "VAT", "taxCategoryId": "S", "rate": "18.00" },
@@ -27,7 +27,7 @@
     {
       "code": "2000",
       "label": "ISC",
-      "description": "Impuesto Selectivo al Consumo",
+      "description": "ISC Impuesto Selectivo al Consumo",
       "capabilities": ["emit"],
       "flags": { "gratuito": false },
       "props": { "name": "ISC", "taxTypeCode": "EXC", "taxCategoryId": "S", "rate": null },
@@ -36,7 +36,7 @@
     {
       "code": "7152",
       "label": "ICBPER",
-      "description": "Impuesto a la bolsa de plástico",
+      "description": "Impuesto a la bolsa plastica",
       "capabilities": ["emit"],
       "flags": { "gratuito": false },
       "props": { "name": "ICBPER", "taxTypeCode": "OTH", "taxCategoryId": "S", "rate": null },

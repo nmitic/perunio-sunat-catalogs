@@ -4,6 +4,45 @@ Consumers pin a tag, so every release note should say what a service will see
 after bumping — especially any code that stopped being `select` or `emit`, since
 that narrows what the UI offers or what the pipeline accepts.
 
+## v1.1.0
+
+Every catálogo reconciled, entry by entry, against
+`perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx` — the first time the
+files were checked as a set against a single authority. **No código entered or
+left an `emit` set and no detracción rate moved**, so nothing a service puts on
+the wire changes.
+
+### Fixed
+
+- **Cat.16 código `03` was wrong.** It read "Valor referencial unitario en
+  operaciones de exportación", which is not a Cat.16 concept; SUNAT defines it as
+  **"Tarifas reguladas"**. `flags.referencial` went `false` with it, and the Go
+  constant `Cat16ValorReferencialExportacion` is now `Cat16TarifasReguladas`. It
+  was unreferenced, so nothing needs updating.
+- **`CAT16_REFERENCIAL_CODES` narrowed** from `["02","03"]` to `["02"]`, for the
+  same reason. Also unreferenced.
+- Cat.16 `02`, Cat.05 `1000`/`2000`/`7152`, Cat.08 `01`/`02`/`03` and Cat.09 `03`
+  now carry SUNAT's wording rather than ours — including Cat.05's "IGV"/"ISC"
+  prefixes and "Impuesto a la bolsa plastica".
+- **Cat.06 código `6` reads "Contributentes"**, reproducing the anexo's own
+  misspelling. `label` still says "RUC", which is what a UI renders.
+
+### Added
+
+- **Cat.51 `on-factura` / `on-boleta`**, transcribed from the anexo's `Tipo de
+  Comprobante asociado` column: `0112` is factura-only, `0113` boleta-only, the
+  other 19 both. `0104` mirrors `0101`; the `retired` pair carries neither.
+  Data only — no consumer enforces it yet, so a factura can still declare `0113`.
+- Every numbered catálogo's `source` now names the anexo as its authority and
+  states, per entry, which of the 10 entries are not in it and why. Seven
+  catálogos needed no change at all: Cat.07, 10, 18, 20, 52, 53, 54 — the last
+  verified rate by rate, 34 for 34.
+
+### Changed
+
+- `on-boleta` and `on-factura` in `meta/capabilities.json` were worded for nota
+  motivos only; they now also cover a tipo de operación.
+
 ## v1.0.0
 
 Every SUNAT catálogo this platform uses now lives here. `perunio-facturador`,

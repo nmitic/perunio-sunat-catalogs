@@ -5,10 +5,10 @@
 const CAT05_CODES = ["1000", "1016", "2000", "7152", "9995", "9996", "9997", "9998", "9999"];
 
 const CAT05 = {
-  "1000": { code: "1000", label: "IGV", description: "Impuesto General a las Ventas", gratuito: false, name: "IGV", rate: "18.00", taxCategoryId: "S", taxTypeCode: "VAT" },
+  "1000": { code: "1000", label: "IGV", description: "IGV Impuesto General a las Ventas", gratuito: false, name: "IGV", rate: "18.00", taxCategoryId: "S", taxTypeCode: "VAT" },
   "1016": { code: "1016", label: "IVAP", description: "Impuesto a la Venta Arroz Pilado", gratuito: false, name: "IVAP", rate: "4.00", taxCategoryId: "S", taxTypeCode: "VAT" },
-  "2000": { code: "2000", label: "ISC", description: "Impuesto Selectivo al Consumo", gratuito: false, name: "ISC", rate: null, taxCategoryId: "S", taxTypeCode: "EXC" },
-  "7152": { code: "7152", label: "ICBPER", description: "Impuesto a la bolsa de plástico", gratuito: false, name: "ICBPER", rate: null, taxCategoryId: "S", taxTypeCode: "OTH" },
+  "2000": { code: "2000", label: "ISC", description: "ISC Impuesto Selectivo al Consumo", gratuito: false, name: "ISC", rate: null, taxCategoryId: "S", taxTypeCode: "EXC" },
+  "7152": { code: "7152", label: "ICBPER", description: "Impuesto a la bolsa plastica", gratuito: false, name: "ICBPER", rate: null, taxCategoryId: "S", taxTypeCode: "OTH" },
   "9995": { code: "9995", label: "EXP", description: "Exportación", gratuito: false, name: "EXP", rate: null, taxCategoryId: "G", taxTypeCode: "FRE" },
   "9996": { code: "9996", label: "GRA", description: "Gratuito", gratuito: true, name: "GRA", rate: null, taxCategoryId: "E", taxTypeCode: "FRE" },
   "9997": { code: "9997", label: "EXO", description: "Exonerado", gratuito: false, name: "EXO", rate: null, taxCategoryId: "E", taxTypeCode: "VAT" },

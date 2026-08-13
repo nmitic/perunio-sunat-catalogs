@@ -5,15 +5,15 @@ package sunat
 
 // Cat.05 — Código de Tributos.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 05. Transcribed from perunio-facturador/internal/model/catalog.go:23-33 (TaxScheme* var block), the only place all nine were named together. The dead UNECEID field of TaxSchemeType is not carried over: it duplicated Code on every row and was never read. props.rate is the tributo's own statutory rate and is null wherever no such rate exists: ISC varies by sistema de cálculo, and 9996 (gratuito) declares whichever rate the underlying operación would have carried — 18.00 for gravado-gratuito, 0.00 for exonerado/inafecto gratuito — which is a Cat.07 property, not a Cat.05 one.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 05, reconciled against the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 69-77): same nine códigos, and the descripciones are now the anexo's verbatim — including the 'IGV'/'ISC' prefixes on 1000 and 2000 and SUNAT's own spelling of 'Impuesto a la bolsa plastica'. The códigos were first transcribed from perunio-facturador/internal/model/catalog.go:23-33 (TaxScheme* var block), the only place all nine were named together. Note that resources/AjustesValidacionesCPEv20260212.xlsx adds a tenth, 3000 (Impuesto a la Renta); it is absent from the anexo and nothing in this platform emits it. The dead UNECEID field of TaxSchemeType is not carried over: it duplicated Code on every row and was never read. props.rate is the tributo's own statutory rate and is null wherever no such rate exists: ISC varies by sistema de cálculo, and 9996 (gratuito) declares whichever rate the underlying operación would have carried — 18.00 for gravado-gratuito, 0.00 for exonerado/inafecto gratuito — which is a Cat.07 property, not a Cat.05 one.
 const (
-	// Impuesto General a las Ventas
+	// IGV Impuesto General a las Ventas
 	Cat05IGV = "1000"
 	// Impuesto a la Venta Arroz Pilado
 	Cat05IVAP = "1016"
-	// Impuesto Selectivo al Consumo
+	// ISC Impuesto Selectivo al Consumo
 	Cat05ISC = "2000"
-	// Impuesto a la bolsa de plástico
+	// Impuesto a la bolsa plastica
 	Cat05ICBPER = "7152"
 	// Exportación
 	Cat05Exportacion = "9995"
@@ -53,10 +53,10 @@ var Cat05Codes = []string{
 }
 
 var cat05 = map[string]Cat05Entry{
-	"1000": {Code: "1000", Label: "IGV", Description: "Impuesto General a las Ventas", Gratuito: false, Name: "IGV", Rate: "18.00", TaxCategoryId: "S", TaxTypeCode: "VAT"},
+	"1000": {Code: "1000", Label: "IGV", Description: "IGV Impuesto General a las Ventas", Gratuito: false, Name: "IGV", Rate: "18.00", TaxCategoryId: "S", TaxTypeCode: "VAT"},
 	"1016": {Code: "1016", Label: "IVAP", Description: "Impuesto a la Venta Arroz Pilado", Gratuito: false, Name: "IVAP", Rate: "4.00", TaxCategoryId: "S", TaxTypeCode: "VAT"},
-	"2000": {Code: "2000", Label: "ISC", Description: "Impuesto Selectivo al Consumo", Gratuito: false, Name: "ISC", Rate: "", TaxCategoryId: "S", TaxTypeCode: "EXC"},
-	"7152": {Code: "7152", Label: "ICBPER", Description: "Impuesto a la bolsa de plástico", Gratuito: false, Name: "ICBPER", Rate: "", TaxCategoryId: "S", TaxTypeCode: "OTH"},
+	"2000": {Code: "2000", Label: "ISC", Description: "ISC Impuesto Selectivo al Consumo", Gratuito: false, Name: "ISC", Rate: "", TaxCategoryId: "S", TaxTypeCode: "EXC"},
+	"7152": {Code: "7152", Label: "ICBPER", Description: "Impuesto a la bolsa plastica", Gratuito: false, Name: "ICBPER", Rate: "", TaxCategoryId: "S", TaxTypeCode: "OTH"},
 	"9995": {Code: "9995", Label: "EXP", Description: "Exportación", Gratuito: false, Name: "EXP", Rate: "", TaxCategoryId: "G", TaxTypeCode: "FRE"},
 	"9996": {Code: "9996", Label: "GRA", Description: "Gratuito", Gratuito: true, Name: "GRA", Rate: "", TaxCategoryId: "E", TaxTypeCode: "FRE"},
 	"9997": {Code: "9997", Label: "EXO", Description: "Exonerado", Gratuito: false, Name: "EXO", Rate: "", TaxCategoryId: "E", TaxTypeCode: "VAT"},

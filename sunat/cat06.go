@@ -5,7 +5,7 @@ package sunat
 
 // Cat.06 — Tipo de Documento de Identidad.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 06, transcribed from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx. That sheet lists thirteen códigos. Every existing copy was short: perunio-facturador/internal/model/catalog.go named ten (stopping at E) and the frontend and backend offered six. Go also mislabelled E as NITE — the sheet gives it as TAM, Tarjeta Andina de Migración. props.numberPattern is set only where a length rule is actually documented and enforced today (RUC and DNI); null means the número is not constrained, not that it is unvalidated by SUNAT. The `select` subset is exactly what the issuance UI offers today — widening it is a data-only change once each código gains a numberPattern.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 06. Authority is the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 82-91), which lists ten códigos, 0 through E. Códigos F (PTP), G (Salvoconducto) and H (CPP) are NOT in it: they come from the newer resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12), which the anexo predates, and are kept because SUNAT accepts them on a boleta today — dropping them would withdraw working document types. Every existing copy in this platform was short: perunio-facturador/internal/model/catalog.go named ten (stopping at E) and the frontend and backend offered six. Go also mislabelled E as NITE — both workbooks give it as TAM, Tarjeta Andina de Migración. The descripción of código 6 reads 'Contributentes' because that is the anexo's own spelling; `label` carries the correct 'RUC' and is what any UI renders. props.numberPattern is set only where a length rule is actually documented and enforced today (RUC and DNI); null means the número is not constrained, not that it is unvalidated by SUNAT. The `select` subset is exactly what the issuance UI offers today — widening it is a data-only change once each código gains a numberPattern.
 const (
 	// DOC.TRIB.NO.DOM.SIN.RUC
 	Cat06DocTribNoDomSinRUC = "0"
@@ -13,7 +13,7 @@ const (
 	Cat06DNI = "1"
 	// Carnet de extranjería
 	Cat06CarnetExtranjeria = "4"
-	// Registro Unico de Contribuyentes
+	// Registro Unico de Contributentes
 	Cat06RUC = "6"
 	// Pasaporte
 	Cat06Pasaporte = "7"
@@ -65,7 +65,7 @@ var cat06 = map[string]Cat06Entry{
 	"0": {Code: "0", Label: "Sin documento", Description: "DOC.TRIB.NO.DOM.SIN.RUC", Identifica: false, NumberPattern: ""},
 	"1": {Code: "1", Label: "DNI", Description: "Documento Nacional de Identidad", Identifica: true, NumberPattern: "^\\d{8}$"},
 	"4": {Code: "4", Label: "Carnet de extranjería", Description: "Carnet de extranjería", Identifica: true, NumberPattern: ""},
-	"6": {Code: "6", Label: "RUC", Description: "Registro Unico de Contribuyentes", Identifica: true, NumberPattern: "^\\d{11}$"},
+	"6": {Code: "6", Label: "RUC", Description: "Registro Unico de Contributentes", Identifica: true, NumberPattern: "^\\d{11}$"},
 	"7": {Code: "7", Label: "Pasaporte", Description: "Pasaporte", Identifica: true, NumberPattern: ""},
 	"A": {Code: "A", Label: "Cédula diplomática", Description: "Cédula Diplomática de identidad", Identifica: true, NumberPattern: ""},
 	"B": {Code: "B", Label: "Doc. país de residencia", Description: "DOC.IDENT.PAIS.RESIDENCIA-NO.D", Identifica: true, NumberPattern: ""},

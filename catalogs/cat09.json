@@ -3,7 +3,7 @@
   "id": "cat09",
   "sunatCatalog": "09",
   "name": "Tipo de Nota de Crédito Electrónica",
-  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 09, from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx (13 códigos). Only 01-09 carry `emit`: that is what internal/model ValidNCType accepted and what the issuance form offered, and both agreed already. 10-13 are display-only so an imported or historical nota still renders a name. The `on-boleta` capability is the positive form of model.NCTypesNotAllowedOnBoleta, a negative map of {04,05,08} — SUNAT rejects a descuento or bonificación against a boleta. `full-reversal` and `line-selection` come from the frontend's NC_CODES_FULL_REVERSAL and NC_CODES_LINE_SELECTION: the first group must mirror the original comprobante exactly, the second credits only the lines the user ticks.",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 09. Authority is the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 126-137), which lists twelve códigos, 01 through 12. Código 13 (corrección del monto neto pendiente de pago y/o fecha de vencimiento) is NOT in it: it comes from the newer resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12), which the anexo predates. It is kept — withdrawing an NC motivo that SUNAT currently accepts would be a regression — but it carries no `emit`, so nothing can put it on the wire until that is a deliberate decision. Only 01-09 carry `emit`: that is what internal/model ValidNCType accepted and what the issuance form offered, and both agreed already. 10-13 are display-only so an imported or historical nota still renders a name. The `on-boleta` capability is the positive form of model.NCTypesNotAllowedOnBoleta, a negative map of {04,05,08} — SUNAT rejects a descuento or bonificación against a boleta. `full-reversal` and `line-selection` come from the frontend's NC_CODES_FULL_REVERSAL and NC_CODES_LINE_SELECTION: the first group must mirror the original comprobante exactly, the second credits only the lines the user ticks.",
   "codePattern": "^[0-9]{2}$",
   "entries": [
     {
@@ -39,7 +39,7 @@
     {
       "code": "03",
       "label": "Corrección por error en la descripción",
-      "description": "Corrección por error en la descripción o atención de reclamo respecto de bienes adquiridos o servicios prestados",
+      "description": "Corrección por error en la descripción",
       "capabilities": [
         "emit",
         "select",

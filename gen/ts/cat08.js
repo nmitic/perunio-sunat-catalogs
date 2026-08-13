@@ -5,9 +5,9 @@
 const CAT08_CODES = ["01", "02", "03"];
 
 const CAT08 = {
-  "01": { code: "01", label: "Al valor", description: "Sistema al valor — el ISC es un porcentaje del valor de venta", requiereMonto: false, requiereTasa: true },
-  "02": { code: "02", label: "Específico", description: "Sistema específico — el ISC es un monto fijo por unidad de medida", requiereMonto: true, requiereTasa: false },
-  "03": { code: "03", label: "Al valor sobre precio de venta al público", description: "Sistema al valor sobre precio de venta al público — el ISC es un porcentaje del PVP", requiereMonto: false, requiereTasa: true },
+  "01": { code: "01", label: "Al valor", description: "Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)", requiereMonto: false, requiereTasa: true },
+  "02": { code: "02", label: "Específico", description: "Aplicación del Monto Fijo ( Sistema específico, bienes en el apéndice III, Apéndice IV, lit. B – T.U.O IGV e ISC)", requiereMonto: true, requiereTasa: false },
+  "03": { code: "03", label: "Al valor sobre precio de venta al público", description: "Sistema de Precios de Venta al Público (Apéndice IV, lit. C – T.U.O IGV e ISC)", requiereMonto: false, requiereTasa: true },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT08. */

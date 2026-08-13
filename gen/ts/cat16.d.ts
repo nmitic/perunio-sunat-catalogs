@@ -29,4 +29,4 @@ export type Cat16SelectCode = (typeof CAT16_SELECT_CODES)[number];
 export declare const CAT16_SELECT_ENTRIES: readonly Cat16Entry[];
 export declare function isCat16SelectCode(value: string): value is Cat16SelectCode;
 
-export declare const CAT16_REFERENCIAL_CODES: readonly ["02", "03"];
+export declare const CAT16_REFERENCIAL_CODES: readonly ["02"];

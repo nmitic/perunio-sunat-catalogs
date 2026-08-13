@@ -6,8 +6,8 @@ const CAT16_CODES = ["01", "02", "03"];
 
 const CAT16 = {
   "01": { code: "01", label: "Precio unitario", description: "Precio unitario (incluye el IGV)", referencial: false },
-  "02": { code: "02", label: "Valor referencial", description: "Valor referencial unitario en operaciones no onerosas", referencial: true },
-  "03": { code: "03", label: "Valor referencial de exportación", description: "Valor referencial unitario en operaciones de exportación", referencial: true },
+  "02": { code: "02", label: "Valor referencial", description: "Valor referencial unitario en operaciones no onerosas (Gratuitas)", referencial: true },
+  "03": { code: "03", label: "Tarifas reguladas", description: "Tarifas reguladas", referencial: false },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT16. */
@@ -34,6 +34,6 @@ function isCat16SelectCode(value) {
   return CAT16_SELECT_CODES.includes(value);
 }
 
-const CAT16_REFERENCIAL_CODES = ["02", "03"];
+const CAT16_REFERENCIAL_CODES = ["02"];
 
 export { CAT16_CODES, CAT16, CAT16_ENTRIES, isCat16Code, cat16, CAT16_EMIT_CODES, CAT16_EMIT_ENTRIES, isCat16EmitCode, CAT16_SELECT_CODES, CAT16_SELECT_ENTRIES, isCat16SelectCode, CAT16_REFERENCIAL_CODES };

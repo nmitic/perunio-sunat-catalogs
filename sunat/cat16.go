@@ -5,14 +5,14 @@ package sunat
 
 // Cat.16 — Tipo de Precio de Venta Unitario.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 16. Code 03 is accepted by internal/xmlbuilder/invoice.go:729-741 (validPriceTypeCodes) but is not named in internal/model/catalog.go — confirm against resources/AjustesValidacionesCPEv20260212.xlsx before batch 6.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 16, transcribed from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 246-248). Código 03 was wrong until this reconciliation: it read 'Valor referencial unitario en operaciones de exportación', which is not a Cat.16 concept at all. Both SUNAT workbooks say 'Tarifas reguladas' — the regulated tariff a servicio público charges. flags.referencial went false with it: a regulated tariff is the price actually charged, unlike 02, which is the referencial standing in for a price on a gratuito. Nothing consumes the flag today; 03 keeps `emit` because internal/xmlbuilder/invoice.go:712 gates PriceTypeCode on Cat16Emit.
 const (
 	// Precio unitario (incluye el IGV)
 	Cat16PrecioUnitario = "01"
-	// Valor referencial unitario en operaciones no onerosas
+	// Valor referencial unitario en operaciones no onerosas (Gratuitas)
 	Cat16ValorReferencial = "02"
-	// Valor referencial unitario en operaciones de exportación
-	Cat16ValorReferencialExportacion = "03"
+	// Tarifas reguladas
+	Cat16TarifasReguladas = "03"
 )
 
 // Cat16Entry describes one Cat.16 code.
@@ -32,8 +32,8 @@ var Cat16Codes = []string{
 
 var cat16 = map[string]Cat16Entry{
 	"01": {Code: "01", Label: "Precio unitario", Description: "Precio unitario (incluye el IGV)", Referencial: false},
-	"02": {Code: "02", Label: "Valor referencial", Description: "Valor referencial unitario en operaciones no onerosas", Referencial: true},
-	"03": {Code: "03", Label: "Valor referencial de exportación", Description: "Valor referencial unitario en operaciones de exportación", Referencial: true},
+	"02": {Code: "02", Label: "Valor referencial", Description: "Valor referencial unitario en operaciones no onerosas (Gratuitas)", Referencial: true},
+	"03": {Code: "03", Label: "Tarifas reguladas", Description: "Tarifas reguladas", Referencial: false},
 }
 
 // Cat16 returns the entry for code and whether it is a known Cat.16 code.

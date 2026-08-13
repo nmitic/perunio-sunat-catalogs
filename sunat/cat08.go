@@ -5,13 +5,13 @@ package sunat
 
 // Cat.08 — Sistema de Cálculo del ISC.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 08. The código reaches the wire as cbc:TierRange on the line's ISC cac:TaxCategory. The two flags encode what refineIscRules in perunio-backend/src/utils/isc.ts already enforced: sistemas 01 and 03 need a tasa, sistema 02 needs a monto and a unidad de medida. That unidad is a Cat.03 subset, marked there with the `isc-unit` capability rather than forked into a list of its own.
+// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 08, from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 119-121). The descripciones are the anexo's verbatim, citing the Apéndice IV literales; they used to be our own explanatory prose, which read better but was not what SUNAT wrote. The código reaches the wire as cbc:TierRange on the line's ISC cac:TaxCategory. The two flags encode what refineIscRules in perunio-backend/src/utils/isc.ts already enforced: sistemas 01 and 03 need a tasa, sistema 02 needs a monto and a unidad de medida. That unidad is a Cat.03 subset, marked there with the `isc-unit` capability rather than forked into a list of its own.
 const (
-	// Sistema al valor — el ISC es un porcentaje del valor de venta
+	// Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)
 	Cat08AlValor = "01"
-	// Sistema específico — el ISC es un monto fijo por unidad de medida
+	// Aplicación del Monto Fijo ( Sistema específico, bienes en el apéndice III, Apéndice IV, lit. B – T.U.O IGV e ISC)
 	Cat08Especifico = "02"
-	// Sistema al valor sobre precio de venta al público — el ISC es un porcentaje del PVP
+	// Sistema de Precios de Venta al Público (Apéndice IV, lit. C – T.U.O IGV e ISC)
 	Cat08AlValorPVP = "03"
 )
 
@@ -32,9 +32,9 @@ var Cat08Codes = []string{
 }
 
 var cat08 = map[string]Cat08Entry{
-	"01": {Code: "01", Label: "Al valor", Description: "Sistema al valor — el ISC es un porcentaje del valor de venta", RequiereMonto: false, RequiereTasa: true},
-	"02": {Code: "02", Label: "Específico", Description: "Sistema específico — el ISC es un monto fijo por unidad de medida", RequiereMonto: true, RequiereTasa: false},
-	"03": {Code: "03", Label: "Al valor sobre precio de venta al público", Description: "Sistema al valor sobre precio de venta al público — el ISC es un porcentaje del PVP", RequiereMonto: false, RequiereTasa: true},
+	"01": {Code: "01", Label: "Al valor", Description: "Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)", RequiereMonto: false, RequiereTasa: true},
+	"02": {Code: "02", Label: "Específico", Description: "Aplicación del Monto Fijo ( Sistema específico, bienes en el apéndice III, Apéndice IV, lit. B – T.U.O IGV e ISC)", RequiereMonto: true, RequiereTasa: false},
+	"03": {Code: "03", Label: "Al valor sobre precio de venta al público", Description: "Sistema de Precios de Venta al Público (Apéndice IV, lit. C – T.U.O IGV e ISC)", RequiereMonto: false, RequiereTasa: true},
 }
 
 // Cat08 returns the entry for code and whether it is a known Cat.08 code.

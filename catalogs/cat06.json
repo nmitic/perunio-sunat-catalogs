@@ -3,7 +3,7 @@
   "id": "cat06",
   "sunatCatalog": "06",
   "name": "Tipo de Documento de Identidad",
-  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 06, transcribed from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx. That sheet lists thirteen códigos. Every existing copy was short: perunio-facturador/internal/model/catalog.go named ten (stopping at E) and the frontend and backend offered six. Go also mislabelled E as NITE — the sheet gives it as TAM, Tarjeta Andina de Migración. props.numberPattern is set only where a length rule is actually documented and enforced today (RUC and DNI); null means the número is not constrained, not that it is unvalidated by SUNAT. The `select` subset is exactly what the issuance UI offers today — widening it is a data-only change once each código gains a numberPattern.",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 06. Authority is the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 82-91), which lists ten códigos, 0 through E. Códigos F (PTP), G (Salvoconducto) and H (CPP) are NOT in it: they come from the newer resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12), which the anexo predates, and are kept because SUNAT accepts them on a boleta today — dropping them would withdraw working document types. Every existing copy in this platform was short: perunio-facturador/internal/model/catalog.go named ten (stopping at E) and the frontend and backend offered six. Go also mislabelled E as NITE — both workbooks give it as TAM, Tarjeta Andina de Migración. The descripción of código 6 reads 'Contributentes' because that is the anexo's own spelling; `label` carries the correct 'RUC' and is what any UI renders. props.numberPattern is set only where a length rule is actually documented and enforced today (RUC and DNI); null means the número is not constrained, not that it is unvalidated by SUNAT. The `select` subset is exactly what the issuance UI offers today — widening it is a data-only change once each código gains a numberPattern.",
   "codePattern": "^[0-9A-H]$",
   "entries": [
     {
@@ -57,7 +57,7 @@
     {
       "code": "6",
       "label": "RUC",
-      "description": "Registro Unico de Contribuyentes",
+      "description": "Registro Unico de Contributentes",
       "capabilities": [
         "emit",
         "select"
