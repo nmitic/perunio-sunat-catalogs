@@ -1,0 +1,87 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "estado-ruc",
+  "sunatCatalog": null,
+  "name": "Estado del Contribuyente",
+  "source": "SUNAT Consulta Integrada. Both frontend copies — src/lib/company-info-utils.ts and src/pages/cdp-validacion/types.ts — carried the same seven códigos and differed only cosmetically ('SUSPENSIÓN'/'SUSPENSION', 'INHABILITADO'/'INHABILITADO-VENT.UNICA'); SUNAT's own wording is kept. flags.activo marks the one estado in which a contribuyente may legitimately issue comprobantes. The flag is `esActivo` rather than `activo`: the generator turns a flag into a predicate of the same name, which would collide with the constant for the código it describes.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "00",
+      "label": "ACTIVO",
+      "description": "ACTIVO",
+      "capabilities": [],
+      "flags": {
+        "esActivo": true
+      },
+      "props": {},
+      "goName": "Activo"
+    },
+    {
+      "code": "01",
+      "label": "BAJA PROVISIONAL",
+      "description": "BAJA PROVISIONAL",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "BajaProvisional"
+    },
+    {
+      "code": "02",
+      "label": "BAJA PROV. POR OFICIO",
+      "description": "BAJA PROV. POR OFICIO",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "BajaProvisionalOficio"
+    },
+    {
+      "code": "03",
+      "label": "SUSPENSIÓN TEMPORAL",
+      "description": "SUSPENSIÓN TEMPORAL",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "SuspensionTemporal"
+    },
+    {
+      "code": "10",
+      "label": "BAJA DEFINITIVA",
+      "description": "BAJA DEFINITIVA",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "BajaDefinitiva"
+    },
+    {
+      "code": "11",
+      "label": "BAJA DE OFICIO",
+      "description": "BAJA DE OFICIO",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "BajaOficio"
+    },
+    {
+      "code": "22",
+      "label": "INHABILITADO-VENT.UNICA",
+      "description": "INHABILITADO-VENT.UNICA",
+      "capabilities": [],
+      "flags": {
+        "esActivo": false
+      },
+      "props": {},
+      "goName": "Inhabilitado"
+    }
+  ]
+}

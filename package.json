@@ -118,6 +118,24 @@
       "import": "./gen/ts/cat54.js",
       "default": "./gen/ts/cat54.js"
     },
+    "./condicion-domicilio": {
+      "types": "./gen/ts/condicion-domicilio.d.ts",
+      "require": "./gen/ts/condicion-domicilio.cjs",
+      "import": "./gen/ts/condicion-domicilio.js",
+      "default": "./gen/ts/condicion-domicilio.js"
+    },
+    "./estado-cp": {
+      "types": "./gen/ts/estado-cp.d.ts",
+      "require": "./gen/ts/estado-cp.cjs",
+      "import": "./gen/ts/estado-cp.js",
+      "default": "./gen/ts/estado-cp.js"
+    },
+    "./estado-ruc": {
+      "types": "./gen/ts/estado-ruc.d.ts",
+      "require": "./gen/ts/estado-ruc.cjs",
+      "import": "./gen/ts/estado-ruc.js",
+      "default": "./gen/ts/estado-ruc.js"
+    },
     "./gre-doc-type": {
       "types": "./gen/ts/gre-doc-type.d.ts",
       "require": "./gen/ts/gre-doc-type.cjs",

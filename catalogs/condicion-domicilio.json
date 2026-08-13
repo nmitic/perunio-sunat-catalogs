@@ -1,0 +1,65 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "condicion-domicilio",
+  "sunatCatalog": null,
+  "name": "Condición de Domicilio del Contribuyente",
+  "source": "SUNAT Consulta Integrada — the official mapping, confirmed by the user. perunio-frontend/src/pages/cdp-validacion/types.ts already had it right; src/lib/company-info-utils.ts did not. That file listed códigos 01 (NO HALLADO) and 02 (NO HABIDO), which are not condición de domicilio códigos at all, and — worse, because it renders — labelled 11 as 'NO APLICABLE' when 11 is POR VERIFICAR. NO HABIDO is 12 and NO HALLADO is 20. flags.habido marks the single código that means the contribuyente was found at its declared address; everything else is some degree of not. The flag is `esHabido` rather than `habido`: the generator turns a flag into a predicate of the same name, which would collide with the constant for the código it describes.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "00",
+      "label": "HABIDO",
+      "description": "HABIDO",
+      "capabilities": [],
+      "flags": {
+        "esHabido": true
+      },
+      "props": {},
+      "goName": "Habido"
+    },
+    {
+      "code": "09",
+      "label": "PENDIENTE",
+      "description": "PENDIENTE",
+      "capabilities": [],
+      "flags": {
+        "esHabido": false
+      },
+      "props": {},
+      "goName": "Pendiente"
+    },
+    {
+      "code": "11",
+      "label": "POR VERIFICAR",
+      "description": "POR VERIFICAR",
+      "capabilities": [],
+      "flags": {
+        "esHabido": false
+      },
+      "props": {},
+      "goName": "PorVerificar"
+    },
+    {
+      "code": "12",
+      "label": "NO HABIDO",
+      "description": "NO HABIDO",
+      "capabilities": [],
+      "flags": {
+        "esHabido": false
+      },
+      "props": {},
+      "goName": "NoHabido"
+    },
+    {
+      "code": "20",
+      "label": "NO HALLADO",
+      "description": "NO HALLADO",
+      "capabilities": [],
+      "flags": {
+        "esHabido": false
+      },
+      "props": {},
+      "goName": "NoHallado"
+    }
+  ]
+}

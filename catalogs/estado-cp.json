@@ -1,0 +1,65 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "estado-cp",
+  "sunatCatalog": null,
+  "name": "Estado del Comprobante (consulta CPE)",
+  "source": "The estado SUNAT's consulta CPE service returns for a comprobante, from perunio-frontend/src/pages/cdp-validacion/types.ts. Not a numbered catálogo — it is the response contract of that endpoint. flags.esValido marks the two estados in which the comprobante exists and is good: ACEPTADO for an electronic CPE, AUTORIZADO for a documento autorizado.",
+  "codePattern": "^[0-9]$",
+  "entries": [
+    {
+      "code": "0",
+      "label": "NO EXISTE",
+      "description": "NO EXISTE",
+      "capabilities": [],
+      "flags": {
+        "esValido": false
+      },
+      "props": {},
+      "goName": "NoExiste"
+    },
+    {
+      "code": "1",
+      "label": "ACEPTADO",
+      "description": "ACEPTADO",
+      "capabilities": [],
+      "flags": {
+        "esValido": true
+      },
+      "props": {},
+      "goName": "Aceptado"
+    },
+    {
+      "code": "2",
+      "label": "ANULADO",
+      "description": "ANULADO",
+      "capabilities": [],
+      "flags": {
+        "esValido": false
+      },
+      "props": {},
+      "goName": "Anulado"
+    },
+    {
+      "code": "3",
+      "label": "AUTORIZADO",
+      "description": "AUTORIZADO",
+      "capabilities": [],
+      "flags": {
+        "esValido": true
+      },
+      "props": {},
+      "goName": "Autorizado"
+    },
+    {
+      "code": "4",
+      "label": "NO AUTORIZADO",
+      "description": "NO AUTORIZADO",
+      "capabilities": [],
+      "flags": {
+        "esValido": false
+      },
+      "props": {},
+      "goName": "NoAutorizado"
+    }
+  ]
+}
