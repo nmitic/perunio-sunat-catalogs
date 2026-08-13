@@ -309,6 +309,25 @@ func Cat03GreWeight(code string) bool {
 	return ok
 }
 
+// Cat03IscUnitCodes lists the Cat.03 codes with the "isc-unit" capability.
+var Cat03IscUnitCodes = []string{
+	"NIU",
+	"KGM",
+	"LTR",
+}
+
+var cat03IscUnitSet = map[string]struct{}{
+	"NIU": {},
+	"KGM": {},
+	"LTR": {},
+}
+
+// Cat03IscUnit reports whether code has the "isc-unit" capability: see meta/capabilities.json.
+func Cat03IscUnit(code string) bool {
+	_, ok := cat03IscUnitSet[code]
+	return ok
+}
+
 // Cat03SelectCodes lists the Cat.03 codes with the "select" capability.
 var Cat03SelectCodes = []string{
 	"NIU",

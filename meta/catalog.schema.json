@@ -85,7 +85,8 @@
               "on-factura",
               "full-reversal",
               "line-selection",
-              "gre-weight"
+              "gre-weight",
+              "isc-unit"
             ]
           },
           "description": "Tokens from meta/capabilities.json. 'display' is implicit — do not write it."

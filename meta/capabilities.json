@@ -10,5 +10,6 @@
   "on-factura": "Valid when the nota references a factura (Cat.01 code 01).",
   "full-reversal": "This nota motivo reverses the whole referenced document.",
   "line-selection": "This nota motivo credits only the lines the user selects.",
-  "gre-weight": "May be used as the unidad de medida for a guía de remisión's gross weight."
+  "gre-weight": "May be used as the unidad de medida for a guía de remisión's gross weight.",
+  "isc-unit": "May be used as the unidad de medida of an ISC sistema 02 (específico) line, where the impuesto is a fixed amount per unit."
 }

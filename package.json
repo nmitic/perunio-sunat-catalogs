@@ -58,6 +58,12 @@
       "import": "./gen/ts/cat07.js",
       "default": "./gen/ts/cat07.js"
     },
+    "./cat08": {
+      "types": "./gen/ts/cat08.d.ts",
+      "require": "./gen/ts/cat08.cjs",
+      "import": "./gen/ts/cat08.js",
+      "default": "./gen/ts/cat08.js"
+    },
     "./cat16": {
       "types": "./gen/ts/cat16.d.ts",
       "require": "./gen/ts/cat16.cjs",

@@ -74,8 +74,14 @@ function isCat03SelectCode(value) {
 
 const CAT03_GRE_WEIGHT_CODES = ["KGM"];
 const CAT03_GRE_WEIGHT_ENTRIES = [CAT03["KGM"]];
-function isCat03Gre_weightCode(value) {
+function isCat03GreWeightCode(value) {
   return CAT03_GRE_WEIGHT_CODES.includes(value);
 }
 
-export { CAT03_CODES, CAT03, CAT03_ENTRIES, isCat03Code, cat03, CAT03_EMIT_CODES, CAT03_EMIT_ENTRIES, isCat03EmitCode, CAT03_SELECT_CODES, CAT03_SELECT_ENTRIES, isCat03SelectCode, CAT03_GRE_WEIGHT_CODES, CAT03_GRE_WEIGHT_ENTRIES, isCat03Gre_weightCode };
+const CAT03_ISC_UNIT_CODES = ["NIU", "KGM", "LTR"];
+const CAT03_ISC_UNIT_ENTRIES = [CAT03["NIU"], CAT03["KGM"], CAT03["LTR"]];
+function isCat03IscUnitCode(value) {
+  return CAT03_ISC_UNIT_CODES.includes(value);
+}
+
+export { CAT03_CODES, CAT03, CAT03_ENTRIES, isCat03Code, cat03, CAT03_EMIT_CODES, CAT03_EMIT_ENTRIES, isCat03EmitCode, CAT03_SELECT_CODES, CAT03_SELECT_ENTRIES, isCat03SelectCode, CAT03_GRE_WEIGHT_CODES, CAT03_GRE_WEIGHT_ENTRIES, isCat03GreWeightCode, CAT03_ISC_UNIT_CODES, CAT03_ISC_UNIT_ENTRIES, isCat03IscUnitCode };

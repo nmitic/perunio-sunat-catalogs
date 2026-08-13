@@ -1,0 +1,55 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat08",
+  "sunatCatalog": "08",
+  "name": "Sistema de Cálculo del ISC",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 08. The código reaches the wire as cbc:TierRange on the line's ISC cac:TaxCategory. The two flags encode what refineIscRules in perunio-backend/src/utils/isc.ts already enforced: sistemas 01 and 03 need a tasa, sistema 02 needs a monto and a unidad de medida. That unidad is a Cat.03 subset, marked there with the `isc-unit` capability rather than forked into a list of its own.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Al valor",
+      "description": "Sistema al valor — el ISC es un porcentaje del valor de venta",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereTasa": true,
+        "requiereMonto": false
+      },
+      "props": {},
+      "goName": "AlValor"
+    },
+    {
+      "code": "02",
+      "label": "Específico",
+      "description": "Sistema específico — el ISC es un monto fijo por unidad de medida",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereTasa": false,
+        "requiereMonto": true
+      },
+      "props": {},
+      "goName": "Especifico"
+    },
+    {
+      "code": "03",
+      "label": "Al valor sobre precio de venta al público",
+      "description": "Sistema al valor sobre precio de venta al público — el ISC es un porcentaje del PVP",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereTasa": true,
+        "requiereMonto": false
+      },
+      "props": {},
+      "goName": "AlValorPVP"
+    }
+  ]
+}

@@ -12,7 +12,8 @@
       "description": "Unidad (Bienes)",
       "capabilities": [
         "emit",
-        "select"
+        "select",
+        "isc-unit"
       ],
       "flags": {},
       "props": {},
@@ -37,7 +38,8 @@
       "capabilities": [
         "emit",
         "select",
-        "gre-weight"
+        "gre-weight",
+        "isc-unit"
       ],
       "flags": {},
       "props": {},
@@ -61,7 +63,8 @@
       "description": "Litro",
       "capabilities": [
         "emit",
-        "select"
+        "select",
+        "isc-unit"
       ],
       "flags": {},
       "props": {},

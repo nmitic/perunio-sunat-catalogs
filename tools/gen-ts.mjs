@@ -26,7 +26,10 @@ const HEADER = [
 
 const lit = (v) => JSON.stringify(v)
 const screaming = (id) => id.toUpperCase().replace(/-/g, '_')
-const pascal = (id) => id.split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join('')
+// Splits on both separators: catalog ids use '-' (estado-ruc) while subset names
+// arrive const-cased with '_' (ISC_UNIT), and a subset name that split on '-'
+// alone produced the malformed type Cat03Isc_unitCode.
+const pascal = (id) => id.split(/[-_]/).filter(Boolean).map((p) => p[0].toUpperCase() + p.slice(1)).join('')
 const constCase = (name) => name.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toUpperCase()
 
 /** Fields flattened onto every entry object, in a stable order. */

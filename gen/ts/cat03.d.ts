@@ -29,6 +29,11 @@ export declare const CAT03_SELECT_ENTRIES: readonly Cat03Entry[];
 export declare function isCat03SelectCode(value: string): value is Cat03SelectCode;
 
 export declare const CAT03_GRE_WEIGHT_CODES: readonly ["KGM"];
-export type Cat03Gre_weightCode = (typeof CAT03_GRE_WEIGHT_CODES)[number];
+export type Cat03GreWeightCode = (typeof CAT03_GRE_WEIGHT_CODES)[number];
 export declare const CAT03_GRE_WEIGHT_ENTRIES: readonly Cat03Entry[];
-export declare function isCat03Gre_weightCode(value: string): value is Cat03Gre_weightCode;
+export declare function isCat03GreWeightCode(value: string): value is Cat03GreWeightCode;
+
+export declare const CAT03_ISC_UNIT_CODES: readonly ["NIU", "KGM", "LTR"];
+export type Cat03IscUnitCode = (typeof CAT03_ISC_UNIT_CODES)[number];
+export declare const CAT03_ISC_UNIT_ENTRIES: readonly Cat03Entry[];
+export declare function isCat03IscUnitCode(value: string): value is Cat03IscUnitCode;
