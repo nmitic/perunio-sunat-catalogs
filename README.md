@@ -152,9 +152,12 @@ Remove both before landing.
 
 **Not included:**
 
-- **Ubigeo.** An INEI dataset, not a SUNAT catálogo — different publisher, cadence
-  and licence. It lives in `perunio-frontend/src/data/ubigeo-peru.ts` and is
-  incomplete (536 of 1874 districts); completing it is its own project.
+- **Ubigeo is now included** (`ubigeo-departamento`, `ubigeo-provincia`,
+  `ubigeo-distrito`). It is an INEI dataset rather than a SUNAT catálogo, and was
+  originally out of scope — but the frontend copy turned out to be wrong, not
+  merely incomplete: 55 distritos carried the código of a different distrito and
+  29 códigos were not INEI ubigeos at all. Being wrong about a GRE address is a
+  production rejection, so it belongs here with everything else.
 - **SUNAT fault codes** (2xxx/3xxx) and Perunio's internal scraper error codes.
   Both are one-repo concerns; neither is a catálogo.
 - **CDR response codes.** `ResponseCode == "0"` is a protocol constant.
