@@ -186,11 +186,14 @@ function checkFile(raw, path, file, knownCaps, problems) {
       if (caps.includes('display')) {
         problems.push(`${at}: "display" is implicit — remove it`)
       }
-      // A picker must never offer a code the pipeline cannot send. `internal` is
-      // the one exception and the reason that capability exists: the código is
-      // selectable, but what reaches the wire is props.wireEquivalent, so the
-      // entry itself is deliberately not emittable.
-      if (caps.includes('select') && !caps.includes('emit') && !caps.includes('internal')) {
+      // A picker must never offer a code the pipeline cannot send — but only
+      // where there is a wire to send it on. Two exceptions:
+      //   · `internal`, the reason that capability exists: the código is
+      //     selectable, but what travels is props.wireEquivalent.
+      //   · a Perunio-internal enum (sunatCatalog: null), which has no wire
+      //     representation at all, so `emit` would mean nothing.
+      const onTheWire = raw.sunatCatalog !== null
+      if (onTheWire && caps.includes('select') && !caps.includes('emit') && !caps.includes('internal')) {
         problems.push(`${at}: has "select" without "emit" — a code the UI offers must be emittable, unless it is "internal" with a wireEquivalent`)
       }
       if (caps.includes('retired') && caps.includes('emit')) {

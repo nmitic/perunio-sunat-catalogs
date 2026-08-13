@@ -1,0 +1,40 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "registro",
+  "sunatCatalog": null,
+  "name": "Registro Electrónico (RCE / RVIE)",
+  "source": "Perunio-internal. The two SIRE registros this platform downloads. props.codLibro is SUNAT's own libro code for the SIRE endpoints, which was spelled out four times in perunio-backend (twice inside sunat.service.ts, once in a URL literal, and again in ple-to-sire.ts) — so the discriminator and the libro code live together here rather than in a separate libro-ple catálogo.",
+  "codePattern": "^[a-z]{3,4}$",
+  "entries": [
+    {
+      "code": "rce",
+      "label": "Compras",
+      "description": "Registro de Compras Electrónicas",
+      "capabilities": [
+        "select"
+      ],
+      "flags": {
+        "esVentas": false
+      },
+      "props": {
+        "codLibro": "080000"
+      },
+      "goName": "RCE"
+    },
+    {
+      "code": "rvie",
+      "label": "Ventas",
+      "description": "Registro de Ventas e Ingresos Electrónicos",
+      "capabilities": [
+        "select"
+      ],
+      "flags": {
+        "esVentas": true
+      },
+      "props": {
+        "codLibro": "140000"
+      },
+      "goName": "RVIE"
+    }
+  ]
+}

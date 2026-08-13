@@ -1,0 +1,81 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "archivo",
+  "sunatCatalog": null,
+  "name": "Tipo de Archivo de un Comprobante",
+  "source": "Perunio-internal. The artifacts a comprobante has in R2, from perunio-facturador/internal/http/routes_documents.go. `download` marks the three a user may pull from the registros listing (perunio-backend's bulk download); xml and zip are pipeline intermediates that only the facturador's own file endpoint serves.",
+  "codePattern": "^[a-z_]+$",
+  "entries": [
+    {
+      "code": "xml",
+      "label": "XML",
+      "description": "XML sin firmar, tal como lo construye el pipeline",
+      "capabilities": [],
+      "flags": {
+        "esFirmado": false
+      },
+      "props": {
+        "extension": ".xml"
+      },
+      "goName": "XML"
+    },
+    {
+      "code": "signed_xml",
+      "label": "XML firmado",
+      "description": "XML con la firma digital XMLDSig aplicada",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {
+        "esFirmado": true
+      },
+      "props": {
+        "extension": ".xml"
+      },
+      "goName": "SignedXML"
+    },
+    {
+      "code": "zip",
+      "label": "ZIP",
+      "description": "ZIP que se envía a SUNAT",
+      "capabilities": [],
+      "flags": {
+        "esFirmado": true
+      },
+      "props": {
+        "extension": ".zip"
+      },
+      "goName": "ZIP"
+    },
+    {
+      "code": "cdr",
+      "label": "CDR",
+      "description": "Constancia de recepción devuelta por SUNAT",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {
+        "esFirmado": true
+      },
+      "props": {
+        "extension": ".zip"
+      },
+      "goName": "CDR"
+    },
+    {
+      "code": "pdf",
+      "label": "PDF",
+      "description": "Representación impresa",
+      "capabilities": [
+        "download"
+      ],
+      "flags": {
+        "esFirmado": false
+      },
+      "props": {
+        "extension": ".pdf"
+      },
+      "goName": "PDF"
+    }
+  ]
+}

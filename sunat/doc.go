@@ -10,6 +10,7 @@
 //
 // Catálogos in this package:
 //
+//	archivo    perunio-internal Tipo de Archivo de un Comprobante (5 entries)
 //	cat01      Cat.01           Tipo de Documento (41 entries)
 //	cat02      Cat.02           Tipo de Moneda (6 entries)
 //	cat03      Cat.03           Unidad de Medida Comercial (41 entries)
@@ -27,9 +28,12 @@
 //	cat53      Cat.53           Código de Cargo o Descuento (16 entries)
 //	cat54      Cat.54           Bienes y Servicios sujetos a Detracción (SPOT) (34 entries)
 //	condicion-domicilio perunio-internal Condición de Domicilio del Contribuyente (5 entries)
+//	estado-comprobante perunio-internal Estado de un Comprobante Emitido (8 entries)
 //	estado-cp  perunio-internal Estado del Comprobante (consulta CPE) (5 entries)
+//	estado-guia perunio-internal Estado de una Guía de Remisión (6 entries)
 //	estado-ruc perunio-internal Estado del Contribuyente (7 entries)
 //	gre-doc-type perunio-internal Tipo de Guía de Remisión (3 entries)
+//	registro   perunio-internal Registro Electrónico (RCE / RVIE) (2 entries)
 //	tabla10    perunio-internal Tipo de Comprobante de Pago o Documento (PLE tabla 10) (48 entries)
 //	ubl-document perunio-internal Documento UBL (6 entries)
 //	ubl-namespace perunio-internal Prefijo de namespace UBL (5 entries)

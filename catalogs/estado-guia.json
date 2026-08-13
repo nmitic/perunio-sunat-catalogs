@@ -1,0 +1,76 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "estado-guia",
+  "sunatCatalog": null,
+  "name": "Estado de una Guía de Remisión",
+  "source": "Perunio-internal, from perunio-facturador/internal/model/despatch.go:21-28. Deliberately its own catálogo rather than shared with estado-comprobante: a guía has no 'voided' or 'accepted_with_observations' estado, and merging them would let a guía be assigned one.",
+  "codePattern": "^[a-z]+$",
+  "entries": [
+    {
+      "code": "draft",
+      "label": "Borrador",
+      "description": "Borrador",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false
+      },
+      "props": {},
+      "goName": "Draft"
+    },
+    {
+      "code": "signed",
+      "label": "Firmada",
+      "description": "Firmada",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false
+      },
+      "props": {},
+      "goName": "Signed"
+    },
+    {
+      "code": "sent",
+      "label": "Enviada",
+      "description": "Enviada",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false
+      },
+      "props": {},
+      "goName": "Sent"
+    },
+    {
+      "code": "accepted",
+      "label": "Aceptada",
+      "description": "Aceptada",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true
+      },
+      "props": {},
+      "goName": "Accepted"
+    },
+    {
+      "code": "rejected",
+      "label": "Rechazada",
+      "description": "Rechazada",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true
+      },
+      "props": {},
+      "goName": "Rejected"
+    },
+    {
+      "code": "error",
+      "label": "Error",
+      "description": "Error",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false
+      },
+      "props": {},
+      "goName": "Error"
+    }
+  ]
+}

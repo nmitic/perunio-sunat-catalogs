@@ -22,6 +22,12 @@
     "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check"
   },
   "exports": {
+    "./archivo": {
+      "types": "./gen/ts/archivo.d.ts",
+      "require": "./gen/ts/archivo.cjs",
+      "import": "./gen/ts/archivo.js",
+      "default": "./gen/ts/archivo.js"
+    },
     "./cat01": {
       "types": "./gen/ts/cat01.d.ts",
       "require": "./gen/ts/cat01.cjs",
@@ -124,11 +130,23 @@
       "import": "./gen/ts/condicion-domicilio.js",
       "default": "./gen/ts/condicion-domicilio.js"
     },
+    "./estado-comprobante": {
+      "types": "./gen/ts/estado-comprobante.d.ts",
+      "require": "./gen/ts/estado-comprobante.cjs",
+      "import": "./gen/ts/estado-comprobante.js",
+      "default": "./gen/ts/estado-comprobante.js"
+    },
     "./estado-cp": {
       "types": "./gen/ts/estado-cp.d.ts",
       "require": "./gen/ts/estado-cp.cjs",
       "import": "./gen/ts/estado-cp.js",
       "default": "./gen/ts/estado-cp.js"
+    },
+    "./estado-guia": {
+      "types": "./gen/ts/estado-guia.d.ts",
+      "require": "./gen/ts/estado-guia.cjs",
+      "import": "./gen/ts/estado-guia.js",
+      "default": "./gen/ts/estado-guia.js"
     },
     "./estado-ruc": {
       "types": "./gen/ts/estado-ruc.d.ts",
@@ -141,6 +159,12 @@
       "require": "./gen/ts/gre-doc-type.cjs",
       "import": "./gen/ts/gre-doc-type.js",
       "default": "./gen/ts/gre-doc-type.js"
+    },
+    "./registro": {
+      "types": "./gen/ts/registro.d.ts",
+      "require": "./gen/ts/registro.cjs",
+      "import": "./gen/ts/registro.js",
+      "default": "./gen/ts/registro.js"
     },
     "./tabla10": {
       "types": "./gen/ts/tabla10.d.ts",

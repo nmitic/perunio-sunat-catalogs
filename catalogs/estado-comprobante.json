@@ -1,0 +1,106 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "estado-comprobante",
+  "sunatCatalog": null,
+  "name": "Estado de un Comprobante Emitido",
+  "source": "Perunio-internal. The lifecycle of a row in issued_documents, from perunio-frontend/src/types/facturador.ts and the facturadorDocStatus pgEnum. flags.esFinal marks the estados SUNAT will not move a document out of.",
+  "codePattern": "^[a-z_]+$",
+  "entries": [
+    {
+      "code": "draft",
+      "label": "Borrador",
+      "description": "Borrador",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Draft"
+    },
+    {
+      "code": "signed",
+      "label": "Firmado",
+      "description": "Firmado",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Signed"
+    },
+    {
+      "code": "sent",
+      "label": "Enviado",
+      "description": "Enviado",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Sent"
+    },
+    {
+      "code": "accepted",
+      "label": "Aceptado",
+      "description": "Aceptado",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true,
+        "esAceptado": true
+      },
+      "props": {},
+      "goName": "Accepted"
+    },
+    {
+      "code": "accepted_with_observations",
+      "label": "Aceptado con observaciones",
+      "description": "Aceptado con observaciones",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true,
+        "esAceptado": true
+      },
+      "props": {},
+      "goName": "AcceptedWithObservations"
+    },
+    {
+      "code": "rejected",
+      "label": "Rechazado",
+      "description": "Rechazado",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Rejected"
+    },
+    {
+      "code": "error",
+      "label": "Error",
+      "description": "Error",
+      "capabilities": [],
+      "flags": {
+        "esFinal": false,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Error"
+    },
+    {
+      "code": "voided",
+      "label": "Anulado",
+      "description": "Anulado",
+      "capabilities": [],
+      "flags": {
+        "esFinal": true,
+        "esAceptado": false
+      },
+      "props": {},
+      "goName": "Voided"
+    }
+  ]
+}
