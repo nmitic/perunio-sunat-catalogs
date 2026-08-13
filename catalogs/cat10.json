@@ -1,0 +1,65 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat10",
+  "sunatCatalog": "10",
+  "name": "Tipo de Nota de Débito Electrónica",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 10, from the same sheet (5 códigos). SUNAT defines five but this pipeline emits two: model.ValidNDType accepted only 01 and 02, and the issuance form offered only those. Giving 03, 11 and 12 `emit` would widen what the validator accepts, so they are display-only until the pipeline actually supports them — the point of `emit` is that it describes this service, not SUNAT.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Intereses por mora",
+      "description": "Intereses por mora",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "InteresesMora"
+    },
+    {
+      "code": "02",
+      "label": "Aumento en el valor",
+      "description": "Aumento en el valor",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "AumentoValor"
+    },
+    {
+      "code": "03",
+      "label": "Penalidades u otros conceptos",
+      "description": "Penalidades/ otros conceptos",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "Penalidades"
+    },
+    {
+      "code": "11",
+      "label": "Ajustes de operaciones de exportación",
+      "description": "Ajustes de operaciones de exportación",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "AjustesExportacion"
+    },
+    {
+      "code": "12",
+      "label": "Ajustes afectos al IVAP",
+      "description": "Ajustes afectos al IVAP",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "AjustesIVAP"
+    }
+  ]
+}

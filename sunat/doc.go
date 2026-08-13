@@ -17,6 +17,8 @@
 //	cat06      Cat.06           Tipo de Documento de Identidad (13 entries)
 //	cat07      Cat.07           Tipo de Afectación del IGV (19 entries)
 //	cat08      Cat.08           Sistema de Cálculo del ISC (3 entries)
+//	cat09      Cat.09           Tipo de Nota de Crédito Electrónica (13 entries)
+//	cat10      Cat.10           Tipo de Nota de Débito Electrónica (5 entries)
 //	cat16      Cat.16           Tipo de Precio de Venta Unitario (3 entries)
 //	tabla10    perunio-internal Tipo de Comprobante de Pago o Documento (PLE tabla 10) (48 entries)
 //	ubl-document perunio-internal Documento UBL (6 entries)

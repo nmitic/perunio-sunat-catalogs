@@ -1,0 +1,175 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat09",
+  "sunatCatalog": "09",
+  "name": "Tipo de Nota de Crédito Electrónica",
+  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 09, from the 'Catálogos' sheet of resources/AjustesValidacionesCPEv20260212.xlsx (13 códigos). Only 01-09 carry `emit`: that is what internal/model ValidNCType accepted and what the issuance form offered, and both agreed already. 10-13 are display-only so an imported or historical nota still renders a name. The `on-boleta` capability is the positive form of model.NCTypesNotAllowedOnBoleta, a negative map of {04,05,08} — SUNAT rejects a descuento or bonificación against a boleta. `full-reversal` and `line-selection` come from the frontend's NC_CODES_FULL_REVERSAL and NC_CODES_LINE_SELECTION: the first group must mirror the original comprobante exactly, the second credits only the lines the user ticks.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Anulación de la operación",
+      "description": "Anulación de la operación",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta",
+        "full-reversal"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "Anulacion"
+    },
+    {
+      "code": "02",
+      "label": "Anulación por error en el RUC",
+      "description": "Anulación por error en el RUC",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta",
+        "full-reversal"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "AnulacionErrorRUC"
+    },
+    {
+      "code": "03",
+      "label": "Corrección por error en la descripción",
+      "description": "Corrección por error en la descripción o atención de reclamo respecto de bienes adquiridos o servicios prestados",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "CorreccionDescripcion"
+    },
+    {
+      "code": "04",
+      "label": "Descuento global",
+      "description": "Descuento global",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DescuentoGlobal"
+    },
+    {
+      "code": "05",
+      "label": "Descuento por ítem",
+      "description": "Descuento por ítem",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DescuentoItem"
+    },
+    {
+      "code": "06",
+      "label": "Devolución total",
+      "description": "Devolución total",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta",
+        "full-reversal"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DevolucionTotal"
+    },
+    {
+      "code": "07",
+      "label": "Devolución por ítem",
+      "description": "Devolución por ítem",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta",
+        "line-selection"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DevolucionItem"
+    },
+    {
+      "code": "08",
+      "label": "Bonificación",
+      "description": "Bonificación",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "line-selection"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "Bonificacion"
+    },
+    {
+      "code": "09",
+      "label": "Disminución en el valor",
+      "description": "Disminución en el valor",
+      "capabilities": [
+        "emit",
+        "select",
+        "on-factura",
+        "on-boleta",
+        "line-selection"
+      ],
+      "flags": {},
+      "props": {},
+      "goName": "DisminucionValor"
+    },
+    {
+      "code": "10",
+      "label": "Otros conceptos",
+      "description": "Otros Conceptos",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "OtrosConceptos"
+    },
+    {
+      "code": "11",
+      "label": "Ajustes de operaciones de exportación",
+      "description": "Ajustes de operaciones de exportación",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "AjustesExportacion"
+    },
+    {
+      "code": "12",
+      "label": "Ajustes afectos al IVAP",
+      "description": "Ajustes afectos al IVAP",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "AjustesIVAP"
+    },
+    {
+      "code": "13",
+      "label": "Corrección del monto neto pendiente de pago y/o la fecha de vencimiento",
+      "description": "Corrección o modificación del monto neto pendiente de pago y/o la(s) fechas(s) de vencimiento del pago único o de las cuotas y/o los montos correspondientes a cada cuota, de ser el caso",
+      "capabilities": [],
+      "flags": {},
+      "props": {},
+      "goName": "CorreccionMontoPendiente"
+    }
+  ]
+}
