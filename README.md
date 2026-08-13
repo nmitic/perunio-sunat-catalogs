@@ -54,6 +54,61 @@ JavaScript builds are rendered from a single body, so they cannot drift apart.
 > "paths": { "sunat-catalogs/*": ["../node_modules/sunat-catalogs/gen/ts/*"] }
 > ```
 
+## Repository layout
+
+```
+catalogs/*.json        source of truth — one file per catálogo, hand-edited
+meta/
+  catalog.schema.json  the file format, additionalProperties: false
+  capabilities.json    the capability vocabulary
+
+tools/
+  spec.mjs             load + validate; the rules both generators share
+  gen-ts.mjs           renders gen/ts
+  gensunat/            renders sunat/ (Go, so it can gofmt its own output)
+validate.mjs           CLI over tools/spec.mjs — the first step of `npm run gen`
+
+gen/ts/*.{js,cjs,d.ts} generated — TypeScript bindings
+sunat/*.go             generated — Go bindings (plus doc.go, the package index)
+```
+
+Everything under `catalogs/` and `meta/` is written by hand; everything under
+`gen/ts/` and `sunat/` is written by a generator and committed. `npm run check` is
+what CI runs: validate, then re-render both targets in memory and diff against
+disk.
+
+Only `validate.mjs` enforces the spec. `gensunat` re-checks the minimum it needs
+to fail loudly rather than emit broken Go, and otherwise assumes validation has
+already passed — which is why `npm run gen` runs it first and why you should never
+invoke a generator on its own.
+
+### Why the two output directories are not `gen/ts` and `gen/go`
+
+Because only one of them is part of the public API.
+
+In Go the import path *is* the directory path, so `sunat/` is what consumers type:
+
+```go
+import sunat "github.com/nmitic/perunio-sunat-catalogs/sunat"
+```
+
+Under `gen/go/` that becomes `import sunat ".../gen/go"` — an import path ending
+in `/go` bound to the identifier `sunat`. Legal, but the mismatch between the last
+path element and the package name is what trips up goimports, IDE auto-import and
+several linters, and `go` is a poor directory name besides.
+
+TypeScript has no such constraint. Nobody writes `gen/ts/cat01.js`; the `exports`
+map in `package.json` publishes it as `sunat-catalogs/cat01`, so that directory is
+an implementation detail and could be renamed without touching a consumer.
+
+The symmetry is only available on the side where the path is hidden. `sunat/`
+therefore sits at the repository root, and moving it later is a breaking change
+for every Go import in `perunio-facturador`.
+
+`validate.mjs` sitting at the root rather than in `tools/` has no such
+justification — it is a thin CLI over `tools/spec.mjs` and would be at home
+alongside it.
+
 ## What is in a catalog file
 
 ```jsonc
