@@ -1,0 +1,59 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "gre-doc-type",
+  "sunatCatalog": null,
+  "name": "Tipo de Guía de Remisión",
+  "source": "The discriminator perunio-facturador uses to pick a GRE builder, from internal/model/despatch.go:10-12. Two of the three are Cat.01 códigos; 'EV' is not — it is a Perunio-internal marker meaning 'guía por eventos', and the XML it produces still carries 09 or 31 in cbc:DespatchAdviceTypeCode. That is why it is `internal` with props.wireEquivalent, and why this is its own file rather than three más entries in cat01.json.",
+  "codePattern": "^[A-Z0-9]{2}$",
+  "entries": [
+    {
+      "code": "09",
+      "label": "Guía de remisión remitente",
+      "description": "Guía de remisión electrónica emitida por el remitente de los bienes",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "porEventos": false
+      },
+      "props": {
+        "wireEquivalent": "09"
+      },
+      "goName": "Remitente"
+    },
+    {
+      "code": "31",
+      "label": "Guía de remisión transportista",
+      "description": "Guía de remisión electrónica emitida por el transportista",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "porEventos": false
+      },
+      "props": {
+        "wireEquivalent": "31"
+      },
+      "goName": "Transportista"
+    },
+    {
+      "code": "EV",
+      "label": "Guía por eventos",
+      "description": "Guía de remisión por eventos — el XML declara 09 o 31 más el código de evento",
+      "capabilities": [
+        "emit",
+        "select",
+        "internal"
+      ],
+      "flags": {
+        "porEventos": true
+      },
+      "props": {
+        "wireEquivalent": "09"
+      },
+      "goName": "Evento"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat20",
+  "sunatCatalog": "20",
+  "name": "Motivo de Traslado",
+  "source": "resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet — the anexo that governs the guía de remisión. It is not the same list as catálogo 20 in AjustesValidacionesCPEv20260212.xlsx, which carries 13 códigos including 03, 05, 06, 07 and 17; those belong to the wider CPE context, not a GRE. These nine are exactly what perunio-facturador/internal/validation/despatch.go already accepted, which is the list SUNAT has been validating real guías against. The issuance form was the side that had drifted: it offered 03, 05, 17 and 20, which fail at issue time with fault 2800, and omitted 08 and 09, making importación and exportación unreachable. flags.requiereNumeroDAM marks the two motivos whose guía must carry the DAM/DSI number.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Venta",
+      "description": "Venta",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "Venta"
+    },
+    {
+      "code": "02",
+      "label": "Compra",
+      "description": "Compra",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "Compra"
+    },
+    {
+      "code": "04",
+      "label": "Traslado entre establecimientos de la misma empresa",
+      "description": "Traslado entre establecimientos de la misma empresa",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "TrasladoEntreEstablecimientos"
+    },
+    {
+      "code": "08",
+      "label": "Importación",
+      "description": "Importación",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": true
+      },
+      "props": {},
+      "goName": "Importacion"
+    },
+    {
+      "code": "09",
+      "label": "Exportación",
+      "description": "Exportación",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": true
+      },
+      "props": {},
+      "goName": "Exportacion"
+    },
+    {
+      "code": "13",
+      "label": "Otros",
+      "description": "Otros",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "Otros"
+    },
+    {
+      "code": "14",
+      "label": "Venta sujeta a confirmación del comprador",
+      "description": "Venta sujeta a confirmación del comprador",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "VentaSujetaConfirmacion"
+    },
+    {
+      "code": "18",
+      "label": "Traslado emisor itinerante CP",
+      "description": "Traslado emisor itinerante CP",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "EmisorItinerante"
+    },
+    {
+      "code": "19",
+      "label": "Traslado a zona primaria",
+      "description": "Traslado a zona primaria",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "ZonaPrimaria"
+    }
+  ]
+}

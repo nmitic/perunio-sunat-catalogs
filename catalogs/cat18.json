@@ -1,0 +1,38 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat18",
+  "sunatCatalog": "18",
+  "name": "Modalidad de Transporte",
+  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 18. Confirmed identically in both AnexosIyII_Formato1.3.4.xlsx and AjustesValidacionesCPEv20260212.xlsx, and matching model/despatch.go. flags.requiereTransportista marks the modalidad that needs a third-party carrier's RUC rather than a vehicle and driver.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Transporte público",
+      "description": "Transporte público",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereTransportista": true
+      },
+      "props": {},
+      "goName": "Publico"
+    },
+    {
+      "code": "02",
+      "label": "Transporte privado",
+      "description": "Transporte privado",
+      "capabilities": [
+        "emit",
+        "select"
+      ],
+      "flags": {
+        "requiereTransportista": false
+      },
+      "props": {},
+      "goName": "Privado"
+    }
+  ]
+}
