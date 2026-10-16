@@ -3,7 +3,7 @@
   "id": "ubl-document",
   "sunatCatalog": null,
   "name": "Documento UBL",
-  "source": "The UBL root element SUNAT expects per document kind, with its namespace, cbc:UBLVersionID and cbc:CustomizationID. Transcribed from perunio-facturador/internal/xmlbuilder/namespace.go plus the six builders that set the pair: invoice.go:134, creditnote.go:58, debitnote.go:63, summary.go:126 (RC) and :~ (RA), despatch_common.go:434-446. Not a SUNAT catálogo — a Perunio-internal table that exists because getting one row wrong is the #1 cause of silent rejections: RC and RA are UBL 2.0, everything else is 2.1.",
+  "source": "The UBL root element SUNAT expects per document kind, with its namespace, cbc:UBLVersionID and cbc:CustomizationID. First transcribed from perunio-facturador/internal/xmlbuilder/namespace.go and the six builders that set the pair; they now all read it from here (internal/xmlbuilder/ubl.go). The values match the rule workbooks in perunio-facturador/resources/reglas/: a wrong UBLVersionID or CustomizationID is ERROR 2074 or 2072 on a CPE, RC or RA, and 2110 or 2112 on a guía. Not a SUNAT catálogo — a Perunio-internal table that exists because getting one row wrong rejects every document of that kind: RC and RA are UBL 2.0, everything else is 2.1.",
   "codePattern": "^[A-Z][A-Za-z]+$",
   "entries": [
     {
@@ -61,7 +61,7 @@
     {
       "code": "SummaryDocuments",
       "label": "Resumen diario de boletas",
-      "description": "Resumen diario (RC). UBL 2.0, not 2.1 — sending 2.1 is silently rejected",
+      "description": "Resumen diario (RC). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074",
       "capabilities": ["emit"],
       "flags": {},
       "props": {
@@ -74,7 +74,7 @@
     {
       "code": "VoidedDocuments",
       "label": "Comunicación de baja",
-      "description": "Comunicación de baja (RA). UBL 2.0, not 2.1 — sending 2.1 is silently rejected",
+      "description": "Comunicación de baja (RA). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074",
       "capabilities": ["emit"],
       "flags": {},
       "props": {

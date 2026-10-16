@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Código de Leyenda — SUNAT catálogo 52. */
-export declare const CAT52_CODES: readonly ["1000", "1002", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011"];
+export declare const CAT52_CODES: readonly ["1000", "1002", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012"];
 export type Cat52Code = (typeof CAT52_CODES)[number];
 
 export interface Cat52Entry {

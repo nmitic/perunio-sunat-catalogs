@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Tipo de Nota de Débito Electrónica — SUNAT catálogo 10. */
-export declare const CAT10_CODES: readonly ["01", "02", "03", "11", "12"];
+export declare const CAT10_CODES: readonly ["01", "02", "03", "11", "12", "13"];
 export type Cat10Code = (typeof CAT10_CODES)[number];
 
 export interface Cat10Entry {

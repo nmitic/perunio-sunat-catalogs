@@ -5,7 +5,7 @@ package sunat
 
 // Cat.01 — Tipo de Documento.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 01. Authority is the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx, which lists 38 códigos. Three entries here are NOT in it. Código 02 (recibo por honorarios): SUNAT dropped it from the anexo but still returns it in RCE/RVIE listings, and perunio-backend's DOWNLOADABLE_CDP_CODES already treated it as retrievable — display+download only, no `emit`, which is exactly the case the capability model exists for. Códigos 87 and 88 (nota de crédito/débito especial) come from the newer resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12), which the anexo predates; they carry no capabilities at all, so they exist only to give an imported document a name. `label` is a short form for tables and badges — SUNAT's descripciones for the documentos autorizados run past 200 characters — and `description` keeps SUNAT's own wording. Capabilities: `emit` is what the pipeline puts on the wire, `download` is perunio-backend/src/utils/comprobante-types.ts, `void` is the VoidableDocTypes map from perunio-facturador/internal/model/catalog.go.
+// Source: Anexo 8 (catálogo 01) as published in the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: 41 códigos, all here. Código 25 (documento de atribución) is new in that workbook and, like the DAE-SEAE and DAE-DOAE comprobantes it belongs with, takes effect on 2027-01-01 (Control de Cambios of 24.04.2026, postponed from 2026-08-01 on 30.07.2026). The same change renames 56 to 'Comprobante de pago SEAE / DAE-SEAE' from that date; `description` keeps the wording in force until then. The GRE workbook (perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx) lists the same códigos except 25. One entry is in neither workbook: 02 (recibo por honorarios), which SUNAT dropped from the anexo but still returns in RCE/RVIE listings — display and download only, never `emit`, which is exactly the case the capability model exists for. `label` is a short form for tables and badges — SUNAT's descripciones for the documentos autorizados run past 200 characters — and `description` keeps SUNAT's own wording. Capabilities: `emit` is what perunio-facturador puts on the wire; `download` is what perunio-backend/src/utils/comprobante-types.ts can retrieve; `void` is what a comunicación de baja may carry (perunio-facturador/internal/db/voids.go). It matches SUNAT's ERROR 2308 list (01, 07, 08, 30, 34, 42), which adds 25, 28 and 56 from 2027-01-01 (R.S. 048-2026/SUNAT) — none of which this platform issues.
 const (
 	// Factura
 	Cat01Factura = "01"
@@ -49,6 +49,8 @@ const (
 	Cat01PolizaAdjudicacion = "23"
 	// Certificado de pago de regalías emitidas por PERUPETRO S.A.
 	Cat01CertificadoRegalias = "24"
+	// Documento de atribución
+	Cat01DocumentoAtribucion = "25"
 	// Etiquetas por el pago de la Tarifa Unificada de Uso de Aeropuerto – TUUA
 	Cat01EtiquetaTUUA = "28"
 	// Documentos emitidos por la COFOPRI
@@ -123,6 +125,7 @@ var Cat01Codes = []string{
 	"21",
 	"23",
 	"24",
+	"25",
 	"28",
 	"29",
 	"30",
@@ -167,6 +170,7 @@ var cat01 = map[string]Cat01Entry{
 	"21": {Code: "21", Label: "Conocimiento de embarque marítimo", Description: "Conocimiento de embarque por el servicio de transporte de carga marítima", Guia: false, Nota: false},
 	"23": {Code: "23", Label: "Póliza de adjudicación", Description: "Pólizas de Adjudicación por remate o adjudicación de bienes", Guia: false, Nota: false},
 	"24": {Code: "24", Label: "Certificado de regalías PERUPETRO", Description: "Certificado de pago de regalías emitidas por PERUPETRO S.A.", Guia: false, Nota: false},
+	"25": {Code: "25", Label: "Documento de atribución", Description: "Documento de atribución", Guia: false, Nota: false},
 	"28": {Code: "28", Label: "Etiqueta TUUA", Description: "Etiquetas por el pago de la Tarifa Unificada de Uso de Aeropuerto – TUUA", Guia: false, Nota: false},
 	"29": {Code: "29", Label: "Documento de COFOPRI", Description: "Documentos emitidos por la COFOPRI", Guia: false, Nota: false},
 	"30": {Code: "30", Label: "Documento de rol adquirente", Description: "Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito, emitidas por bancos e instituciones financieras o crediticias, domiciliados o no en el país.", Guia: false, Nota: false},

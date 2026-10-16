@@ -82,6 +82,12 @@
       "import": "./gen/ts/cat10.js",
       "default": "./gen/ts/cat10.js"
     },
+    "./cat11": {
+      "types": "./gen/ts/cat11.d.ts",
+      "require": "./gen/ts/cat11.cjs",
+      "import": "./gen/ts/cat11.js",
+      "default": "./gen/ts/cat11.js"
+    },
     "./cat16": {
       "types": "./gen/ts/cat16.d.ts",
       "require": "./gen/ts/cat16.cjs",

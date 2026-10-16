@@ -3,7 +3,7 @@
   "id": "cat53",
   "sunatCatalog": "53",
   "name": "Código de Cargo o Descuento",
-  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 53, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (16 códigos), including the 'Nivel' column the anexo publishes — props.nivel is Item or Global and decides whether the cac:AllowanceCharge hangs off a line or the document. flags.afectaBase is the other half of every descripción and is what SUNAT reconciles the base imponible against. Only 00 (descuento por ítem), 02 (descuento global) and 04 (anticipos gravados) carry `emit`: those are the three this pipeline builds. The rest are display-only until it does.",
+  "source": "Anexo 8 (catálogo 53) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: 22 códigos, all here, including the 'Nivel' column the workbook publishes — props.nivel is Item or Global and decides whether the cac:AllowanceCharge hangs off a line or the document (OBSERV 4268 and 4291 otherwise). flags.esCargo is the cbc:ChargeIndicator SUNAT requires for the código — true for 45-54, false for 00-07, 20 and 61-63 (ERROR 3114 on facturas, boletas and liquidaciones de compra; 2585 on a DAE sub-line). Until v1.2.0 it was false for 45, 46, 51, 52 and 53, which would have drawn 3114 from anything that trusted it; nothing did. flags.afectaBase marks the códigos SUNAT adds to or deducts from the base imponible del IGV/IVAP: the five whose descripción says so (00, 02, 04, 47, 49) and the DAE factors 07 and 54 (OBSERV 4355). 20 (anticipo de ISC) reduces the ISC total instead (ERROR 3298). Only 00 (descuento por ítem), 02 (descuento global) and 04 (anticipos gravados) carry `emit`: those are the three this pipeline builds. The rest are display-only until it does — 07 and 54 belong to the DAE-Operador, 61 to the liquidación de compra, and 62 and 63 are the retenciones a factura may declare.",
   "codePattern": "^[0-9]{2}$",
   "entries": [
     {
@@ -111,13 +111,41 @@
       "goName": "AnticipoInafecto"
     },
     {
+      "code": "07",
+      "label": "Factor de compensación (DU 010-2004)",
+      "description": "Factor de compensación - Decreto de urgencia N. 010-2004",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "FactorCompensacion"
+    },
+    {
+      "code": "20",
+      "label": "Anticipo de ISC",
+      "description": "Anticipo de ISC",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "AnticipoISC"
+    },
+    {
       "code": "45",
       "label": "FISE",
       "description": "FISE",
       "capabilities": [],
       "flags": {
         "afectaBase": false,
-        "esCargo": false
+        "esCargo": true
       },
       "props": {
         "nivel": "Global"
@@ -131,7 +159,7 @@
       "capabilities": [],
       "flags": {
         "afectaBase": false,
-        "esCargo": false
+        "esCargo": true
       },
       "props": {
         "nivel": "Global"
@@ -201,7 +229,7 @@
       "capabilities": [],
       "flags": {
         "afectaBase": false,
-        "esCargo": false
+        "esCargo": true
       },
       "props": {
         "nivel": "Global"
@@ -215,7 +243,7 @@
       "capabilities": [],
       "flags": {
         "afectaBase": false,
-        "esCargo": false
+        "esCargo": true
       },
       "props": {
         "nivel": "Global"
@@ -229,12 +257,68 @@
       "capabilities": [],
       "flags": {
         "afectaBase": false,
-        "esCargo": false
+        "esCargo": true
       },
       "props": {
         "nivel": "Global"
       },
       "goName": "PercepcionTasaEspecial"
+    },
+    {
+      "code": "54",
+      "label": "Factor de aportación (DU 010-2004)",
+      "description": "Factor de aportación - Decreto de urgencia N. 010-2004",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": true,
+        "esCargo": true
+      },
+      "props": {
+        "nivel": "Item"
+      },
+      "goName": "FactorAportacion"
+    },
+    {
+      "code": "61",
+      "label": "Retención de renta por anticipos",
+      "description": "Retención de renta por anticipos",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "RetencionRentaAnticipos"
+    },
+    {
+      "code": "62",
+      "label": "Retención del IGV",
+      "description": "Retención del IGV",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "RetencionIGV"
+    },
+    {
+      "code": "63",
+      "label": "Retención de renta de segunda categoría",
+      "description": "Rentención de renta de segunda categoría",
+      "capabilities": [],
+      "flags": {
+        "afectaBase": false,
+        "esCargo": false
+      },
+      "props": {
+        "nivel": "Global"
+      },
+      "goName": "RetencionRentaSegunda"
     }
   ]
 }

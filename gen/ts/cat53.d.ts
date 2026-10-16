@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Código de Cargo o Descuento — SUNAT catálogo 53. */
-export declare const CAT53_CODES: readonly ["00", "01", "02", "03", "04", "05", "06", "45", "46", "47", "48", "49", "50", "51", "52", "53"];
+export declare const CAT53_CODES: readonly ["00", "01", "02", "03", "04", "05", "06", "07", "20", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "61", "62", "63"];
 export type Cat53Code = (typeof CAT53_CODES)[number];
 
 export interface Cat53Entry {
@@ -26,9 +26,9 @@ export type Cat53EmitCode = (typeof CAT53_EMIT_CODES)[number];
 export declare const CAT53_EMIT_ENTRIES: readonly Cat53Entry[];
 export declare function isCat53EmitCode(value: string): value is Cat53EmitCode;
 
-export declare const CAT53_AFECTA_BASE_CODES: readonly ["00", "02", "04", "47", "49"];
+export declare const CAT53_AFECTA_BASE_CODES: readonly ["00", "02", "04", "07", "47", "49", "54"];
 
-export declare const CAT53_ES_CARGO_CODES: readonly ["47", "48", "49", "50"];
+export declare const CAT53_ES_CARGO_CODES: readonly ["45", "46", "47", "48", "49", "50", "51", "52", "53", "54"];
 
 /** Código de Cargo o Descuento → nivel. */
 export declare const CAT53_NIVEL: Readonly<Record<Cat53Code, string>>;

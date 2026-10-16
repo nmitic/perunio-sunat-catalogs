@@ -5,7 +5,7 @@ package sunat
 
 // Cat.18 — Modalidad de Transporte.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 18. Confirmed identically in both AnexosIyII_Formato1.3.4.xlsx and AjustesValidacionesCPEv20260212.xlsx, and matching model/despatch.go. flags.requiereTransportista marks the modalidad that needs a third-party carrier's RUC rather than a vehicle and driver.
+// Source: Anexo 8 (catálogo 18), identical in the 'Catálogos' sheets of perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx and perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx; the GRE rules check cac:ShipmentStage/cbc:TransportModeCode against it (ERROR 2773). flags.requiereTransportista marks the modalidad that needs a third-party carrier's RUC rather than a vehicle and driver.
 const (
 	// Transporte público
 	Cat18Publico = "01"

@@ -11,8 +11,8 @@ const UBL_DOCUMENT = {
   "CreditNote": { code: "CreditNote", label: "Nota de crédito", description: "Nota de crédito electrónica (Cat.01 07)", customizationId: "2.0", namespace: "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2", ublVersion: "2.1" },
   "DebitNote": { code: "DebitNote", label: "Nota de débito", description: "Nota de débito electrónica (Cat.01 08)", customizationId: "2.0", namespace: "urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2", ublVersion: "2.1" },
   "DespatchAdvice": { code: "DespatchAdvice", label: "Guía de remisión electrónica", description: "Guía de remisión remitente, transportista y por eventos (GRE)", customizationId: "2.0", namespace: "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2", ublVersion: "2.1" },
-  "SummaryDocuments": { code: "SummaryDocuments", label: "Resumen diario de boletas", description: "Resumen diario (RC). UBL 2.0, not 2.1 — sending 2.1 is silently rejected", customizationId: "1.1", namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1", ublVersion: "2.0" },
-  "VoidedDocuments": { code: "VoidedDocuments", label: "Comunicación de baja", description: "Comunicación de baja (RA). UBL 2.0, not 2.1 — sending 2.1 is silently rejected", customizationId: "1.0", namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1", ublVersion: "2.0" },
+  "SummaryDocuments": { code: "SummaryDocuments", label: "Resumen diario de boletas", description: "Resumen diario (RC). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074", customizationId: "1.1", namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1", ublVersion: "2.0" },
+  "VoidedDocuments": { code: "VoidedDocuments", label: "Comunicación de baja", description: "Comunicación de baja (RA). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074", customizationId: "1.0", namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1", ublVersion: "2.0" },
 };
 
 /** Every entry, in catálogo order. Same object identities as UBL_DOCUMENT. */

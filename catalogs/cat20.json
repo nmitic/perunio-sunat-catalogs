@@ -3,7 +3,7 @@
   "id": "cat20",
   "sunatCatalog": "20",
   "name": "Motivo de Traslado",
-  "source": "resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet — the anexo that governs the guía de remisión. It is not the same list as catálogo 20 in AjustesValidacionesCPEv20260212.xlsx, which carries 13 códigos including 03, 05, 06, 07 and 17; those belong to the wider CPE context, not a GRE. These nine are exactly what perunio-facturador/internal/validation/despatch.go already accepted, which is the list SUNAT has been validating real guías against. The issuance form was the side that had drifted: it offered 03, 05, 17 and 20, which fail at issue time with fault 2800, and omitted 08 and 09, making importación and exportación unreachable. flags.requiereNumeroDAM marks the two motivos whose guía must carry the DAM/DSI number.",
+  "source": "Catálogo 20 as published in the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx — the GRE 2.0 rules, which check cac:Shipment/cbc:HandlingCode against it (ERROR 3405): fourteen motivos, all here. The CPE workbook (perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx) still carries an older thirteen-código list without 19: SUNAT deleted the old 19 in 2022 and the GRE rules re-added it on 2024-11-14 as 'Traslado de mercancía extranjera' (GRE Control de Cambios), which is what 19 means here — it read 'Traslado a zona primaria' until v1.2.0. Only the nine motivos perunio-facturador's validator accepts carry `emit` (internal/validation/despatch.go, Cat20Emit). 03, 05, 06, 07 and 17 are valid SUNAT motivos but stay display-only until the pipeline supports them: 03 needs a comprador (OBSERV 4378) and 07 a proveedor (OBSERV 4375), which the despatch model does not carry, and 06 and 17 need a destinatario with RUC (ERROR 3417). That validator reports a motivo outside the set as 2800, which in SUNAT's table is the receptor's tipo de documento; SUNAT's own code for a motivo outside Cat.20 is 3405. flags.requiereNumeroDAM marks 08 and 09, whose guía must relate a DAM or a DS (Cat.61 50 or 52; ERROR 3440). It does not describe 19, which accepts a DAM, DS, manifiesto de carga or cita de entrega (50, 52, 91 or 92; ERROR 3493) and also needs a puerto or aeropuerto (ERROR 3483).",
   "codePattern": "^[0-9]{2}$",
   "entries": [
     {
@@ -35,6 +35,17 @@
       "goName": "Compra"
     },
     {
+      "code": "03",
+      "label": "Venta con entrega a terceros",
+      "description": "Venta con entrega a terceros",
+      "capabilities": [],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "VentaEntregaTerceros"
+    },
+    {
       "code": "04",
       "label": "Traslado entre establecimientos de la misma empresa",
       "description": "Traslado entre establecimientos de la misma empresa",
@@ -47,6 +58,39 @@
       },
       "props": {},
       "goName": "TrasladoEntreEstablecimientos"
+    },
+    {
+      "code": "05",
+      "label": "Consignación",
+      "description": "Consignación",
+      "capabilities": [],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "Consignacion"
+    },
+    {
+      "code": "06",
+      "label": "Devolución",
+      "description": "Devolución",
+      "capabilities": [],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "Devolucion"
+    },
+    {
+      "code": "07",
+      "label": "Recojo de bienes transformados",
+      "description": "Recojo de bienes transformados",
+      "capabilities": [],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "RecojoBienesTransformados"
     },
     {
       "code": "08",
@@ -105,6 +149,17 @@
       "goName": "VentaSujetaConfirmacion"
     },
     {
+      "code": "17",
+      "label": "Traslado de bienes para transformación",
+      "description": "Traslado de bienes para transformación",
+      "capabilities": [],
+      "flags": {
+        "requiereNumeroDAM": false
+      },
+      "props": {},
+      "goName": "TrasladoParaTransformacion"
+    },
+    {
       "code": "18",
       "label": "Traslado emisor itinerante CP",
       "description": "Traslado emisor itinerante CP",
@@ -120,8 +175,8 @@
     },
     {
       "code": "19",
-      "label": "Traslado a zona primaria",
-      "description": "Traslado a zona primaria",
+      "label": "Traslado de mercancía extranjera",
+      "description": "Traslado de mercancía extranjera",
       "capabilities": [
         "emit",
         "select"

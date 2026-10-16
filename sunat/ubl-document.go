@@ -5,7 +5,7 @@ package sunat
 
 // Documento UBL.
 //
-// Source: The UBL root element SUNAT expects per document kind, with its namespace, cbc:UBLVersionID and cbc:CustomizationID. Transcribed from perunio-facturador/internal/xmlbuilder/namespace.go plus the six builders that set the pair: invoice.go:134, creditnote.go:58, debitnote.go:63, summary.go:126 (RC) and :~ (RA), despatch_common.go:434-446. Not a SUNAT catálogo — a Perunio-internal table that exists because getting one row wrong is the #1 cause of silent rejections: RC and RA are UBL 2.0, everything else is 2.1.
+// Source: The UBL root element SUNAT expects per document kind, with its namespace, cbc:UBLVersionID and cbc:CustomizationID. First transcribed from perunio-facturador/internal/xmlbuilder/namespace.go and the six builders that set the pair; they now all read it from here (internal/xmlbuilder/ubl.go). The values match the rule workbooks in perunio-facturador/resources/reglas/: a wrong UBLVersionID or CustomizationID is ERROR 2074 or 2072 on a CPE, RC or RA, and 2110 or 2112 on a guía. Not a SUNAT catálogo — a Perunio-internal table that exists because getting one row wrong rejects every document of that kind: RC and RA are UBL 2.0, everything else is 2.1.
 const (
 	// Comprobante de pago electrónico: factura (Cat.01 01) y boleta de venta (Cat.01 03)
 	UblDocumentInvoice = "Invoice"
@@ -15,9 +15,9 @@ const (
 	UblDocumentDebitNote = "DebitNote"
 	// Guía de remisión remitente, transportista y por eventos (GRE)
 	UblDocumentDespatchAdvice = "DespatchAdvice"
-	// Resumen diario (RC). UBL 2.0, not 2.1 — sending 2.1 is silently rejected
+	// Resumen diario (RC). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074
 	UblDocumentSummaryDocuments = "SummaryDocuments"
-	// Comunicación de baja (RA). UBL 2.0, not 2.1 — sending 2.1 is silently rejected
+	// Comunicación de baja (RA). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074
 	UblDocumentVoidedDocuments = "VoidedDocuments"
 )
 
@@ -46,8 +46,8 @@ var ublDocument = map[string]UblDocumentEntry{
 	"CreditNote":       {Code: "CreditNote", Label: "Nota de crédito", Description: "Nota de crédito electrónica (Cat.01 07)", CustomizationId: "2.0", Namespace: "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2", UblVersion: "2.1"},
 	"DebitNote":        {Code: "DebitNote", Label: "Nota de débito", Description: "Nota de débito electrónica (Cat.01 08)", CustomizationId: "2.0", Namespace: "urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2", UblVersion: "2.1"},
 	"DespatchAdvice":   {Code: "DespatchAdvice", Label: "Guía de remisión electrónica", Description: "Guía de remisión remitente, transportista y por eventos (GRE)", CustomizationId: "2.0", Namespace: "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2", UblVersion: "2.1"},
-	"SummaryDocuments": {Code: "SummaryDocuments", Label: "Resumen diario de boletas", Description: "Resumen diario (RC). UBL 2.0, not 2.1 — sending 2.1 is silently rejected", CustomizationId: "1.1", Namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1", UblVersion: "2.0"},
-	"VoidedDocuments":  {Code: "VoidedDocuments", Label: "Comunicación de baja", Description: "Comunicación de baja (RA). UBL 2.0, not 2.1 — sending 2.1 is silently rejected", CustomizationId: "1.0", Namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1", UblVersion: "2.0"},
+	"SummaryDocuments": {Code: "SummaryDocuments", Label: "Resumen diario de boletas", Description: "Resumen diario (RC). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074", CustomizationId: "1.1", Namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1", UblVersion: "2.0"},
+	"VoidedDocuments":  {Code: "VoidedDocuments", Label: "Comunicación de baja", Description: "Comunicación de baja (RA). UBL 2.0, not 2.1 — anything else is rejected with ERROR 2074", CustomizationId: "1.0", Namespace: "urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1", UblVersion: "2.0"},
 }
 
 // UblDocument returns the entry for code and whether it is a known Documento UBL code.

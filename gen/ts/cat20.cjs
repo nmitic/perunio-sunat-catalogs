@@ -4,22 +4,27 @@
 'use strict';
 
 /** Motivo de Traslado — SUNAT catálogo 20. */
-const CAT20_CODES = ["01", "02", "04", "08", "09", "13", "14", "18", "19"];
+const CAT20_CODES = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "13", "14", "17", "18", "19"];
 
 const CAT20 = {
   "01": { code: "01", label: "Venta", description: "Venta", requiereNumeroDAM: false },
   "02": { code: "02", label: "Compra", description: "Compra", requiereNumeroDAM: false },
+  "03": { code: "03", label: "Venta con entrega a terceros", description: "Venta con entrega a terceros", requiereNumeroDAM: false },
   "04": { code: "04", label: "Traslado entre establecimientos de la misma empresa", description: "Traslado entre establecimientos de la misma empresa", requiereNumeroDAM: false },
+  "05": { code: "05", label: "Consignación", description: "Consignación", requiereNumeroDAM: false },
+  "06": { code: "06", label: "Devolución", description: "Devolución", requiereNumeroDAM: false },
+  "07": { code: "07", label: "Recojo de bienes transformados", description: "Recojo de bienes transformados", requiereNumeroDAM: false },
   "08": { code: "08", label: "Importación", description: "Importación", requiereNumeroDAM: true },
   "09": { code: "09", label: "Exportación", description: "Exportación", requiereNumeroDAM: true },
   "13": { code: "13", label: "Otros", description: "Otros", requiereNumeroDAM: false },
   "14": { code: "14", label: "Venta sujeta a confirmación del comprador", description: "Venta sujeta a confirmación del comprador", requiereNumeroDAM: false },
+  "17": { code: "17", label: "Traslado de bienes para transformación", description: "Traslado de bienes para transformación", requiereNumeroDAM: false },
   "18": { code: "18", label: "Traslado emisor itinerante CP", description: "Traslado emisor itinerante CP", requiereNumeroDAM: false },
-  "19": { code: "19", label: "Traslado a zona primaria", description: "Traslado a zona primaria", requiereNumeroDAM: false },
+  "19": { code: "19", label: "Traslado de mercancía extranjera", description: "Traslado de mercancía extranjera", requiereNumeroDAM: false },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT20. */
-const CAT20_ENTRIES = [CAT20["01"], CAT20["02"], CAT20["04"], CAT20["08"], CAT20["09"], CAT20["13"], CAT20["14"], CAT20["18"], CAT20["19"]];
+const CAT20_ENTRIES = [CAT20["01"], CAT20["02"], CAT20["03"], CAT20["04"], CAT20["05"], CAT20["06"], CAT20["07"], CAT20["08"], CAT20["09"], CAT20["13"], CAT20["14"], CAT20["17"], CAT20["18"], CAT20["19"]];
 
 function isCat20Code(value) {
   return CAT20_CODES.includes(value);

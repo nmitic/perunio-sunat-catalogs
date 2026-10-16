@@ -4,7 +4,7 @@
 import type { Cat51Code } from './cat51.js';
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) — SUNAT catálogo 54. */
-export declare const CAT54_CODES: readonly ["001", "002", "003", "004", "005", "007", "008", "009", "010", "011", "012", "013", "014", "015", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "028", "030", "031", "034", "035", "036", "037", "039", "040"];
+export declare const CAT54_CODES: readonly ["001", "002", "003", "004", "005", "007", "008", "009", "010", "011", "012", "013", "014", "015", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "028", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045", "099"];
 export type Cat54Code = (typeof CAT54_CODES)[number];
 
 export interface Cat54Entry {
@@ -24,12 +24,12 @@ export declare function isCat54Code(value: string): value is Cat54Code;
 /** Entry for an untrusted string, or undefined. */
 export declare function cat54(value: string): Cat54Entry | undefined;
 
-export declare const CAT54_EMIT_CODES: readonly ["001", "003", "004", "005", "007", "008", "009", "010", "012", "014", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "034", "035", "036", "037", "039", "040"];
+export declare const CAT54_EMIT_CODES: readonly ["001", "003", "004", "005", "007", "008", "009", "010", "011", "012", "014", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045"];
 export type Cat54EmitCode = (typeof CAT54_EMIT_CODES)[number];
 export declare const CAT54_EMIT_ENTRIES: readonly Cat54Entry[];
 export declare function isCat54EmitCode(value: string): value is Cat54EmitCode;
 
-export declare const CAT54_SELECT_CODES: readonly ["001", "003", "004", "005", "007", "008", "009", "010", "012", "014", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "034", "035", "036", "037", "039", "040"];
+export declare const CAT54_SELECT_CODES: readonly ["001", "003", "004", "005", "007", "008", "009", "010", "011", "012", "014", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045"];
 export type Cat54SelectCode = (typeof CAT54_SELECT_CODES)[number];
 export declare const CAT54_SELECT_ENTRIES: readonly Cat54Entry[];
 export declare function isCat54SelectCode(value: string): value is Cat54SelectCode;

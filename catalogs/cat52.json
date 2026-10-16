@@ -3,7 +3,7 @@
   "id": "cat52",
   "sunatCatalog": "52",
   "name": "Código de Leyenda",
-  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 52, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (14 códigos). internal/model/catalog.go named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null.",
+  "source": "Anexo 8 (catálogo 52) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx (fifteen códigos, listed identically in the GRE workbook). 2012 (observaciones relacionadas con el traslado de mercaderías) is display-only: nothing here emits it. internal/model/catalog.go, before it moved here, named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null. SUNAT's own double spaces inside 2002 and 2003 are collapsed.",
   "codePattern": "^[0-9]{4}$",
   "entries": [
     {
@@ -187,6 +187,17 @@
         "texto": null
       },
       "goName": "ExportacionDL919"
+    },
+    {
+      "code": "2012",
+      "label": "Observaciones del traslado de mercaderías",
+      "description": "Observaciones relacionadas con el traslado de mercaderías",
+      "capabilities": [],
+      "flags": {},
+      "props": {
+        "texto": null
+      },
+      "goName": "ObservacionesTraslado"
     }
   ]
 }

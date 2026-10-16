@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Tipo de Nota de Débito Electrónica — SUNAT catálogo 10. */
-const CAT10_CODES = ["01", "02", "03", "11", "12"];
+const CAT10_CODES = ["01", "02", "03", "11", "12", "13"];
 
 const CAT10 = {
   "01": { code: "01", label: "Intereses por mora", description: "Intereses por mora" },
@@ -10,10 +10,11 @@ const CAT10 = {
   "03": { code: "03", label: "Penalidades u otros conceptos", description: "Penalidades/ otros conceptos" },
   "11": { code: "11", label: "Ajustes de operaciones de exportación", description: "Ajustes de operaciones de exportación" },
   "12": { code: "12", label: "Ajustes afectos al IVAP", description: "Ajustes afectos al IVAP" },
+  "13": { code: "13", label: "Penalidades", description: "Penalidades" },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT10. */
-const CAT10_ENTRIES = [CAT10["01"], CAT10["02"], CAT10["03"], CAT10["11"], CAT10["12"]];
+const CAT10_ENTRIES = [CAT10["01"], CAT10["02"], CAT10["03"], CAT10["11"], CAT10["12"], CAT10["13"]];
 
 function isCat10Code(value) {
   return CAT10_CODES.includes(value);

@@ -4,10 +4,10 @@
 'use strict';
 
 /** Tipo de Operación — SUNAT catálogo 51. */
-const CAT51_CODES = ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0102", "0103", "0104"];
+const CAT51_CODES = ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "0501", "0502", "0503", "1001", "1002", "1003", "1004", "2001", "2002", "2100", "2101", "2102", "2103", "2104", "2105", "2106", "0102", "0103", "0104"];
 
 const CAT51 = {
-  "0101": { code: "0101", label: "Venta interna", description: "Venta interna", detraccion: false, exportacion: false, wireEquivalent: null },
+  "0101": { code: "0101", label: "Venta interna", description: "Venta interna no sujeta a Detracción o Percepción", detraccion: false, exportacion: false, wireEquivalent: null },
   "0112": { code: "0112", label: "Venta interna - sustenta gastos deducibles persona natural", description: "Venta Interna - Sustenta Gastos Deducibles Persona Natural", detraccion: false, exportacion: false, wireEquivalent: null },
   "0113": { code: "0113", label: "Venta interna - NRUS", description: "Venta Interna-NRUS", detraccion: false, exportacion: false, wireEquivalent: null },
   "0200": { code: "0200", label: "Exportación de bienes", description: "Exportación de Bienes", detraccion: false, exportacion: true, wireEquivalent: null },
@@ -21,20 +21,31 @@ const CAT51 = {
   "0208": { code: "0208", label: "Exportación de servicios - prestados parcialmente en el extranjero", description: "Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero", detraccion: false, exportacion: true, wireEquivalent: null },
   "0301": { code: "0301", label: "Operaciones con carta de porte aéreo nacional", description: "Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)", detraccion: false, exportacion: false, wireEquivalent: null },
   "0302": { code: "0302", label: "Transporte ferroviario de pasajeros", description: "Operaciones de Transporte ferroviario de pasajeros", detraccion: false, exportacion: false, wireEquivalent: null },
-  "0303": { code: "0303", label: "Pago de regalía petrolera", description: "Operaciones de Pago de regalía petrolera", detraccion: false, exportacion: false, wireEquivalent: null },
+  "0303": { code: "0303", label: "Pago de regalía petrolera (retirado)", description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", detraccion: false, exportacion: false, wireEquivalent: null },
   "0401": { code: "0401", label: "Ventas a no domiciliados que no califican como exportación", description: "Ventas no domiciliados que no califican como exportación", detraccion: false, exportacion: false, wireEquivalent: null },
+  "0501": { code: "0501", label: "Compra interna", description: "Compra interna", detraccion: false, exportacion: false, wireEquivalent: null },
+  "0502": { code: "0502", label: "Anticipos (liquidación de compra)", description: "Anticipos", detraccion: false, exportacion: false, wireEquivalent: null },
+  "0503": { code: "0503", label: "Compra de oro", description: "Compra de oro", detraccion: false, exportacion: false, wireEquivalent: null },
   "1001": { code: "1001", label: "Operación sujeta a detracción", description: "Operación Sujeta a Detracción", detraccion: true, exportacion: false, wireEquivalent: null },
   "1002": { code: "1002", label: "Detracción - recursos hidrobiológicos", description: "Operación Sujeta a Detracción- Recursos Hidrobiológicos", detraccion: true, exportacion: false, wireEquivalent: null },
   "1003": { code: "1003", label: "Detracción - transporte de pasajeros", description: "Operación Sujeta a Detracción- Servicios de Transporte Pasajeros", detraccion: true, exportacion: false, wireEquivalent: null },
   "1004": { code: "1004", label: "Detracción - transporte de carga", description: "Operación Sujeta a Detracción- Servicios de Transporte Carga", detraccion: true, exportacion: false, wireEquivalent: null },
   "2001": { code: "2001", label: "Operación sujeta a percepción", description: "Operación Sujeta a Percepción", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2002": { code: "2002", label: "Retención de renta de segunda categoría", description: "Operación sujeta a Retención de Renta de segunda categoría", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2100": { code: "2100", label: "Créditos a empresas", description: "Créditos a empresas", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2101": { code: "2101", label: "Créditos de consumo revolvente", description: "Créditos de consumo revolvente", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2102": { code: "2102", label: "Créditos de consumo no revolvente", description: "Créditos de consumo no revolvente", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2103": { code: "2103", label: "Otras no gravadas - sistema financiero", description: "Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2104": { code: "2104", label: "Otras no gravadas - sistema de seguros", description: "Otras operaciones no gravadas - Empresas del sistema de seguros", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2105": { code: "2105", label: "Comprobante emitido por AFP", description: "Comprobante emitido por AFP", detraccion: false, exportacion: false, wireEquivalent: null },
+  "2106": { code: "2106", label: "Venta nacional a turistas - Tax Free", description: "Venta Nacional a Turistas - Tax Free", detraccion: false, exportacion: false, wireEquivalent: null },
   "0102": { code: "0102", label: "Exportación de bienes (retirado)", description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", detraccion: false, exportacion: false, wireEquivalent: null },
   "0103": { code: "0103", label: "Operaciones con no domiciliados (retirado)", description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", detraccion: false, exportacion: false, wireEquivalent: null },
   "0104": { code: "0104", label: "Factura de anticipo (marcador interno)", description: "Marcador Perunio para una factura de anticipo. Retirado del catálogo 51, así que se almacena y reporta pero viaja como 0101", detraccion: false, exportacion: false, wireEquivalent: "0101" },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT51. */
-const CAT51_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0303"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["0102"], CAT51["0103"], CAT51["0104"]];
+const CAT51_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0303"], CAT51["0401"], CAT51["0501"], CAT51["0502"], CAT51["0503"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["2002"], CAT51["2100"], CAT51["2101"], CAT51["2102"], CAT51["2103"], CAT51["2104"], CAT51["2105"], CAT51["2106"], CAT51["0102"], CAT51["0103"], CAT51["0104"]];
 
 function isCat51Code(value) {
   return CAT51_CODES.includes(value);
@@ -45,8 +56,8 @@ function cat51(value) {
   return isCat51Code(value) ? CAT51[value] : undefined;
 }
 
-const CAT51_EMIT_CODES = ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001"];
-const CAT51_EMIT_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0303"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"]];
+const CAT51_EMIT_CODES = ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001"];
+const CAT51_EMIT_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"]];
 function isCat51EmitCode(value) {
   return CAT51_EMIT_CODES.includes(value);
 }
@@ -57,8 +68,8 @@ function isCat51SelectCode(value) {
   return CAT51_SELECT_CODES.includes(value);
 }
 
-const CAT51_RETIRED_CODES = ["0102", "0103"];
-const CAT51_RETIRED_ENTRIES = [CAT51["0102"], CAT51["0103"]];
+const CAT51_RETIRED_CODES = ["0303", "0102", "0103"];
+const CAT51_RETIRED_ENTRIES = [CAT51["0303"], CAT51["0102"], CAT51["0103"]];
 function isCat51RetiredCode(value) {
   return CAT51_RETIRED_CODES.includes(value);
 }
@@ -69,14 +80,14 @@ function isCat51InternalCode(value) {
   return CAT51_INTERNAL_CODES.includes(value);
 }
 
-const CAT51_ON_BOLETA_CODES = ["0101", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
-const CAT51_ON_BOLETA_ENTRIES = [CAT51["0101"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0303"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["0104"]];
+const CAT51_ON_BOLETA_CODES = ["0101", "0113", "0200", "0201", "0203", "0204", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001", "2100", "2101", "2102", "2103", "2104", "2105", "0104"];
+const CAT51_ON_BOLETA_ENTRIES = [CAT51["0101"], CAT51["0113"], CAT51["0200"], CAT51["0201"], CAT51["0203"], CAT51["0204"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["2100"], CAT51["2101"], CAT51["2102"], CAT51["2103"], CAT51["2104"], CAT51["2105"], CAT51["0104"]];
 function isCat51OnBoletaCode(value) {
   return CAT51_ON_BOLETA_CODES.includes(value);
 }
 
-const CAT51_ON_FACTURA_CODES = ["0101", "0112", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
-const CAT51_ON_FACTURA_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0303"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["0104"]];
+const CAT51_ON_FACTURA_CODES = ["0101", "0112", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001", "2002", "2100", "2101", "2102", "2103", "2104", "2106", "0104"];
+const CAT51_ON_FACTURA_ENTRIES = [CAT51["0101"], CAT51["0112"], CAT51["0200"], CAT51["0201"], CAT51["0202"], CAT51["0203"], CAT51["0204"], CAT51["0205"], CAT51["0206"], CAT51["0207"], CAT51["0208"], CAT51["0301"], CAT51["0302"], CAT51["0401"], CAT51["1001"], CAT51["1002"], CAT51["1003"], CAT51["1004"], CAT51["2001"], CAT51["2002"], CAT51["2100"], CAT51["2101"], CAT51["2102"], CAT51["2103"], CAT51["2104"], CAT51["2106"], CAT51["0104"]];
 function isCat51OnFacturaCode(value) {
   return CAT51_ON_FACTURA_CODES.includes(value);
 }
@@ -103,11 +114,22 @@ const CAT51_WIRE_EQUIVALENT = {
   "0302": null,
   "0303": null,
   "0401": null,
+  "0501": null,
+  "0502": null,
+  "0503": null,
   "1001": null,
   "1002": null,
   "1003": null,
   "1004": null,
   "2001": null,
+  "2002": null,
+  "2100": null,
+  "2101": null,
+  "2102": null,
+  "2103": null,
+  "2104": null,
+  "2105": null,
+  "2106": null,
   "0102": null,
   "0103": null,
   "0104": "0101",

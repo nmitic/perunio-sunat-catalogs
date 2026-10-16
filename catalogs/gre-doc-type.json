@@ -3,7 +3,7 @@
   "id": "gre-doc-type",
   "sunatCatalog": null,
   "name": "Tipo de Guía de Remisión",
-  "source": "The discriminator perunio-facturador uses to pick a GRE builder, from internal/model/despatch.go:10-12. Two of the three are Cat.01 códigos; 'EV' is not — it is a Perunio-internal marker meaning 'guía por eventos', and the XML it produces still carries 09 or 31 in cbc:DespatchAdviceTypeCode. That is why it is `internal` with props.wireEquivalent, and why this is its own file rather than three más entries in cat01.json.",
+  "source": "The discriminator perunio-facturador switches on to validate and build a guía (internal/validation/despatch.go, internal/xmlbuilder/builder.go). Two of the three are Cat.01 códigos; 'EV' is not — it is a Perunio-internal marker meaning 'guía por eventos', and the XML it produces still carries 09 or 31 in cbc:DespatchAdviceTypeCode. That is why it is `internal` with props.wireEquivalent, and why this is its own file rather than three more entries in cat01.json. SUNAT does not accept that guía through the API: R.S. 123-2022/SUNAT (numeral 5.2) says the GRE por evento 'se emite únicamente a través del SEE - SOL', and the GRE rules reject cbc:TransportEventTypeCode with ERROR 3374. EV's `emit` and `select` describe what this platform does today — the facturador builds and sends it and the issuance UI offers it — not what SUNAT accepts; withdrawing them is a product decision (perunio-facturador spec case despatch/04, deviation F8).",
   "codePattern": "^[A-Z0-9]{2}$",
   "entries": [
     {

@@ -5,14 +5,22 @@ package sunat
 
 // Cat.20 — Motivo de Traslado.
 //
-// Source: resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet — the anexo that governs the guía de remisión. It is not the same list as catálogo 20 in AjustesValidacionesCPEv20260212.xlsx, which carries 13 códigos including 03, 05, 06, 07 and 17; those belong to the wider CPE context, not a GRE. These nine are exactly what perunio-facturador/internal/validation/despatch.go already accepted, which is the list SUNAT has been validating real guías against. The issuance form was the side that had drifted: it offered 03, 05, 17 and 20, which fail at issue time with fault 2800, and omitted 08 and 09, making importación and exportación unreachable. flags.requiereNumeroDAM marks the two motivos whose guía must carry the DAM/DSI number.
+// Source: Catálogo 20 as published in the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx — the GRE 2.0 rules, which check cac:Shipment/cbc:HandlingCode against it (ERROR 3405): fourteen motivos, all here. The CPE workbook (perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx) still carries an older thirteen-código list without 19: SUNAT deleted the old 19 in 2022 and the GRE rules re-added it on 2024-11-14 as 'Traslado de mercancía extranjera' (GRE Control de Cambios), which is what 19 means here — it read 'Traslado a zona primaria' until v1.2.0. Only the nine motivos perunio-facturador's validator accepts carry `emit` (internal/validation/despatch.go, Cat20Emit). 03, 05, 06, 07 and 17 are valid SUNAT motivos but stay display-only until the pipeline supports them: 03 needs a comprador (OBSERV 4378) and 07 a proveedor (OBSERV 4375), which the despatch model does not carry, and 06 and 17 need a destinatario with RUC (ERROR 3417). That validator reports a motivo outside the set as 2800, which in SUNAT's table is the receptor's tipo de documento; SUNAT's own code for a motivo outside Cat.20 is 3405. flags.requiereNumeroDAM marks 08 and 09, whose guía must relate a DAM or a DS (Cat.61 50 or 52; ERROR 3440). It does not describe 19, which accepts a DAM, DS, manifiesto de carga or cita de entrega (50, 52, 91 or 92; ERROR 3493) and also needs a puerto or aeropuerto (ERROR 3483).
 const (
 	// Venta
 	Cat20Venta = "01"
 	// Compra
 	Cat20Compra = "02"
+	// Venta con entrega a terceros
+	Cat20VentaEntregaTerceros = "03"
 	// Traslado entre establecimientos de la misma empresa
 	Cat20TrasladoEntreEstablecimientos = "04"
+	// Consignación
+	Cat20Consignacion = "05"
+	// Devolución
+	Cat20Devolucion = "06"
+	// Recojo de bienes transformados
+	Cat20RecojoBienesTransformados = "07"
 	// Importación
 	Cat20Importacion = "08"
 	// Exportación
@@ -21,9 +29,11 @@ const (
 	Cat20Otros = "13"
 	// Venta sujeta a confirmación del comprador
 	Cat20VentaSujetaConfirmacion = "14"
+	// Traslado de bienes para transformación
+	Cat20TrasladoParaTransformacion = "17"
 	// Traslado emisor itinerante CP
 	Cat20EmisorItinerante = "18"
-	// Traslado a zona primaria
+	// Traslado de mercancía extranjera
 	Cat20ZonaPrimaria = "19"
 )
 
@@ -39,11 +49,16 @@ type Cat20Entry struct {
 var Cat20Codes = []string{
 	"01",
 	"02",
+	"03",
 	"04",
+	"05",
+	"06",
+	"07",
 	"08",
 	"09",
 	"13",
 	"14",
+	"17",
 	"18",
 	"19",
 }
@@ -51,13 +66,18 @@ var Cat20Codes = []string{
 var cat20 = map[string]Cat20Entry{
 	"01": {Code: "01", Label: "Venta", Description: "Venta", RequiereNumeroDAM: false},
 	"02": {Code: "02", Label: "Compra", Description: "Compra", RequiereNumeroDAM: false},
+	"03": {Code: "03", Label: "Venta con entrega a terceros", Description: "Venta con entrega a terceros", RequiereNumeroDAM: false},
 	"04": {Code: "04", Label: "Traslado entre establecimientos de la misma empresa", Description: "Traslado entre establecimientos de la misma empresa", RequiereNumeroDAM: false},
+	"05": {Code: "05", Label: "Consignación", Description: "Consignación", RequiereNumeroDAM: false},
+	"06": {Code: "06", Label: "Devolución", Description: "Devolución", RequiereNumeroDAM: false},
+	"07": {Code: "07", Label: "Recojo de bienes transformados", Description: "Recojo de bienes transformados", RequiereNumeroDAM: false},
 	"08": {Code: "08", Label: "Importación", Description: "Importación", RequiereNumeroDAM: true},
 	"09": {Code: "09", Label: "Exportación", Description: "Exportación", RequiereNumeroDAM: true},
 	"13": {Code: "13", Label: "Otros", Description: "Otros", RequiereNumeroDAM: false},
 	"14": {Code: "14", Label: "Venta sujeta a confirmación del comprador", Description: "Venta sujeta a confirmación del comprador", RequiereNumeroDAM: false},
+	"17": {Code: "17", Label: "Traslado de bienes para transformación", Description: "Traslado de bienes para transformación", RequiereNumeroDAM: false},
 	"18": {Code: "18", Label: "Traslado emisor itinerante CP", Description: "Traslado emisor itinerante CP", RequiereNumeroDAM: false},
-	"19": {Code: "19", Label: "Traslado a zona primaria", Description: "Traslado a zona primaria", RequiereNumeroDAM: false},
+	"19": {Code: "19", Label: "Traslado de mercancía extranjera", Description: "Traslado de mercancía extranjera", RequiereNumeroDAM: false},
 }
 
 // Cat20 returns the entry for code and whether it is a known Cat.20 code.

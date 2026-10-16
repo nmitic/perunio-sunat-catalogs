@@ -4,29 +4,29 @@
 'use strict';
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) — SUNAT catálogo 54. */
-const CAT54_CODES = ["001", "002", "003", "004", "005", "007", "008", "009", "010", "011", "012", "013", "014", "015", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "028", "030", "031", "034", "035", "036", "037", "039", "040"];
+const CAT54_CODES = ["001", "002", "003", "004", "005", "007", "008", "009", "010", "011", "012", "013", "014", "015", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "028", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045", "099"];
 
 const CAT54 = {
-  "001": { code: "001", label: "Azúcar y melaza de caña", description: "Azúcar y melaza de caña", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "001": { code: "001", label: "Azúcar y melaza de caña", description: "Azúcar y melaza de caña", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 2750 },
   "002": { code: "002", label: "Arroz", description: "Arroz", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
-  "003": { code: "003", label: "Alcohol etílico", description: "Alcohol etílico", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "003": { code: "003", label: "Alcohol etílico", description: "Alcohol etílico", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 2750 },
   "004": { code: "004", label: "Recursos hidrobiológicos", description: "Recursos hidrobiológicos", pinnedOperationType: true, operationType: "1002", porcentaje: 4, umbral: 700 },
   "005": { code: "005", label: "Maíz amarillo duro", description: "Maíz amarillo duro", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
   "007": { code: "007", label: "Caña de azúcar", description: "Caña de azúcar", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
   "008": { code: "008", label: "Madera", description: "Madera", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
   "009": { code: "009", label: "Arena y piedra", description: "Arena y piedra", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
-  "010": { code: "010", label: "Residuos, subproductos, desechos, recortes y desperdicios", description: "Residuos, subproductos, desechos, recortes y desperdicios", pinnedOperationType: false, operationType: "1001", porcentaje: 15, umbral: 700 },
-  "011": { code: "011", label: "Bienes gravados con el IGV, o renuncia a la exoneración", description: "Bienes gravados con el IGV, o renuncia a la exoneración", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
-  "012": { code: "012", label: "Intermediación laboral y tercerización", description: "Intermediación laboral y tercerización", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "010": { code: "010", label: "Residuos, subproductos, desechos, recortes y desperdicios", description: "Residuos, subproductos, desechos, recortes y desperdicios", pinnedOperationType: false, operationType: "1001", porcentaje: 15, umbral: 0 },
+  "011": { code: "011", label: "Bienes gravados con el IGV, o renuncia a la exoneración", description: "Bienes gravados con el IGV, o renuncia a la exoneración", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "012": { code: "012", label: "Intermediación laboral y tercerización", description: "Intermediación laboral y tercerización", pinnedOperationType: false, operationType: "1001", porcentaje: 12, umbral: 700 },
   "013": { code: "013", label: "Animales vivos", description: "Animales vivos", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
   "014": { code: "014", label: "Carnes y despojos comestibles", description: "Carnes y despojos comestibles", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
   "015": { code: "015", label: "Abonos, cueros y pieles de origen animal", description: "Abonos, cueros y pieles de origen animal", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
-  "016": { code: "016", label: "Aceite de pescado", description: "Aceite de pescado", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
+  "016": { code: "016", label: "Aceite de pescado", description: "Aceite de pescado", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
   "017": { code: "017", label: "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados", description: "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
   "019": { code: "019", label: "Arrendamiento de bienes muebles", description: "Arrendamiento de bienes muebles", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
-  "020": { code: "020", label: "Mantenimiento y reparación de bienes muebles", description: "Mantenimiento y reparación de bienes muebles", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "020": { code: "020", label: "Mantenimiento y reparación de bienes muebles", description: "Mantenimiento y reparación de bienes muebles", pinnedOperationType: false, operationType: "1001", porcentaje: 12, umbral: 700 },
   "021": { code: "021", label: "Movimiento de carga", description: "Movimiento de carga", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
-  "022": { code: "022", label: "Otros servicios empresariales", description: "Otros servicios empresariales", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "022": { code: "022", label: "Otros servicios empresariales", description: "Otros servicios empresariales", pinnedOperationType: false, operationType: "1001", porcentaje: 12, umbral: 700 },
   "023": { code: "023", label: "Leche", description: "Leche", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
   "024": { code: "024", label: "Comisión mercantil", description: "Comisión mercantil", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
   "025": { code: "025", label: "Fabricación de bienes por encargo", description: "Fabricación de bienes por encargo", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
@@ -34,17 +34,22 @@ const CAT54 = {
   "027": { code: "027", label: "Servicio de transporte de carga", description: "Servicio de transporte de carga", pinnedOperationType: true, operationType: "1004", porcentaje: 4, umbral: 400 },
   "028": { code: "028", label: "Transporte de pasajeros", description: "Transporte de pasajeros", pinnedOperationType: true, operationType: "1003", porcentaje: null, umbral: 700 },
   "030": { code: "030", label: "Contratos de construcción", description: "Contratos de construcción", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 700 },
-  "031": { code: "031", label: "Oro gravado con el IGV", description: "Oro gravado con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
-  "034": { code: "034", label: "Minerales metálicos no auríferos", description: "Minerales metálicos no auríferos", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "031": { code: "031", label: "Oro gravado con el IGV", description: "Oro gravado con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 0 },
+  "032": { code: "032", label: "Paprika y otros frutos de los generos capsicum o pimienta", description: "Paprika y otros frutos de los generos capsicum o pimienta", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "034": { code: "034", label: "Minerales metálicos no auríferos", description: "Minerales metálicos no auríferos", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 2750 },
   "035": { code: "035", label: "Bienes exonerados del IGV", description: "Bienes exonerados del IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 1.5, umbral: 700 },
-  "036": { code: "036", label: "Oro y demás minerales metálicos exonerados del IGV", description: "Oro y demás minerales metálicos exonerados del IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 1.5, umbral: 700 },
-  "037": { code: "037", label: "Demás servicios gravados con el IGV", description: "Demás servicios gravados con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
+  "036": { code: "036", label: "Oro y demás minerales metálicos exonerados del IGV", description: "Oro y demás minerales metálicos exonerados del IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 1.5, umbral: 0 },
+  "037": { code: "037", label: "Demás servicios gravados con el IGV", description: "Demás servicios gravados con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 12, umbral: 700 },
   "039": { code: "039", label: "Minerales no metálicos", description: "Minerales no metálicos", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 700 },
   "040": { code: "040", label: "Bien inmueble gravado con IGV", description: "Bien inmueble gravado con IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 4, umbral: 0 },
+  "041": { code: "041", label: "Plomo", description: "Plomo", pinnedOperationType: false, operationType: "1001", porcentaje: 15, umbral: 700 },
+  "044": { code: "044", label: "Servicio de beneficio de minerales metálicos gravado con el IGV", description: "Servicio de beneficio de minerales metálicos gravado con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 12, umbral: 700 },
+  "045": { code: "045", label: "Minerales de oro y sus concentrados gravados con el IGV", description: "Minerales de oro y sus concentrados gravados con el IGV", pinnedOperationType: false, operationType: "1001", porcentaje: 10, umbral: 2750 },
+  "099": { code: "099", label: "Ley 30737", description: "Ley 30737", pinnedOperationType: false, operationType: "1001", porcentaje: null, umbral: 700 },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT54. */
-const CAT54_ENTRIES = [CAT54["001"], CAT54["002"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["011"], CAT54["012"], CAT54["013"], CAT54["014"], CAT54["015"], CAT54["016"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["028"], CAT54["030"], CAT54["031"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"]];
+const CAT54_ENTRIES = [CAT54["001"], CAT54["002"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["011"], CAT54["012"], CAT54["013"], CAT54["014"], CAT54["015"], CAT54["016"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["028"], CAT54["030"], CAT54["031"], CAT54["032"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"], CAT54["041"], CAT54["044"], CAT54["045"], CAT54["099"]];
 
 function isCat54Code(value) {
   return CAT54_CODES.includes(value);
@@ -55,14 +60,14 @@ function cat54(value) {
   return isCat54Code(value) ? CAT54[value] : undefined;
 }
 
-const CAT54_EMIT_CODES = ["001", "003", "004", "005", "007", "008", "009", "010", "012", "014", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "034", "035", "036", "037", "039", "040"];
-const CAT54_EMIT_ENTRIES = [CAT54["001"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["012"], CAT54["014"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["030"], CAT54["031"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"]];
+const CAT54_EMIT_CODES = ["001", "003", "004", "005", "007", "008", "009", "010", "011", "012", "014", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045"];
+const CAT54_EMIT_ENTRIES = [CAT54["001"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["011"], CAT54["012"], CAT54["014"], CAT54["016"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["030"], CAT54["031"], CAT54["032"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"], CAT54["041"], CAT54["044"], CAT54["045"]];
 function isCat54EmitCode(value) {
   return CAT54_EMIT_CODES.includes(value);
 }
 
-const CAT54_SELECT_CODES = ["001", "003", "004", "005", "007", "008", "009", "010", "012", "014", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "034", "035", "036", "037", "039", "040"];
-const CAT54_SELECT_ENTRIES = [CAT54["001"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["012"], CAT54["014"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["030"], CAT54["031"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"]];
+const CAT54_SELECT_CODES = ["001", "003", "004", "005", "007", "008", "009", "010", "011", "012", "014", "016", "017", "019", "020", "021", "022", "023", "024", "025", "026", "027", "030", "031", "032", "034", "035", "036", "037", "039", "040", "041", "044", "045"];
+const CAT54_SELECT_ENTRIES = [CAT54["001"], CAT54["003"], CAT54["004"], CAT54["005"], CAT54["007"], CAT54["008"], CAT54["009"], CAT54["010"], CAT54["011"], CAT54["012"], CAT54["014"], CAT54["016"], CAT54["017"], CAT54["019"], CAT54["020"], CAT54["021"], CAT54["022"], CAT54["023"], CAT54["024"], CAT54["025"], CAT54["026"], CAT54["027"], CAT54["030"], CAT54["031"], CAT54["032"], CAT54["034"], CAT54["035"], CAT54["036"], CAT54["037"], CAT54["039"], CAT54["040"], CAT54["041"], CAT54["044"], CAT54["045"]];
 function isCat54SelectCode(value) {
   return CAT54_SELECT_CODES.includes(value);
 }
@@ -99,12 +104,17 @@ const CAT54_OPERATION_TYPE = {
   "028": "1003",
   "030": "1001",
   "031": "1001",
+  "032": "1001",
   "034": "1001",
   "035": "1001",
   "036": "1001",
   "037": "1001",
   "039": "1001",
   "040": "1001",
+  "041": "1001",
+  "044": "1001",
+  "045": "1001",
+  "099": "1001",
 };
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) → porcentaje. */
@@ -118,17 +128,17 @@ const CAT54_PORCENTAJE = {
   "008": 4,
   "009": 10,
   "010": 15,
-  "011": null,
-  "012": 10,
+  "011": 10,
+  "012": 12,
   "013": null,
   "014": 4,
   "015": null,
-  "016": null,
+  "016": 10,
   "017": 4,
   "019": 10,
-  "020": 10,
+  "020": 12,
   "021": 10,
-  "022": 10,
+  "022": 12,
   "023": 4,
   "024": 10,
   "025": 10,
@@ -137,25 +147,30 @@ const CAT54_PORCENTAJE = {
   "028": null,
   "030": 4,
   "031": 10,
+  "032": 10,
   "034": 10,
   "035": 1.5,
   "036": 1.5,
-  "037": 10,
+  "037": 12,
   "039": 10,
   "040": 4,
+  "041": 15,
+  "044": 12,
+  "045": 10,
+  "099": null,
 };
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) → umbral. */
 const CAT54_UMBRAL = {
-  "001": 700,
+  "001": 2750,
   "002": 700,
-  "003": 700,
+  "003": 2750,
   "004": 700,
   "005": 700,
   "007": 700,
   "008": 700,
   "009": 700,
-  "010": 700,
+  "010": 0,
   "011": 700,
   "012": 700,
   "013": 700,
@@ -174,13 +189,18 @@ const CAT54_UMBRAL = {
   "027": 400,
   "028": 700,
   "030": 700,
-  "031": 700,
-  "034": 700,
+  "031": 0,
+  "032": 700,
+  "034": 2750,
   "035": 700,
-  "036": 700,
+  "036": 0,
   "037": 700,
   "039": 700,
   "040": 0,
+  "041": 700,
+  "044": 700,
+  "045": 2750,
+  "099": 700,
 };
 
 module.exports = { CAT54_CODES, CAT54, CAT54_ENTRIES, isCat54Code, cat54, CAT54_EMIT_CODES, CAT54_EMIT_ENTRIES, isCat54EmitCode, CAT54_SELECT_CODES, CAT54_SELECT_ENTRIES, isCat54SelectCode, CAT54_PINNED_OPERATION_TYPE_CODES, CAT54_OPERATION_TYPE, CAT54_PORCENTAJE, CAT54_UMBRAL };

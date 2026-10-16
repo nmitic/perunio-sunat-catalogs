@@ -160,6 +160,23 @@ names, route paths, UI ordering, currency symbols, prose help text, English
 labels. `meta/catalog.schema.json` sets `additionalProperties: false` to keep them
 out.
 
+## Sources
+
+Each file's `source` names its authority. As of v1.2.0:
+
+| catálogos | authority |
+|---|---|
+| Cat.01–16, 51–54 | 'Catálogos' sheet of `perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx` |
+| Cat.18, 20, and how a guía sees Cat.01 and 06 | 'Catálogos' sheet of `perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx` |
+| Cat.05 `taxCategoryId` | 'Valor de Códigos cbc:ID Catálogo N° 05' tables of `perunio-facturador/resources/guias/guia-xml-factura-2.1-2017-05.pdf` |
+| Cat.54 `porcentaje`, `umbral` | R.S. 183-2004/SUNAT and its modifications (071-2018, 082-2018, 000086-2025). No workbook publishes them |
+
+SUNAT marks pending changes in the workbook itself. Text or a código that leaves
+on a future date is struck through, and the *Control de Cambios* sheet gives the
+date. A catálogo here keeps what is in force today, and its `source` says what
+changes and when. Read the workbook with something that sees strikethrough: a
+plain export merges the old text and the new.
+
 ## Changing a catalog
 
 ```bash

@@ -5,7 +5,7 @@ package sunat
 
 // Cat.08 — Sistema de Cálculo del ISC.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 08, from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 119-121). The descripciones are the anexo's verbatim, citing the Apéndice IV literales; they used to be our own explanatory prose, which read better but was not what SUNAT wrote. The código reaches the wire as cbc:TierRange on the line's ISC cac:TaxCategory. The two flags encode what refineIscRules in perunio-backend/src/utils/isc.ts already enforced: sistemas 01 and 03 need a tasa, sistema 02 needs a monto and a unidad de medida. That unidad is a Cat.03 subset, marked there with the `isc-unit` capability rather than forked into a list of its own.
+// Source: Anexo 8 (catálogo 08) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx. The descripciones are the anexo's verbatim, citing the Apéndice IV literales; they were once our own explanatory prose, which read better but was not what SUNAT wrote. The código reaches the wire as cbc:TierRange on the line's ISC cac:TaxCategory. The two flags encode what refineIscRules in perunio-backend/src/utils/isc.ts already enforced: sistemas 01 and 03 need a tasa, sistema 02 needs a monto and a unidad de medida. That unidad is a Cat.03 subset, marked there with the `isc-unit` capability rather than forked into a list of its own.
 const (
 	// Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)
 	Cat08AlValor = "01"

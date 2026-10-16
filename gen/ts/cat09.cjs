@@ -9,7 +9,7 @@ const CAT09_CODES = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
 const CAT09 = {
   "01": { code: "01", label: "Anulación de la operación", description: "Anulación de la operación" },
   "02": { code: "02", label: "Anulación por error en el RUC", description: "Anulación por error en el RUC" },
-  "03": { code: "03", label: "Corrección por error en la descripción", description: "Corrección por error en la descripción" },
+  "03": { code: "03", label: "Corrección por error en la descripción", description: "Corrección por error en la descripción o atención de reclamo respecto de bienes adquiridos o servicios prestados" },
   "04": { code: "04", label: "Descuento global", description: "Descuento global" },
   "05": { code: "05", label: "Descuento por ítem", description: "Descuento por ítem" },
   "06": { code: "06", label: "Devolución total", description: "Devolución total" },

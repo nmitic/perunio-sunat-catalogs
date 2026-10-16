@@ -5,9 +5,9 @@ package sunat
 
 // Cat.51 — Tipo de Operación.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one. `on-factura` and `on-boleta` are a straight transcription of the anexo's 'Tipo de Comprobante asociado' column: 0112 is factura-only and 0113 is boleta-only, everything else carries both. 0104 mirrors 0101 because that is what it becomes on the wire; the two `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a factura can still declare 0113. Wiring that up is a behaviour change and needs a beta CDR behind it.
+// Source: Anexo 8 (catálogo 51) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: 31 códigos, all here, plus four that are not in it. 0102, 0103 and 0303 are `retired`: SUNAT withdrew them — 0303 (pago de regalía petrolera) went with the 2019 migration of the documentos autorizados (Control de Cambios of 24.06.2019) — and a comprobante declaring one is rejected with ERROR 3206, but historical documents carry them. 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. `on-factura` and `on-boleta` transcribe the workbook's 'Tipo de Comprobante asociado' column, which ERROR 3206 enforces per tipo de documento: 0112, 0202, 0205, 2002 and 2106 are factura-only, 0113 and 2105 boleta-only, and 0501-0503 belong to the liquidación de compra (Cat.01 04), so they carry neither. 0202 and 0205 lost `on-boleta` in v1.2.0: the anexo that v1.1.0 was checked against still allowed boletas. 0104 mirrors 0101 because that is what it becomes on the wire; the `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a boleta can still declare 0202. Wiring that up is a behaviour change and needs a beta CDR behind it. The códigos added in v1.2.0 (0501-0503, 2002, 2100-2106) are display-only: this platform issues none of those operaciones. 0101's descripción has been 'Venta interna no sujeta a Detracción o Percepción' since 2026-08-01. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one.
 const (
-	// Venta interna
+	// Venta interna no sujeta a Detracción o Percepción
 	Cat51VentaInterna = "0101"
 	// Venta Interna - Sustenta Gastos Deducibles Persona Natural
 	Cat51VentaInternaGastosDeducibles = "0112"
@@ -35,10 +35,16 @@ const (
 	Cat51CartaPorteAereo = "0301"
 	// Operaciones de Transporte ferroviario de pasajeros
 	Cat51TransporteFerroviario = "0302"
-	// Operaciones de Pago de regalía petrolera
+	// Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206
 	Cat51RegaliaPetrolera = "0303"
 	// Ventas no domiciliados que no califican como exportación
 	Cat51VentaNoDomiciliados = "0401"
+	// Compra interna
+	Cat51CompraInterna = "0501"
+	// Anticipos
+	Cat51AnticiposLiquidacionCompra = "0502"
+	// Compra de oro
+	Cat51CompraOro = "0503"
 	// Operación Sujeta a Detracción
 	Cat51DetraccionGeneral = "1001"
 	// Operación Sujeta a Detracción- Recursos Hidrobiológicos
@@ -49,6 +55,22 @@ const (
 	Cat51DetraccionTransporteCarga = "1004"
 	// Operación Sujeta a Percepción
 	Cat51Percepcion = "2001"
+	// Operación sujeta a Retención de Renta de segunda categoría
+	Cat51RetencionRentaSegunda = "2002"
+	// Créditos a empresas
+	Cat51CreditosEmpresas = "2100"
+	// Créditos de consumo revolvente
+	Cat51CreditosConsumoRevolvente = "2101"
+	// Créditos de consumo no revolvente
+	Cat51CreditosConsumoNoRevolvente = "2102"
+	// Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público
+	Cat51NoGravadasSistemaFinanciero = "2103"
+	// Otras operaciones no gravadas - Empresas del sistema de seguros
+	Cat51NoGravadasSeguros = "2104"
+	// Comprobante emitido por AFP
+	Cat51ComprobanteAFP = "2105"
+	// Venta Nacional a Turistas - Tax Free
+	Cat51TaxFree = "2106"
 	// Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206
 	Cat51ExportBienesRetirado = "0102"
 	// Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206
@@ -85,18 +107,29 @@ var Cat51Codes = []string{
 	"0302",
 	"0303",
 	"0401",
+	"0501",
+	"0502",
+	"0503",
 	"1001",
 	"1002",
 	"1003",
 	"1004",
 	"2001",
+	"2002",
+	"2100",
+	"2101",
+	"2102",
+	"2103",
+	"2104",
+	"2105",
+	"2106",
 	"0102",
 	"0103",
 	"0104",
 }
 
 var cat51 = map[string]Cat51Entry{
-	"0101": {Code: "0101", Label: "Venta interna", Description: "Venta interna", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"0101": {Code: "0101", Label: "Venta interna", Description: "Venta interna no sujeta a Detracción o Percepción", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0112": {Code: "0112", Label: "Venta interna - sustenta gastos deducibles persona natural", Description: "Venta Interna - Sustenta Gastos Deducibles Persona Natural", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0113": {Code: "0113", Label: "Venta interna - NRUS", Description: "Venta Interna-NRUS", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0200": {Code: "0200", Label: "Exportación de bienes", Description: "Exportación de Bienes", Detraccion: false, Exportacion: true, WireEquivalent: ""},
@@ -110,13 +143,24 @@ var cat51 = map[string]Cat51Entry{
 	"0208": {Code: "0208", Label: "Exportación de servicios - prestados parcialmente en el extranjero", Description: "Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero", Detraccion: false, Exportacion: true, WireEquivalent: ""},
 	"0301": {Code: "0301", Label: "Operaciones con carta de porte aéreo nacional", Description: "Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0302": {Code: "0302", Label: "Transporte ferroviario de pasajeros", Description: "Operaciones de Transporte ferroviario de pasajeros", Detraccion: false, Exportacion: false, WireEquivalent: ""},
-	"0303": {Code: "0303", Label: "Pago de regalía petrolera", Description: "Operaciones de Pago de regalía petrolera", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"0303": {Code: "0303", Label: "Pago de regalía petrolera (retirado)", Description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0401": {Code: "0401", Label: "Ventas a no domiciliados que no califican como exportación", Description: "Ventas no domiciliados que no califican como exportación", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"0501": {Code: "0501", Label: "Compra interna", Description: "Compra interna", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"0502": {Code: "0502", Label: "Anticipos (liquidación de compra)", Description: "Anticipos", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"0503": {Code: "0503", Label: "Compra de oro", Description: "Compra de oro", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"1001": {Code: "1001", Label: "Operación sujeta a detracción", Description: "Operación Sujeta a Detracción", Detraccion: true, Exportacion: false, WireEquivalent: ""},
 	"1002": {Code: "1002", Label: "Detracción - recursos hidrobiológicos", Description: "Operación Sujeta a Detracción- Recursos Hidrobiológicos", Detraccion: true, Exportacion: false, WireEquivalent: ""},
 	"1003": {Code: "1003", Label: "Detracción - transporte de pasajeros", Description: "Operación Sujeta a Detracción- Servicios de Transporte Pasajeros", Detraccion: true, Exportacion: false, WireEquivalent: ""},
 	"1004": {Code: "1004", Label: "Detracción - transporte de carga", Description: "Operación Sujeta a Detracción- Servicios de Transporte Carga", Detraccion: true, Exportacion: false, WireEquivalent: ""},
 	"2001": {Code: "2001", Label: "Operación sujeta a percepción", Description: "Operación Sujeta a Percepción", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2002": {Code: "2002", Label: "Retención de renta de segunda categoría", Description: "Operación sujeta a Retención de Renta de segunda categoría", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2100": {Code: "2100", Label: "Créditos a empresas", Description: "Créditos a empresas", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2101": {Code: "2101", Label: "Créditos de consumo revolvente", Description: "Créditos de consumo revolvente", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2102": {Code: "2102", Label: "Créditos de consumo no revolvente", Description: "Créditos de consumo no revolvente", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2103": {Code: "2103", Label: "Otras no gravadas - sistema financiero", Description: "Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2104": {Code: "2104", Label: "Otras no gravadas - sistema de seguros", Description: "Otras operaciones no gravadas - Empresas del sistema de seguros", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2105": {Code: "2105", Label: "Comprobante emitido por AFP", Description: "Comprobante emitido por AFP", Detraccion: false, Exportacion: false, WireEquivalent: ""},
+	"2106": {Code: "2106", Label: "Venta nacional a turistas - Tax Free", Description: "Venta Nacional a Turistas - Tax Free", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0102": {Code: "0102", Label: "Exportación de bienes (retirado)", Description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0103": {Code: "0103", Label: "Operaciones con no domiciliados (retirado)", Description: "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206", Detraccion: false, Exportacion: false, WireEquivalent: ""},
 	"0104": {Code: "0104", Label: "Factura de anticipo (marcador interno)", Description: "Marcador Perunio para una factura de anticipo. Retirado del catálogo 51, así que se almacena y reporta pero viaja como 0101", Detraccion: false, Exportacion: false, WireEquivalent: "0101"},
@@ -150,7 +194,6 @@ var Cat51EmitCodes = []string{
 	"0208",
 	"0301",
 	"0302",
-	"0303",
 	"0401",
 	"1001",
 	"1002",
@@ -174,7 +217,6 @@ var cat51EmitSet = map[string]struct{}{
 	"0208": {},
 	"0301": {},
 	"0302": {},
-	"0303": {},
 	"0401": {},
 	"1001": {},
 	"1002": {},
@@ -210,22 +252,25 @@ var Cat51OnBoletaCodes = []string{
 	"0113",
 	"0200",
 	"0201",
-	"0202",
 	"0203",
 	"0204",
-	"0205",
 	"0206",
 	"0207",
 	"0208",
 	"0301",
 	"0302",
-	"0303",
 	"0401",
 	"1001",
 	"1002",
 	"1003",
 	"1004",
 	"2001",
+	"2100",
+	"2101",
+	"2102",
+	"2103",
+	"2104",
+	"2105",
 	"0104",
 }
 
@@ -234,22 +279,25 @@ var cat51OnBoletaSet = map[string]struct{}{
 	"0113": {},
 	"0200": {},
 	"0201": {},
-	"0202": {},
 	"0203": {},
 	"0204": {},
-	"0205": {},
 	"0206": {},
 	"0207": {},
 	"0208": {},
 	"0301": {},
 	"0302": {},
-	"0303": {},
 	"0401": {},
 	"1001": {},
 	"1002": {},
 	"1003": {},
 	"1004": {},
 	"2001": {},
+	"2100": {},
+	"2101": {},
+	"2102": {},
+	"2103": {},
+	"2104": {},
+	"2105": {},
 	"0104": {},
 }
 
@@ -274,13 +322,19 @@ var Cat51OnFacturaCodes = []string{
 	"0208",
 	"0301",
 	"0302",
-	"0303",
 	"0401",
 	"1001",
 	"1002",
 	"1003",
 	"1004",
 	"2001",
+	"2002",
+	"2100",
+	"2101",
+	"2102",
+	"2103",
+	"2104",
+	"2106",
 	"0104",
 }
 
@@ -298,13 +352,19 @@ var cat51OnFacturaSet = map[string]struct{}{
 	"0208": {},
 	"0301": {},
 	"0302": {},
-	"0303": {},
 	"0401": {},
 	"1001": {},
 	"1002": {},
 	"1003": {},
 	"1004": {},
 	"2001": {},
+	"2002": {},
+	"2100": {},
+	"2101": {},
+	"2102": {},
+	"2103": {},
+	"2104": {},
+	"2106": {},
 	"0104": {},
 }
 
@@ -316,11 +376,13 @@ func Cat51OnFactura(code string) bool {
 
 // Cat51RetiredCodes lists the Cat.51 codes with the "retired" capability.
 var Cat51RetiredCodes = []string{
+	"0303",
 	"0102",
 	"0103",
 }
 
 var cat51RetiredSet = map[string]struct{}{
+	"0303": {},
 	"0102": {},
 	"0103": {},
 }

@@ -5,7 +5,7 @@ package sunat
 
 // Cat.53 — Código de Cargo o Descuento.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 53, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (16 códigos), including the 'Nivel' column the anexo publishes — props.nivel is Item or Global and decides whether the cac:AllowanceCharge hangs off a line or the document. flags.afectaBase is the other half of every descripción and is what SUNAT reconciles the base imponible against. Only 00 (descuento por ítem), 02 (descuento global) and 04 (anticipos gravados) carry `emit`: those are the three this pipeline builds. The rest are display-only until it does.
+// Source: Anexo 8 (catálogo 53) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: 22 códigos, all here, including the 'Nivel' column the workbook publishes — props.nivel is Item or Global and decides whether the cac:AllowanceCharge hangs off a line or the document (OBSERV 4268 and 4291 otherwise). flags.esCargo is the cbc:ChargeIndicator SUNAT requires for the código — true for 45-54, false for 00-07, 20 and 61-63 (ERROR 3114 on facturas, boletas and liquidaciones de compra; 2585 on a DAE sub-line). Until v1.2.0 it was false for 45, 46, 51, 52 and 53, which would have drawn 3114 from anything that trusted it; nothing did. flags.afectaBase marks the códigos SUNAT adds to or deducts from the base imponible del IGV/IVAP: the five whose descripción says so (00, 02, 04, 47, 49) and the DAE factors 07 and 54 (OBSERV 4355). 20 (anticipo de ISC) reduces the ISC total instead (ERROR 3298). Only 00 (descuento por ítem), 02 (descuento global) and 04 (anticipos gravados) carry `emit`: those are the three this pipeline builds. The rest are display-only until it does — 07 and 54 belong to the DAE-Operador, 61 to the liquidación de compra, and 62 and 63 are the retenciones a factura may declare.
 const (
 	// Descuentos que afectan la base imponible del IGV/IVAP
 	Cat53DescuentoItem = "00"
@@ -21,6 +21,10 @@ const (
 	Cat53AnticipoExonerado = "05"
 	// Descuentos globales por anticipos inafectos
 	Cat53AnticipoInafecto = "06"
+	// Factor de compensación - Decreto de urgencia N. 010-2004
+	Cat53FactorCompensacion = "07"
+	// Anticipo de ISC
+	Cat53AnticipoISC = "20"
 	// FISE
 	Cat53FISE = "45"
 	// Recargo al consumo y/o propinas
@@ -39,6 +43,14 @@ const (
 	Cat53PercepcionCombustible = "52"
 	// Percepción realizada al agente de percepción con tasa especial
 	Cat53PercepcionTasaEspecial = "53"
+	// Factor de aportación - Decreto de urgencia N. 010-2004
+	Cat53FactorAportacion = "54"
+	// Retención de renta por anticipos
+	Cat53RetencionRentaAnticipos = "61"
+	// Retención del IGV
+	Cat53RetencionIGV = "62"
+	// Rentención de renta de segunda categoría
+	Cat53RetencionRentaSegunda = "63"
 )
 
 // Cat53Entry describes one Cat.53 code.
@@ -60,6 +72,8 @@ var Cat53Codes = []string{
 	"04",
 	"05",
 	"06",
+	"07",
+	"20",
 	"45",
 	"46",
 	"47",
@@ -69,6 +83,10 @@ var Cat53Codes = []string{
 	"51",
 	"52",
 	"53",
+	"54",
+	"61",
+	"62",
+	"63",
 }
 
 var cat53 = map[string]Cat53Entry{
@@ -79,15 +97,21 @@ var cat53 = map[string]Cat53Entry{
 	"04": {Code: "04", Label: "Descuento global por anticipos gravados", Description: "Descuentos globales por anticipos gravados que afectan la base imponible del IGV/IVAP", AfectaBase: true, EsCargo: false, Nivel: "Global"},
 	"05": {Code: "05", Label: "Descuento global por anticipos exonerados", Description: "Descuentos globales por anticipos exonerados", AfectaBase: false, EsCargo: false, Nivel: "Global"},
 	"06": {Code: "06", Label: "Descuento global por anticipos inafectos", Description: "Descuentos globales por anticipos inafectos", AfectaBase: false, EsCargo: false, Nivel: "Global"},
-	"45": {Code: "45", Label: "FISE", Description: "FISE", AfectaBase: false, EsCargo: false, Nivel: "Global"},
-	"46": {Code: "46", Label: "Recargo al consumo y/o propinas", Description: "Recargo al consumo y/o propinas", AfectaBase: false, EsCargo: false, Nivel: "Global"},
+	"07": {Code: "07", Label: "Factor de compensación (DU 010-2004)", Description: "Factor de compensación - Decreto de urgencia N. 010-2004", AfectaBase: true, EsCargo: false, Nivel: "Item"},
+	"20": {Code: "20", Label: "Anticipo de ISC", Description: "Anticipo de ISC", AfectaBase: false, EsCargo: false, Nivel: "Global"},
+	"45": {Code: "45", Label: "FISE", Description: "FISE", AfectaBase: false, EsCargo: true, Nivel: "Global"},
+	"46": {Code: "46", Label: "Recargo al consumo y/o propinas", Description: "Recargo al consumo y/o propinas", AfectaBase: false, EsCargo: true, Nivel: "Global"},
 	"47": {Code: "47", Label: "Cargo por ítem", Description: "Cargos que afectan la base imponible del IGV/IVAP", AfectaBase: true, EsCargo: true, Nivel: "Item"},
 	"48": {Code: "48", Label: "Cargo por ítem (no afecta base)", Description: "Cargos que no afectan la base imponible del IGV/IVAP", AfectaBase: false, EsCargo: true, Nivel: "Item"},
 	"49": {Code: "49", Label: "Cargo global", Description: "Cargos globales que afectan la base imponible del IGV/IVAP", AfectaBase: true, EsCargo: true, Nivel: "Global"},
 	"50": {Code: "50", Label: "Cargo global (no afecta base)", Description: "Cargos globales que no afectan la base imponible del IGV/IVAP", AfectaBase: false, EsCargo: true, Nivel: "Global"},
-	"51": {Code: "51", Label: "Percepción venta interna", Description: "Percepción venta interna", AfectaBase: false, EsCargo: false, Nivel: "Global"},
-	"52": {Code: "52", Label: "Percepción a la adquisición de combustible", Description: "Percepción a la adquisición de combustible", AfectaBase: false, EsCargo: false, Nivel: "Global"},
-	"53": {Code: "53", Label: "Percepción con tasa especial", Description: "Percepción realizada al agente de percepción con tasa especial", AfectaBase: false, EsCargo: false, Nivel: "Global"},
+	"51": {Code: "51", Label: "Percepción venta interna", Description: "Percepción venta interna", AfectaBase: false, EsCargo: true, Nivel: "Global"},
+	"52": {Code: "52", Label: "Percepción a la adquisición de combustible", Description: "Percepción a la adquisición de combustible", AfectaBase: false, EsCargo: true, Nivel: "Global"},
+	"53": {Code: "53", Label: "Percepción con tasa especial", Description: "Percepción realizada al agente de percepción con tasa especial", AfectaBase: false, EsCargo: true, Nivel: "Global"},
+	"54": {Code: "54", Label: "Factor de aportación (DU 010-2004)", Description: "Factor de aportación - Decreto de urgencia N. 010-2004", AfectaBase: true, EsCargo: true, Nivel: "Item"},
+	"61": {Code: "61", Label: "Retención de renta por anticipos", Description: "Retención de renta por anticipos", AfectaBase: false, EsCargo: false, Nivel: "Global"},
+	"62": {Code: "62", Label: "Retención del IGV", Description: "Retención del IGV", AfectaBase: false, EsCargo: false, Nivel: "Global"},
+	"63": {Code: "63", Label: "Retención de renta de segunda categoría", Description: "Rentención de renta de segunda categoría", AfectaBase: false, EsCargo: false, Nivel: "Global"},
 }
 
 // Cat53 returns the entry for code and whether it is a known Cat.53 code.

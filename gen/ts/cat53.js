@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Código de Cargo o Descuento — SUNAT catálogo 53. */
-const CAT53_CODES = ["00", "01", "02", "03", "04", "05", "06", "45", "46", "47", "48", "49", "50", "51", "52", "53"];
+const CAT53_CODES = ["00", "01", "02", "03", "04", "05", "06", "07", "20", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "61", "62", "63"];
 
 const CAT53 = {
   "00": { code: "00", label: "Descuento por ítem", description: "Descuentos que afectan la base imponible del IGV/IVAP", afectaBase: true, esCargo: false, nivel: "Item" },
@@ -12,19 +12,25 @@ const CAT53 = {
   "04": { code: "04", label: "Descuento global por anticipos gravados", description: "Descuentos globales por anticipos gravados que afectan la base imponible del IGV/IVAP", afectaBase: true, esCargo: false, nivel: "Global" },
   "05": { code: "05", label: "Descuento global por anticipos exonerados", description: "Descuentos globales por anticipos exonerados", afectaBase: false, esCargo: false, nivel: "Global" },
   "06": { code: "06", label: "Descuento global por anticipos inafectos", description: "Descuentos globales por anticipos inafectos", afectaBase: false, esCargo: false, nivel: "Global" },
-  "45": { code: "45", label: "FISE", description: "FISE", afectaBase: false, esCargo: false, nivel: "Global" },
-  "46": { code: "46", label: "Recargo al consumo y/o propinas", description: "Recargo al consumo y/o propinas", afectaBase: false, esCargo: false, nivel: "Global" },
+  "07": { code: "07", label: "Factor de compensación (DU 010-2004)", description: "Factor de compensación - Decreto de urgencia N. 010-2004", afectaBase: true, esCargo: false, nivel: "Item" },
+  "20": { code: "20", label: "Anticipo de ISC", description: "Anticipo de ISC", afectaBase: false, esCargo: false, nivel: "Global" },
+  "45": { code: "45", label: "FISE", description: "FISE", afectaBase: false, esCargo: true, nivel: "Global" },
+  "46": { code: "46", label: "Recargo al consumo y/o propinas", description: "Recargo al consumo y/o propinas", afectaBase: false, esCargo: true, nivel: "Global" },
   "47": { code: "47", label: "Cargo por ítem", description: "Cargos que afectan la base imponible del IGV/IVAP", afectaBase: true, esCargo: true, nivel: "Item" },
   "48": { code: "48", label: "Cargo por ítem (no afecta base)", description: "Cargos que no afectan la base imponible del IGV/IVAP", afectaBase: false, esCargo: true, nivel: "Item" },
   "49": { code: "49", label: "Cargo global", description: "Cargos globales que afectan la base imponible del IGV/IVAP", afectaBase: true, esCargo: true, nivel: "Global" },
   "50": { code: "50", label: "Cargo global (no afecta base)", description: "Cargos globales que no afectan la base imponible del IGV/IVAP", afectaBase: false, esCargo: true, nivel: "Global" },
-  "51": { code: "51", label: "Percepción venta interna", description: "Percepción venta interna", afectaBase: false, esCargo: false, nivel: "Global" },
-  "52": { code: "52", label: "Percepción a la adquisición de combustible", description: "Percepción a la adquisición de combustible", afectaBase: false, esCargo: false, nivel: "Global" },
-  "53": { code: "53", label: "Percepción con tasa especial", description: "Percepción realizada al agente de percepción con tasa especial", afectaBase: false, esCargo: false, nivel: "Global" },
+  "51": { code: "51", label: "Percepción venta interna", description: "Percepción venta interna", afectaBase: false, esCargo: true, nivel: "Global" },
+  "52": { code: "52", label: "Percepción a la adquisición de combustible", description: "Percepción a la adquisición de combustible", afectaBase: false, esCargo: true, nivel: "Global" },
+  "53": { code: "53", label: "Percepción con tasa especial", description: "Percepción realizada al agente de percepción con tasa especial", afectaBase: false, esCargo: true, nivel: "Global" },
+  "54": { code: "54", label: "Factor de aportación (DU 010-2004)", description: "Factor de aportación - Decreto de urgencia N. 010-2004", afectaBase: true, esCargo: true, nivel: "Item" },
+  "61": { code: "61", label: "Retención de renta por anticipos", description: "Retención de renta por anticipos", afectaBase: false, esCargo: false, nivel: "Global" },
+  "62": { code: "62", label: "Retención del IGV", description: "Retención del IGV", afectaBase: false, esCargo: false, nivel: "Global" },
+  "63": { code: "63", label: "Retención de renta de segunda categoría", description: "Rentención de renta de segunda categoría", afectaBase: false, esCargo: false, nivel: "Global" },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT53. */
-const CAT53_ENTRIES = [CAT53["00"], CAT53["01"], CAT53["02"], CAT53["03"], CAT53["04"], CAT53["05"], CAT53["06"], CAT53["45"], CAT53["46"], CAT53["47"], CAT53["48"], CAT53["49"], CAT53["50"], CAT53["51"], CAT53["52"], CAT53["53"]];
+const CAT53_ENTRIES = [CAT53["00"], CAT53["01"], CAT53["02"], CAT53["03"], CAT53["04"], CAT53["05"], CAT53["06"], CAT53["07"], CAT53["20"], CAT53["45"], CAT53["46"], CAT53["47"], CAT53["48"], CAT53["49"], CAT53["50"], CAT53["51"], CAT53["52"], CAT53["53"], CAT53["54"], CAT53["61"], CAT53["62"], CAT53["63"]];
 
 function isCat53Code(value) {
   return CAT53_CODES.includes(value);
@@ -41,9 +47,9 @@ function isCat53EmitCode(value) {
   return CAT53_EMIT_CODES.includes(value);
 }
 
-const CAT53_AFECTA_BASE_CODES = ["00", "02", "04", "47", "49"];
+const CAT53_AFECTA_BASE_CODES = ["00", "02", "04", "07", "47", "49", "54"];
 
-const CAT53_ES_CARGO_CODES = ["47", "48", "49", "50"];
+const CAT53_ES_CARGO_CODES = ["45", "46", "47", "48", "49", "50", "51", "52", "53", "54"];
 
 /** Código de Cargo o Descuento → nivel. */
 const CAT53_NIVEL = {
@@ -54,6 +60,8 @@ const CAT53_NIVEL = {
   "04": "Global",
   "05": "Global",
   "06": "Global",
+  "07": "Item",
+  "20": "Global",
   "45": "Global",
   "46": "Global",
   "47": "Item",
@@ -63,6 +71,10 @@ const CAT53_NIVEL = {
   "51": "Global",
   "52": "Global",
   "53": "Global",
+  "54": "Item",
+  "61": "Global",
+  "62": "Global",
+  "63": "Global",
 };
 
 export { CAT53_CODES, CAT53, CAT53_ENTRIES, isCat53Code, cat53, CAT53_EMIT_CODES, CAT53_EMIT_ENTRIES, isCat53EmitCode, CAT53_AFECTA_BASE_CODES, CAT53_ES_CARGO_CODES, CAT53_NIVEL };

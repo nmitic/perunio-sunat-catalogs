@@ -5,7 +5,7 @@ package sunat
 
 // Cat.54 — Bienes y Servicios sujetos a Detracción (SPOT).
 //
-// Source: Anexos 2 y 3 del SPOT, catálogo 54, from resources/AnexosIyII_Formato1.3.4.xlsx (34 códigos) — NOT from perunio-frontend/src/data/sunat/detracciones.ts, which disagreed with it systematically. That file's descripciones were shifted across códigos (its 036 is this 031, its 041 is this 036, its 039 is this 040), it carried a código 041 the anexo does not define, it omitted 028 entirely even though the pipeline pins that one to Cat.51 1003, and several rates were the pre-2023 12% where the anexo says 10%. props.porcentaje is null for the six códigos whose Tasa % the anexo leaves blank (002, 011, 013, 015, 016, 028); those carry no `emit` or `select`, because offering a detracción without knowing its rate would guess at money withheld from a supplier. Fill the rate and add the capabilities together. props.umbral is the importe de la operación above which the detracción applies: S/700 by default, S/400 for transporte de carga (027) and none for the primera venta de inmuebles (040). **The umbral is measured against the operación, not against each comprobante** (Informe 103-2013-SUNAT) — that logic stays in resolveDetraccion; only the numbers live here. props.operationType is the Cat.51 código the operación must declare; any other pairing for the three pinned códigos is fault 3129. Reconciliation note: the 34 códigos and all 34 Tasa % values were re-verified against the anexo row by row, with zero mismatches. The claim above that 041 does not exist is true of this anexo only — resources/AjustesValidacionesCPEv20260212.xlsx (2026-02-12) does define 041 (Plomo) plus 032, 044, 045 and 099. They are deliberately not carried here: that workbook publishes no Tasa % column, and a detracción código without a rate cannot be emitted, only listed. Add them together with rates from a SPOT anexo that states them.
+// Source: Códigos from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx (catálogo 54, which is Anexo 4 of R.S. 183-2004/SUNAT). The workbook publishes no rates, so props.porcentaje and props.umbral come from the SPOT itself: R.S. 183-2004/SUNAT and its modifications, as SUNAT's orientación pages state them (orientacion.sunat.gob.pe › Detracciones › '02. En la venta de bienes' and '03. En la prestación de servicios', read 2026-10-15). Corrected in v1.2.0: 012, 020, 022 and 037 (Anexo 3 numerales 1, 3, 5 and 10) are 12%, not 10% — R.S. 071-2018/SUNAT raised them from 2018-04-01, and the 10% was the 2015 rate, copied from the SFS anexo that v1.1.0 was checked against (AnexosIyII_Formato1.3.4.xlsx, perunio-facturador commit b00a315). R.S. 000086-2025/SUNAT added 044 (servicio de beneficio de minerales metálicos, Anexo 3 numeral 11, 12%) and 045 (minerales de oro y sus concentrados, Anexo 1 numeral 3, 10%) from 2025-04-01 and moved 034 to Anexo 1. 011 and 016 have been Anexo 2 numerales 7 and 11 at 10% since R.S. 082-2018/SUNAT; 032 (numeral 17) is 10% and 041 (numeral 23) 15%. 004's 4% applies only when the proveedor appears in SUNAT's 'Listado de proveedores sujetos al SPOT con el porcentaje de 4%'; otherwise it is 10%. props.umbral is the importe de la operación above which the detracción applies: S/700 for Anexos 2 and 3, except Anexo 2 numerales 6, 16 and 21 (010, 031, 036), which apply at any amount (0) — SUNAT's text also excepts numeral 19, which R.S. 000086-2025/SUNAT moved to Anexo 1 as 034; half a UIT for Anexo 1 (001, 003, 034, 045 — R.S. 183-2004 article 2.1), which is 2750 for 2026 (UIT S/5,500, D.S. 301-2025-EF) and must be revised every January; S/400 for transporte de carga (027); and none for the primera venta de inmuebles (040). Article 2.1 also subjects a smaller Anexo 1 operación when one transport unit carries more than half a UIT of such bienes; that is not modelled. **The umbral is measured against the operación, not against each comprobante** (Informe 103-2013-SUNAT) — that logic stays in resolveDetraccion; only the numbers live here. props.porcentaje is null where no SPOT rate applies here: 002 (arroz, under the IVAP's own regime), 013 and 015 (no longer in Anexo 2), 028 (transporte público de pasajeros, its own regime) and 099 (Ley 30737). Those carry no `emit` or `select`, because offering a detracción without knowing its rate would guess at money withheld from a supplier. Fill the rate and add the capabilities together. props.operationType is the Cat.51 código the operación must declare; any other pairing for the three pinned códigos is fault 3129. The workbook also lists 038, 042, 043, 046 and 047 (espectáculos públicos, ladrillos, estructuras metálicas, cobre and plata), but its Control de Cambios strikes through the row that added them and SUNAT's current anexos do not include them, so they are not carried.
 const (
 	// Azúcar y melaza de caña
 	Cat54AzucarYMelazaDeCana = "001"
@@ -63,6 +63,8 @@ const (
 	Cat54ContratosDeConstruccion = "030"
 	// Oro gravado con el IGV
 	Cat54OroGravadoConElIgv = "031"
+	// Paprika y otros frutos de los generos capsicum o pimienta
+	Cat54Paprika = "032"
 	// Minerales metálicos no auríferos
 	Cat54MineralesMetalicosNoAuriferos = "034"
 	// Bienes exonerados del IGV
@@ -75,6 +77,14 @@ const (
 	Cat54MineralesNoMetalicos = "039"
 	// Bien inmueble gravado con IGV
 	Cat54BienInmuebleGravadoConIgv = "040"
+	// Plomo
+	Cat54Plomo = "041"
+	// Servicio de beneficio de minerales metálicos gravado con el IGV
+	Cat54ServicioBeneficioMineralesMetalicos = "044"
+	// Minerales de oro y sus concentrados gravados con el IGV
+	Cat54MineralesDeOroYSusConcentrados = "045"
+	// Ley 30737
+	Cat54Ley30737 = "099"
 )
 
 // Cat54Entry describes one Cat.54 code.
@@ -118,35 +128,40 @@ var Cat54Codes = []string{
 	"028",
 	"030",
 	"031",
+	"032",
 	"034",
 	"035",
 	"036",
 	"037",
 	"039",
 	"040",
+	"041",
+	"044",
+	"045",
+	"099",
 }
 
 var cat54 = map[string]Cat54Entry{
-	"001": {Code: "001", Label: "Azúcar y melaza de caña", Description: "Azúcar y melaza de caña", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"001": {Code: "001", Label: "Azúcar y melaza de caña", Description: "Azúcar y melaza de caña", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 2750},
 	"002": {Code: "002", Label: "Arroz", Description: "Arroz", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
-	"003": {Code: "003", Label: "Alcohol etílico", Description: "Alcohol etílico", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"003": {Code: "003", Label: "Alcohol etílico", Description: "Alcohol etílico", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 2750},
 	"004": {Code: "004", Label: "Recursos hidrobiológicos", Description: "Recursos hidrobiológicos", PinnedOperationType: true, OperationType: "1002", Porcentaje: 4, Umbral: 700},
 	"005": {Code: "005", Label: "Maíz amarillo duro", Description: "Maíz amarillo duro", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
 	"007": {Code: "007", Label: "Caña de azúcar", Description: "Caña de azúcar", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
 	"008": {Code: "008", Label: "Madera", Description: "Madera", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
 	"009": {Code: "009", Label: "Arena y piedra", Description: "Arena y piedra", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
-	"010": {Code: "010", Label: "Residuos, subproductos, desechos, recortes y desperdicios", Description: "Residuos, subproductos, desechos, recortes y desperdicios", PinnedOperationType: false, OperationType: "1001", Porcentaje: 15, Umbral: 700},
-	"011": {Code: "011", Label: "Bienes gravados con el IGV, o renuncia a la exoneración", Description: "Bienes gravados con el IGV, o renuncia a la exoneración", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
-	"012": {Code: "012", Label: "Intermediación laboral y tercerización", Description: "Intermediación laboral y tercerización", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"010": {Code: "010", Label: "Residuos, subproductos, desechos, recortes y desperdicios", Description: "Residuos, subproductos, desechos, recortes y desperdicios", PinnedOperationType: false, OperationType: "1001", Porcentaje: 15, Umbral: 0},
+	"011": {Code: "011", Label: "Bienes gravados con el IGV, o renuncia a la exoneración", Description: "Bienes gravados con el IGV, o renuncia a la exoneración", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"012": {Code: "012", Label: "Intermediación laboral y tercerización", Description: "Intermediación laboral y tercerización", PinnedOperationType: false, OperationType: "1001", Porcentaje: 12, Umbral: 700},
 	"013": {Code: "013", Label: "Animales vivos", Description: "Animales vivos", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
 	"014": {Code: "014", Label: "Carnes y despojos comestibles", Description: "Carnes y despojos comestibles", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
 	"015": {Code: "015", Label: "Abonos, cueros y pieles de origen animal", Description: "Abonos, cueros y pieles de origen animal", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
-	"016": {Code: "016", Label: "Aceite de pescado", Description: "Aceite de pescado", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
+	"016": {Code: "016", Label: "Aceite de pescado", Description: "Aceite de pescado", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
 	"017": {Code: "017", Label: "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados", Description: "Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
 	"019": {Code: "019", Label: "Arrendamiento de bienes muebles", Description: "Arrendamiento de bienes muebles", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
-	"020": {Code: "020", Label: "Mantenimiento y reparación de bienes muebles", Description: "Mantenimiento y reparación de bienes muebles", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"020": {Code: "020", Label: "Mantenimiento y reparación de bienes muebles", Description: "Mantenimiento y reparación de bienes muebles", PinnedOperationType: false, OperationType: "1001", Porcentaje: 12, Umbral: 700},
 	"021": {Code: "021", Label: "Movimiento de carga", Description: "Movimiento de carga", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
-	"022": {Code: "022", Label: "Otros servicios empresariales", Description: "Otros servicios empresariales", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"022": {Code: "022", Label: "Otros servicios empresariales", Description: "Otros servicios empresariales", PinnedOperationType: false, OperationType: "1001", Porcentaje: 12, Umbral: 700},
 	"023": {Code: "023", Label: "Leche", Description: "Leche", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
 	"024": {Code: "024", Label: "Comisión mercantil", Description: "Comisión mercantil", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
 	"025": {Code: "025", Label: "Fabricación de bienes por encargo", Description: "Fabricación de bienes por encargo", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
@@ -154,13 +169,18 @@ var cat54 = map[string]Cat54Entry{
 	"027": {Code: "027", Label: "Servicio de transporte de carga", Description: "Servicio de transporte de carga", PinnedOperationType: true, OperationType: "1004", Porcentaje: 4, Umbral: 400},
 	"028": {Code: "028", Label: "Transporte de pasajeros", Description: "Transporte de pasajeros", PinnedOperationType: true, OperationType: "1003", Porcentaje: 0, Umbral: 700},
 	"030": {Code: "030", Label: "Contratos de construcción", Description: "Contratos de construcción", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 700},
-	"031": {Code: "031", Label: "Oro gravado con el IGV", Description: "Oro gravado con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
-	"034": {Code: "034", Label: "Minerales metálicos no auríferos", Description: "Minerales metálicos no auríferos", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"031": {Code: "031", Label: "Oro gravado con el IGV", Description: "Oro gravado con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 0},
+	"032": {Code: "032", Label: "Paprika y otros frutos de los generos capsicum o pimienta", Description: "Paprika y otros frutos de los generos capsicum o pimienta", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"034": {Code: "034", Label: "Minerales metálicos no auríferos", Description: "Minerales metálicos no auríferos", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 2750},
 	"035": {Code: "035", Label: "Bienes exonerados del IGV", Description: "Bienes exonerados del IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 1.5, Umbral: 700},
-	"036": {Code: "036", Label: "Oro y demás minerales metálicos exonerados del IGV", Description: "Oro y demás minerales metálicos exonerados del IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 1.5, Umbral: 700},
-	"037": {Code: "037", Label: "Demás servicios gravados con el IGV", Description: "Demás servicios gravados con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
+	"036": {Code: "036", Label: "Oro y demás minerales metálicos exonerados del IGV", Description: "Oro y demás minerales metálicos exonerados del IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 1.5, Umbral: 0},
+	"037": {Code: "037", Label: "Demás servicios gravados con el IGV", Description: "Demás servicios gravados con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 12, Umbral: 700},
 	"039": {Code: "039", Label: "Minerales no metálicos", Description: "Minerales no metálicos", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 700},
 	"040": {Code: "040", Label: "Bien inmueble gravado con IGV", Description: "Bien inmueble gravado con IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 4, Umbral: 0},
+	"041": {Code: "041", Label: "Plomo", Description: "Plomo", PinnedOperationType: false, OperationType: "1001", Porcentaje: 15, Umbral: 700},
+	"044": {Code: "044", Label: "Servicio de beneficio de minerales metálicos gravado con el IGV", Description: "Servicio de beneficio de minerales metálicos gravado con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 12, Umbral: 700},
+	"045": {Code: "045", Label: "Minerales de oro y sus concentrados gravados con el IGV", Description: "Minerales de oro y sus concentrados gravados con el IGV", PinnedOperationType: false, OperationType: "1001", Porcentaje: 10, Umbral: 2750},
+	"099": {Code: "099", Label: "Ley 30737", Description: "Ley 30737", PinnedOperationType: false, OperationType: "1001", Porcentaje: 0, Umbral: 700},
 }
 
 // Cat54 returns the entry for code and whether it is a known Cat.54 code.
@@ -185,8 +205,10 @@ var Cat54EmitCodes = []string{
 	"008",
 	"009",
 	"010",
+	"011",
 	"012",
 	"014",
+	"016",
 	"017",
 	"019",
 	"020",
@@ -199,12 +221,16 @@ var Cat54EmitCodes = []string{
 	"027",
 	"030",
 	"031",
+	"032",
 	"034",
 	"035",
 	"036",
 	"037",
 	"039",
 	"040",
+	"041",
+	"044",
+	"045",
 }
 
 var cat54EmitSet = map[string]struct{}{
@@ -216,8 +242,10 @@ var cat54EmitSet = map[string]struct{}{
 	"008": {},
 	"009": {},
 	"010": {},
+	"011": {},
 	"012": {},
 	"014": {},
+	"016": {},
 	"017": {},
 	"019": {},
 	"020": {},
@@ -230,12 +258,16 @@ var cat54EmitSet = map[string]struct{}{
 	"027": {},
 	"030": {},
 	"031": {},
+	"032": {},
 	"034": {},
 	"035": {},
 	"036": {},
 	"037": {},
 	"039": {},
 	"040": {},
+	"041": {},
+	"044": {},
+	"045": {},
 }
 
 // Cat54Emit reports whether code has the "emit" capability: the facturador may put it on the wire.
@@ -254,8 +286,10 @@ var Cat54SelectCodes = []string{
 	"008",
 	"009",
 	"010",
+	"011",
 	"012",
 	"014",
+	"016",
 	"017",
 	"019",
 	"020",
@@ -268,12 +302,16 @@ var Cat54SelectCodes = []string{
 	"027",
 	"030",
 	"031",
+	"032",
 	"034",
 	"035",
 	"036",
 	"037",
 	"039",
 	"040",
+	"041",
+	"044",
+	"045",
 }
 
 var cat54SelectSet = map[string]struct{}{
@@ -285,8 +323,10 @@ var cat54SelectSet = map[string]struct{}{
 	"008": {},
 	"009": {},
 	"010": {},
+	"011": {},
 	"012": {},
 	"014": {},
+	"016": {},
 	"017": {},
 	"019": {},
 	"020": {},
@@ -299,12 +339,16 @@ var cat54SelectSet = map[string]struct{}{
 	"027": {},
 	"030": {},
 	"031": {},
+	"032": {},
 	"034": {},
 	"035": {},
 	"036": {},
 	"037": {},
 	"039": {},
 	"040": {},
+	"041": {},
+	"044": {},
+	"045": {},
 }
 
 // Cat54Select reports whether code has the "select" capability: the issuance UI may offer it.

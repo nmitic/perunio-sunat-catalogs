@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Código de Leyenda — SUNAT catálogo 52. */
-const CAT52_CODES = ["1000", "1002", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011"];
+const CAT52_CODES = ["1000", "1002", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012"];
 
 const CAT52 = {
   "1000": { code: "1000", label: "Monto en letras", description: "Monto en Letras", texto: null },
@@ -19,10 +19,11 @@ const CAT52 = {
   "2009": { code: "2009", label: "Primera venta de mercancía identificable", description: "Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”", texto: null },
   "2010": { code: "2010", label: "Restitución simplificada de derechos arancelarios", description: "Restitucion Simplificado de Derechos Arancelarios", texto: null },
   "2011": { code: "2011", label: "Exportación de servicios - D.L. 919", description: "Leyenda “EXPORTACION DE SERVICIOS - DECRETO LEGISLATIVO Nº 919”", texto: null },
+  "2012": { code: "2012", label: "Observaciones del traslado de mercaderías", description: "Observaciones relacionadas con el traslado de mercaderías", texto: null },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT52. */
-const CAT52_ENTRIES = [CAT52["1000"], CAT52["1002"], CAT52["2000"], CAT52["2001"], CAT52["2002"], CAT52["2003"], CAT52["2004"], CAT52["2005"], CAT52["2006"], CAT52["2007"], CAT52["2008"], CAT52["2009"], CAT52["2010"], CAT52["2011"]];
+const CAT52_ENTRIES = [CAT52["1000"], CAT52["1002"], CAT52["2000"], CAT52["2001"], CAT52["2002"], CAT52["2003"], CAT52["2004"], CAT52["2005"], CAT52["2006"], CAT52["2007"], CAT52["2008"], CAT52["2009"], CAT52["2010"], CAT52["2011"], CAT52["2012"]];
 
 function isCat52Code(value) {
   return CAT52_CODES.includes(value);
@@ -55,6 +56,7 @@ const CAT52_TEXTO = {
   "2009": null,
   "2010": null,
   "2011": null,
+  "2012": null,
 };
 
 export { CAT52_CODES, CAT52, CAT52_ENTRIES, isCat52Code, cat52, CAT52_EMIT_CODES, CAT52_EMIT_ENTRIES, isCat52EmitCode, CAT52_TEXTO };

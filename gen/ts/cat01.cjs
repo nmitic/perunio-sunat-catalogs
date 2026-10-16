@@ -4,7 +4,7 @@
 'use strict';
 
 /** Tipo de Documento — SUNAT catálogo 01. */
-const CAT01_CODES = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "11", "12", "13", "14", "15", "16", "18", "19", "20", "21", "23", "24", "28", "29", "30", "31", "32", "34", "35", "36", "37", "40", "41", "42", "43", "45", "55", "56", "71", "72", "87", "88"];
+const CAT01_CODES = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "11", "12", "13", "14", "15", "16", "18", "19", "20", "21", "23", "24", "25", "28", "29", "30", "31", "32", "34", "35", "36", "37", "40", "41", "42", "43", "45", "55", "56", "71", "72", "87", "88"];
 
 const CAT01 = {
   "01": { code: "01", label: "Factura", description: "Factura", guia: false, nota: false },
@@ -28,6 +28,7 @@ const CAT01 = {
   "21": { code: "21", label: "Conocimiento de embarque marítimo", description: "Conocimiento de embarque por el servicio de transporte de carga marítima", guia: false, nota: false },
   "23": { code: "23", label: "Póliza de adjudicación", description: "Pólizas de Adjudicación por remate o adjudicación de bienes", guia: false, nota: false },
   "24": { code: "24", label: "Certificado de regalías PERUPETRO", description: "Certificado de pago de regalías emitidas por PERUPETRO S.A.", guia: false, nota: false },
+  "25": { code: "25", label: "Documento de atribución", description: "Documento de atribución", guia: false, nota: false },
   "28": { code: "28", label: "Etiqueta TUUA", description: "Etiquetas por el pago de la Tarifa Unificada de Uso de Aeropuerto – TUUA", guia: false, nota: false },
   "29": { code: "29", label: "Documento de COFOPRI", description: "Documentos emitidos por la COFOPRI", guia: false, nota: false },
   "30": { code: "30", label: "Documento de rol adquirente", description: "Documentos emitidos por las empresas que desempeñan el rol adquirente en los sistemas de pago mediante tarjetas de crédito y débito, emitidas por bancos e instituciones financieras o crediticias, domiciliados o no en el país.", guia: false, nota: false },
@@ -51,7 +52,7 @@ const CAT01 = {
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT01. */
-const CAT01_ENTRIES = [CAT01["01"], CAT01["02"], CAT01["03"], CAT01["04"], CAT01["05"], CAT01["06"], CAT01["07"], CAT01["08"], CAT01["09"], CAT01["11"], CAT01["12"], CAT01["13"], CAT01["14"], CAT01["15"], CAT01["16"], CAT01["18"], CAT01["19"], CAT01["20"], CAT01["21"], CAT01["23"], CAT01["24"], CAT01["28"], CAT01["29"], CAT01["30"], CAT01["31"], CAT01["32"], CAT01["34"], CAT01["35"], CAT01["36"], CAT01["37"], CAT01["40"], CAT01["41"], CAT01["42"], CAT01["43"], CAT01["45"], CAT01["55"], CAT01["56"], CAT01["71"], CAT01["72"], CAT01["87"], CAT01["88"]];
+const CAT01_ENTRIES = [CAT01["01"], CAT01["02"], CAT01["03"], CAT01["04"], CAT01["05"], CAT01["06"], CAT01["07"], CAT01["08"], CAT01["09"], CAT01["11"], CAT01["12"], CAT01["13"], CAT01["14"], CAT01["15"], CAT01["16"], CAT01["18"], CAT01["19"], CAT01["20"], CAT01["21"], CAT01["23"], CAT01["24"], CAT01["25"], CAT01["28"], CAT01["29"], CAT01["30"], CAT01["31"], CAT01["32"], CAT01["34"], CAT01["35"], CAT01["36"], CAT01["37"], CAT01["40"], CAT01["41"], CAT01["42"], CAT01["43"], CAT01["45"], CAT01["55"], CAT01["56"], CAT01["71"], CAT01["72"], CAT01["87"], CAT01["88"]];
 
 function isCat01Code(value) {
   return CAT01_CODES.includes(value);

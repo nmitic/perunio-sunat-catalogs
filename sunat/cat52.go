@@ -5,7 +5,7 @@ package sunat
 
 // Cat.52 — Código de Leyenda.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT, catálogo 52, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (14 códigos). internal/model/catalog.go named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null.
+// Source: Anexo 8 (catálogo 52) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx (fifteen códigos, listed identically in the GRE workbook). 2012 (observaciones relacionadas con el traslado de mercaderías) is display-only: nothing here emits it. internal/model/catalog.go, before it moved here, named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null. SUNAT's own double spaces inside 2002 and 2003 are collapsed.
 const (
 	// Monto en Letras
 	Cat52MontoLetras = "1000"
@@ -35,6 +35,8 @@ const (
 	Cat52Restitucion = "2010"
 	// Leyenda “EXPORTACION DE SERVICIOS - DECRETO LEGISLATIVO Nº 919”
 	Cat52ExportacionDL919 = "2011"
+	// Observaciones relacionadas con el traslado de mercaderías
+	Cat52ObservacionesTraslado = "2012"
 )
 
 // Cat52Entry describes one Cat.52 code.
@@ -61,6 +63,7 @@ var Cat52Codes = []string{
 	"2009",
 	"2010",
 	"2011",
+	"2012",
 }
 
 var cat52 = map[string]Cat52Entry{
@@ -78,6 +81,7 @@ var cat52 = map[string]Cat52Entry{
 	"2009": {Code: "2009", Label: "Primera venta de mercancía identificable", Description: "Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”", Texto: ""},
 	"2010": {Code: "2010", Label: "Restitución simplificada de derechos arancelarios", Description: "Restitucion Simplificado de Derechos Arancelarios", Texto: ""},
 	"2011": {Code: "2011", Label: "Exportación de servicios - D.L. 919", Description: "Leyenda “EXPORTACION DE SERVICIOS - DECRETO LEGISLATIVO Nº 919”", Texto: ""},
+	"2012": {Code: "2012", Label: "Observaciones del traslado de mercaderías", Description: "Observaciones relacionadas con el traslado de mercaderías", Texto: ""},
 }
 
 // Cat52 returns the entry for code and whether it is a known Cat.52 code.

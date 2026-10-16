@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Tipo de Operación — SUNAT catálogo 51. */
-export declare const CAT51_CODES: readonly ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0102", "0103", "0104"];
+export declare const CAT51_CODES: readonly ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "0501", "0502", "0503", "1001", "1002", "1003", "1004", "2001", "2002", "2100", "2101", "2102", "2103", "2104", "2105", "2106", "0102", "0103", "0104"];
 export type Cat51Code = (typeof CAT51_CODES)[number];
 
 export interface Cat51Entry {
@@ -21,7 +21,7 @@ export declare function isCat51Code(value: string): value is Cat51Code;
 /** Entry for an untrusted string, or undefined. */
 export declare function cat51(value: string): Cat51Entry | undefined;
 
-export declare const CAT51_EMIT_CODES: readonly ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001"];
+export declare const CAT51_EMIT_CODES: readonly ["0101", "0112", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001"];
 export type Cat51EmitCode = (typeof CAT51_EMIT_CODES)[number];
 export declare const CAT51_EMIT_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51EmitCode(value: string): value is Cat51EmitCode;
@@ -31,7 +31,7 @@ export type Cat51SelectCode = (typeof CAT51_SELECT_CODES)[number];
 export declare const CAT51_SELECT_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51SelectCode(value: string): value is Cat51SelectCode;
 
-export declare const CAT51_RETIRED_CODES: readonly ["0102", "0103"];
+export declare const CAT51_RETIRED_CODES: readonly ["0303", "0102", "0103"];
 export type Cat51RetiredCode = (typeof CAT51_RETIRED_CODES)[number];
 export declare const CAT51_RETIRED_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51RetiredCode(value: string): value is Cat51RetiredCode;
@@ -41,12 +41,12 @@ export type Cat51InternalCode = (typeof CAT51_INTERNAL_CODES)[number];
 export declare const CAT51_INTERNAL_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51InternalCode(value: string): value is Cat51InternalCode;
 
-export declare const CAT51_ON_BOLETA_CODES: readonly ["0101", "0113", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
+export declare const CAT51_ON_BOLETA_CODES: readonly ["0101", "0113", "0200", "0201", "0203", "0204", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001", "2100", "2101", "2102", "2103", "2104", "2105", "0104"];
 export type Cat51OnBoletaCode = (typeof CAT51_ON_BOLETA_CODES)[number];
 export declare const CAT51_ON_BOLETA_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51OnBoletaCode(value: string): value is Cat51OnBoletaCode;
 
-export declare const CAT51_ON_FACTURA_CODES: readonly ["0101", "0112", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0401", "1001", "1002", "1003", "1004", "2001", "0104"];
+export declare const CAT51_ON_FACTURA_CODES: readonly ["0101", "0112", "0200", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0401", "1001", "1002", "1003", "1004", "2001", "2002", "2100", "2101", "2102", "2103", "2104", "2106", "0104"];
 export type Cat51OnFacturaCode = (typeof CAT51_ON_FACTURA_CODES)[number];
 export declare const CAT51_ON_FACTURA_ENTRIES: readonly Cat51Entry[];
 export declare function isCat51OnFacturaCode(value: string): value is Cat51OnFacturaCode;

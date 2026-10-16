@@ -3,13 +3,13 @@
   "id": "cat51",
   "sunatCatalog": "51",
   "name": "Tipo de Operación",
-  "source": "Anexo 8 RS 097-2012/SUNAT, catálogo 51, from resources/AnexosIyII_Formato1.3.4.xlsx, 'Catálogos' sheet (21 códigos). Three entries are NOT in that list and are here deliberately: 0102 and 0103 are `retired` — SUNAT withdrew them and now rejects them with fault 3206, but historical documents carry them — and 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. The anexo confirms what internal/model/catalog.go only asserted in a comment: the original 01xx block beyond 0101 is gone. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one. `on-factura` and `on-boleta` are a straight transcription of the anexo's 'Tipo de Comprobante asociado' column: 0112 is factura-only and 0113 is boleta-only, everything else carries both. 0104 mirrors 0101 because that is what it becomes on the wire; the two `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a factura can still declare 0113. Wiring that up is a behaviour change and needs a beta CDR behind it.",
+  "source": "Anexo 8 (catálogo 51) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: 31 códigos, all here, plus four that are not in it. 0102, 0103 and 0303 are `retired`: SUNAT withdrew them — 0303 (pago de regalía petrolera) went with the 2019 migration of the documentos autorizados (Control de Cambios of 24.06.2019) — and a comprobante declaring one is rejected with ERROR 3206, but historical documents carry them. 0104 is `internal`, a Perunio marker for a factura de anticipo that is stored and reported on but travels as 0101, which props.wireEquivalent states. `on-factura` and `on-boleta` transcribe the workbook's 'Tipo de Comprobante asociado' column, which ERROR 3206 enforces per tipo de documento: 0112, 0202, 0205, 2002 and 2106 are factura-only, 0113 and 2105 boleta-only, and 0501-0503 belong to the liquidación de compra (Cat.01 04), so they carry neither. 0202 and 0205 lost `on-boleta` in v1.2.0: the anexo that v1.1.0 was checked against still allowed boletas. 0104 mirrors 0101 because that is what it becomes on the wire; the `retired` códigos carry neither, since they may not be declared on anything. NOTE: nothing enforces these yet — internal/validation does not consult them, so a boleta can still declare 0202. Wiring that up is a behaviour change and needs a beta CDR behind it. The códigos added in v1.2.0 (0501-0503, 2002, 2100-2106) are display-only: this platform issues none of those operaciones. 0101's descripción has been 'Venta interna no sujeta a Detracción o Percepción' since 2026-08-01. flags.detraccion marks the four operaciones that pair with a Cat.54 código; each of the three specialised ones is pinned to exactly one, and any other pairing is fault 3129. The 1001 constant is Cat51DetraccionGeneral, not Cat51Detraccion: the generator turns flags.detraccion into a Cat51Detraccion(code) predicate, and a goName may not collide with one.",
   "codePattern": "^[0-9]{4}$",
   "entries": [
     {
       "code": "0101",
       "label": "Venta interna",
-      "description": "Venta interna",
+      "description": "Venta interna no sujeta a Detracción o Percepción",
       "capabilities": [
         "emit",
         "select",
@@ -103,8 +103,7 @@
       "description": "Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado",
       "capabilities": [
         "emit",
-        "on-factura",
-        "on-boleta"
+        "on-factura"
       ],
       "flags": {
         "detraccion": false,
@@ -157,8 +156,7 @@
       "description": "Exportación de Servicios - Servicios que conformen un Paquete Turístico",
       "capabilities": [
         "emit",
-        "on-factura",
-        "on-boleta"
+        "on-factura"
       ],
       "flags": {
         "detraccion": false,
@@ -261,12 +259,10 @@
     },
     {
       "code": "0303",
-      "label": "Pago de regalía petrolera",
-      "description": "Operaciones de Pago de regalía petrolera",
+      "label": "Pago de regalía petrolera (retirado)",
+      "description": "Código retirado del catálogo 51 — SUNAT lo rechaza con fault 3206",
       "capabilities": [
-        "emit",
-        "on-factura",
-        "on-boleta"
+        "retired"
       ],
       "flags": {
         "detraccion": false,
@@ -294,6 +290,48 @@
         "wireEquivalent": null
       },
       "goName": "VentaNoDomiciliados"
+    },
+    {
+      "code": "0501",
+      "label": "Compra interna",
+      "description": "Compra interna",
+      "capabilities": [],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CompraInterna"
+    },
+    {
+      "code": "0502",
+      "label": "Anticipos (liquidación de compra)",
+      "description": "Anticipos",
+      "capabilities": [],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "AnticiposLiquidacionCompra"
+    },
+    {
+      "code": "0503",
+      "label": "Compra de oro",
+      "description": "Compra de oro",
+      "capabilities": [],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CompraOro"
     },
     {
       "code": "1001",
@@ -384,6 +422,139 @@
         "wireEquivalent": null
       },
       "goName": "Percepcion"
+    },
+    {
+      "code": "2002",
+      "label": "Retención de renta de segunda categoría",
+      "description": "Operación sujeta a Retención de Renta de segunda categoría",
+      "capabilities": [
+        "on-factura"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "RetencionRentaSegunda"
+    },
+    {
+      "code": "2100",
+      "label": "Créditos a empresas",
+      "description": "Créditos a empresas",
+      "capabilities": [
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CreditosEmpresas"
+    },
+    {
+      "code": "2101",
+      "label": "Créditos de consumo revolvente",
+      "description": "Créditos de consumo revolvente",
+      "capabilities": [
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CreditosConsumoRevolvente"
+    },
+    {
+      "code": "2102",
+      "label": "Créditos de consumo no revolvente",
+      "description": "Créditos de consumo no revolvente",
+      "capabilities": [
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "CreditosConsumoNoRevolvente"
+    },
+    {
+      "code": "2103",
+      "label": "Otras no gravadas - sistema financiero",
+      "description": "Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público",
+      "capabilities": [
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "NoGravadasSistemaFinanciero"
+    },
+    {
+      "code": "2104",
+      "label": "Otras no gravadas - sistema de seguros",
+      "description": "Otras operaciones no gravadas - Empresas del sistema de seguros",
+      "capabilities": [
+        "on-factura",
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "NoGravadasSeguros"
+    },
+    {
+      "code": "2105",
+      "label": "Comprobante emitido por AFP",
+      "description": "Comprobante emitido por AFP",
+      "capabilities": [
+        "on-boleta"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "ComprobanteAFP"
+    },
+    {
+      "code": "2106",
+      "label": "Venta nacional a turistas - Tax Free",
+      "description": "Venta Nacional a Turistas - Tax Free",
+      "capabilities": [
+        "on-factura"
+      ],
+      "flags": {
+        "detraccion": false,
+        "exportacion": false
+      },
+      "props": {
+        "wireEquivalent": null
+      },
+      "goName": "TaxFree"
     },
     {
       "code": "0102",

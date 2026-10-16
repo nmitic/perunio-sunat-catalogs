@@ -3,7 +3,7 @@
   "id": "cat16",
   "sunatCatalog": "16",
   "name": "Tipo de Precio de Venta Unitario",
-  "source": "Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 16, transcribed from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 246-248). Código 03 was wrong until this reconciliation: it read 'Valor referencial unitario en operaciones de exportación', which is not a Cat.16 concept at all. Both SUNAT workbooks say 'Tarifas reguladas' — the regulated tariff a servicio público charges. flags.referencial went false with it: a regulated tariff is the price actually charged, unlike 02, which is the referencial standing in for a price on a gratuito. Nothing consumes the flag today; 03 keeps `emit` because internal/xmlbuilder/invoice.go:712 gates PriceTypeCode on Cat16Emit.",
+  "source": "Anexo 8 (catálogo 16) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx. Código 03 was wrong until v1.1.0: it read 'Valor referencial unitario en operaciones de exportación', which is not a Cat.16 concept at all. SUNAT says 'Tarifas reguladas' — the regulated tariff a servicio público charges. flags.referencial went false with it: a regulated tariff is the price actually charged, unlike 02, which is the referencial standing in for a price on a gratuito. Nothing consumes the flag today; 03 keeps `emit` because perunio-facturador's internal/xmlbuilder/invoice.go gates PriceTypeCode on Cat16Emit.",
   "codePattern": "^[0-9]{2}$",
   "entries": [
     {

@@ -5,7 +5,7 @@ package sunat
 
 // Cat.10 — Tipo de Nota de Débito Electrónica.
 //
-// Source: Anexo 8 RS 097-2012/SUNAT (v2.1), catálogo 10, from the 'Catálogos' sheet of perunio-facturador/resources/AnexosIyII_Formato1.3.4.xlsx (rows 142-146): five códigos, matching resources/AjustesValidacionesCPEv20260212.xlsx exactly. SUNAT defines five but this pipeline emits two: model.ValidNDType accepted only 01 and 02, and the issuance form offered only those. Giving 03, 11 and 12 `emit` would widen what the validator accepts, so they are display-only until the pipeline actually supports them — the point of `emit` is that it describes this service, not SUNAT.
+// Source: Anexo 8 (catálogo 10) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: six códigos, all here. 13 (Penalidades) is new and valid only from 2027-01-01, when 03 becomes 'Otros conceptos' — the workbook strikes 'Penalidades/' out of it; both changes were postponed from 2026-08-01 (Control de Cambios of 24.04.2026 and 24.07.2026). From that date an ND 13 needs no cac:BillingReference (ERROR 2524 still applies to every other motivo) and carries no IGV (ERROR 3507). 03 keeps the goName Penalidades it already had, so 13 is SoloPenalidades rather than a reused name whose value would silently change. SUNAT defines six motivos but this pipeline emits two: perunio-facturador's validator accepts only 01 and 02 (Cat10Emit), and the issuance form offers only those. Giving 03, 11, 12 or 13 `emit` would widen what the validator accepts, so they are display-only until the pipeline actually supports them — the point of `emit` is that it describes this service, not SUNAT.
 const (
 	// Intereses por mora
 	Cat10InteresesMora = "01"
@@ -17,6 +17,8 @@ const (
 	Cat10AjustesExportacion = "11"
 	// Ajustes afectos al IVAP
 	Cat10AjustesIVAP = "12"
+	// Penalidades
+	Cat10SoloPenalidades = "13"
 )
 
 // Cat10Entry describes one Cat.10 code.
@@ -33,6 +35,7 @@ var Cat10Codes = []string{
 	"03",
 	"11",
 	"12",
+	"13",
 }
 
 var cat10 = map[string]Cat10Entry{
@@ -41,6 +44,7 @@ var cat10 = map[string]Cat10Entry{
 	"03": {Code: "03", Label: "Penalidades u otros conceptos", Description: "Penalidades/ otros conceptos"},
 	"11": {Code: "11", Label: "Ajustes de operaciones de exportación", Description: "Ajustes de operaciones de exportación"},
 	"12": {Code: "12", Label: "Ajustes afectos al IVAP", Description: "Ajustes afectos al IVAP"},
+	"13": {Code: "13", Label: "Penalidades", Description: "Penalidades"},
 }
 
 // Cat10 returns the entry for code and whether it is a known Cat.10 code.

@@ -2,7 +2,7 @@
 // Edit catalogs/*.json and re-run `npm run gen` in perunio-sunat-catalogs.
 
 /** Motivo de Traslado — SUNAT catálogo 20. */
-export declare const CAT20_CODES: readonly ["01", "02", "04", "08", "09", "13", "14", "18", "19"];
+export declare const CAT20_CODES: readonly ["01", "02", "03", "04", "05", "06", "07", "08", "09", "13", "14", "17", "18", "19"];
 export type Cat20Code = (typeof CAT20_CODES)[number];
 
 export interface Cat20Entry {
