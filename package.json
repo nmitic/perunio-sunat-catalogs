@@ -1,6 +1,6 @@
 {
   "name": "sunat-catalogs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "SUNAT catálogos (códigos y tablas) as versioned JSON, with generated TypeScript and Go bindings.",
   "license": "MIT",
   "repository": {
