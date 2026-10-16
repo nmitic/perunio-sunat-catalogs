@@ -184,8 +184,21 @@ npm run gen        # validate, then re-render gen/ts and sunat/
 npm run check      # what CI runs: validate + both --check modes
 ```
 
-Then tag (`v1.3.0`) and push. In each service, bump the dependency and run its
-gate:
+Then add the release's entry to `CHANGELOG.md`, commit, and release from a clean
+`main`:
+
+```bash
+npm run release          # patch: 1.2.0 → 1.2.1 — data fixes, no new códigos
+npm run release:minor    # minor: 1.2.0 → 1.3.0 — new códigos or catálogos
+npm run release:major    # major: a código, constant or capability removed or renamed
+```
+
+Each one runs `npm run check`, bumps `package.json`, commits "Release vX.Y.Z",
+creates the annotated tag `vX.Y.Z` and pushes `main` with the tag. The tag is the
+release: nothing is published anywhere else. Never move or re-push a tag — Go's
+module proxy caches a version the first time anyone fetches it.
+
+In each service, bump the dependency and run its gate:
 
 ```bash
 # perunio-backend, perunio-frontend

@@ -19,7 +19,12 @@
     "gen:ts": "node tools/gen-ts.mjs",
     "gen:go": "go run ./tools/gensunat",
     "gen": "npm run validate && npm run gen:ts && npm run gen:go",
-    "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check"
+    "check": "node validate.mjs && node tools/gen-ts.mjs --check && go run ./tools/gensunat --check",
+    "release": "npm version patch -m \"Release v%s\"",
+    "release:minor": "npm version minor -m \"Release v%s\"",
+    "release:major": "npm version major -m \"Release v%s\"",
+    "preversion": "npm run check",
+    "postversion": "git push --follow-tags"
   },
   "exports": {
     "./archivo": {
