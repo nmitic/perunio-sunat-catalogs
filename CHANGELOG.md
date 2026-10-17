@@ -4,6 +4,24 @@ Consumers pin a tag, so every release note should say what a service will see
 after bumping — especially any code that stopped being `select` or `emit`, since
 that narrows what the UI offers or what the pipeline accepts.
 
+## v1.3.1
+
+- Cat.54 **004** (recursos hidrobiológicos) loses `select`; it keeps `emit`.
+  The facturador refuses it until operation type 1002's six per-line Cat.55
+  properties (3001–3006) are built, so the picker should not offer it. A
+  producto already carrying 004 still validates.
+- Cat.54 `source` note corrected against the 2026-10-17 re-check of
+  `perunio-facturador/DETRACCIONES.md`: Informe 103-2013-SUNAT does not say the
+  umbral is measured on the whole operación (that is Perunio's own reading);
+  fault 3129 checks only 1002/1003/1004 → 004/028/027, not the reverse; and
+  R.S. 073-2006 art. 3 excludes transporte de carga (`anexo: "carga"`) on a
+  comprobante without crédito fiscal and for a no-domiciliado usuario.
+
+### What a service sees after bumping
+
+`CAT54_SELECT_CODES` / `sunat.Cat54SelectCodes` no longer contain 004, and
+`Cat54Select("004")` is false. No rate, umbral or anexo changed.
+
 ## v1.3.0
 
 Cat.54 gains two props. No código changed rate, umbral or capability.
