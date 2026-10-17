@@ -28,6 +28,8 @@
 //	cat52      Cat.52           Código de Leyenda (15 entries)
 //	cat53      Cat.53           Código de Cargo o Descuento (22 entries)
 //	cat54      Cat.54           Bienes y Servicios sujetos a Detracción (SPOT) (39 entries)
+//	cat55      Cat.55           Código de identificación del concepto tributario (propiedades del ítem) (6 entries)
+//	cat61      Cat.61           Documentos relacionados aplicables a las GRE (versión 2.0) (31 entries)
 //	condicion-domicilio perunio-internal Condición de Domicilio del Contribuyente (5 entries)
 //	estado-comprobante perunio-internal Estado de un Comprobante Emitido (8 entries)
 //	estado-cp  perunio-internal Estado del Comprobante (consulta CPE) (5 entries)

@@ -135,6 +135,18 @@
       "import": "./gen/ts/cat54.js",
       "default": "./gen/ts/cat54.js"
     },
+    "./cat55": {
+      "types": "./gen/ts/cat55.d.ts",
+      "require": "./gen/ts/cat55.cjs",
+      "import": "./gen/ts/cat55.js",
+      "default": "./gen/ts/cat55.js"
+    },
+    "./cat61": {
+      "types": "./gen/ts/cat61.d.ts",
+      "require": "./gen/ts/cat61.cjs",
+      "import": "./gen/ts/cat61.js",
+      "default": "./gen/ts/cat61.js"
+    },
     "./condicion-domicilio": {
       "types": "./gen/ts/condicion-domicilio.d.ts",
       "require": "./gen/ts/condicion-domicilio.cjs",

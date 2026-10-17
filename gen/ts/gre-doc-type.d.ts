@@ -20,12 +20,12 @@ export declare function isGreDocTypeCode(value: string): value is GreDocTypeCode
 /** Entry for an untrusted string, or undefined. */
 export declare function greDocType(value: string): GreDocTypeEntry | undefined;
 
-export declare const GRE_DOC_TYPE_EMIT_CODES: readonly ["09", "31", "EV"];
+export declare const GRE_DOC_TYPE_EMIT_CODES: readonly ["09", "31"];
 export type GreDocTypeEmitCode = (typeof GRE_DOC_TYPE_EMIT_CODES)[number];
 export declare const GRE_DOC_TYPE_EMIT_ENTRIES: readonly GreDocTypeEntry[];
 export declare function isGreDocTypeEmitCode(value: string): value is GreDocTypeEmitCode;
 
-export declare const GRE_DOC_TYPE_SELECT_CODES: readonly ["09", "31", "EV"];
+export declare const GRE_DOC_TYPE_SELECT_CODES: readonly ["09", "31"];
 export type GreDocTypeSelectCode = (typeof GRE_DOC_TYPE_SELECT_CODES)[number];
 export declare const GRE_DOC_TYPE_SELECT_ENTRIES: readonly GreDocTypeEntry[];
 export declare function isGreDocTypeSelectCode(value: string): value is GreDocTypeSelectCode;

@@ -22,14 +22,14 @@ function greDocType(value) {
   return isGreDocTypeCode(value) ? GRE_DOC_TYPE[value] : undefined;
 }
 
-const GRE_DOC_TYPE_EMIT_CODES = ["09", "31", "EV"];
-const GRE_DOC_TYPE_EMIT_ENTRIES = [GRE_DOC_TYPE["09"], GRE_DOC_TYPE["31"], GRE_DOC_TYPE["EV"]];
+const GRE_DOC_TYPE_EMIT_CODES = ["09", "31"];
+const GRE_DOC_TYPE_EMIT_ENTRIES = [GRE_DOC_TYPE["09"], GRE_DOC_TYPE["31"]];
 function isGreDocTypeEmitCode(value) {
   return GRE_DOC_TYPE_EMIT_CODES.includes(value);
 }
 
-const GRE_DOC_TYPE_SELECT_CODES = ["09", "31", "EV"];
-const GRE_DOC_TYPE_SELECT_ENTRIES = [GRE_DOC_TYPE["09"], GRE_DOC_TYPE["31"], GRE_DOC_TYPE["EV"]];
+const GRE_DOC_TYPE_SELECT_CODES = ["09", "31"];
+const GRE_DOC_TYPE_SELECT_ENTRIES = [GRE_DOC_TYPE["09"], GRE_DOC_TYPE["31"]];
 function isGreDocTypeSelectCode(value) {
   return GRE_DOC_TYPE_SELECT_CODES.includes(value);
 }

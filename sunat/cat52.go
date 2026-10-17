@@ -5,7 +5,7 @@ package sunat
 
 // Cat.52 — Código de Leyenda.
 //
-// Source: Anexo 8 (catálogo 52) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx (fifteen códigos, listed identically in the GRE workbook). 2012 (observaciones relacionadas con el traslado de mercaderías) is display-only: nothing here emits it. internal/model/catalog.go, before it moved here, named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 is the one the detracción path emits verbatim; 1000 (monto en letras) is computed per document, so it is null. SUNAT's own double spaces inside 2002 and 2003 are collapsed.
+// Source: Anexo 8 (catálogo 52) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx (fifteen códigos, listed identically in the GRE workbook). 2012 (observaciones relacionadas con el traslado de mercaderías) is display-only: nothing here emits it. internal/model/catalog.go, before it moved here, named five and was missing 2007 (operación sujeta al IVAP) among others. props.texto carries the exact wording SUNAT expects where the leyenda's text is fixed rather than computed — 2006 (operación sujeta a detracción), 1002 (transferencia gratuita) and 2007 (operación sujeta al IVAP) are the ones perunio-facturador injects verbatim, each in the wording of the workbook's leyenda list; 1000 (monto en letras) is computed per document, so it is null. SUNAT's own double spaces inside 2002 and 2003 are collapsed.
 const (
 	// Monto en Letras
 	Cat52MontoLetras = "1000"
@@ -68,7 +68,7 @@ var Cat52Codes = []string{
 
 var cat52 = map[string]Cat52Entry{
 	"1000": {Code: "1000", Label: "Monto en letras", Description: "Monto en Letras", Texto: ""},
-	"1002": {Code: "1002", Label: "Transferencia gratuita", Description: "Leyenda \"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE\"", Texto: ""},
+	"1002": {Code: "1002", Label: "Transferencia gratuita", Description: "Leyenda \"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE\"", Texto: "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE"},
 	"2000": {Code: "2000", Label: "Comprobante de percepción", Description: "Leyenda “COMPROBANTE DE PERCEPCIÓN”", Texto: ""},
 	"2001": {Code: "2001", Label: "Bienes transferidos en la Amazonía", Description: "Leyenda “BIENES TRANSFERIDOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA\"", Texto: ""},
 	"2002": {Code: "2002", Label: "Servicios prestados en la Amazonía", Description: "Leyenda “SERVICIOS PRESTADOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA”", Texto: ""},
@@ -76,7 +76,7 @@ var cat52 = map[string]Cat52Entry{
 	"2004": {Code: "2004", Label: "Agencia de viaje - paquete turístico", Description: "Leyenda “Agencia de Viaje - Paquete turístico”", Texto: ""},
 	"2005": {Code: "2005", Label: "Venta realizada por emisor itinerante", Description: "Leyenda “Venta realizada por emisor itinerante”", Texto: ""},
 	"2006": {Code: "2006", Label: "Operación sujeta a detracción", Description: "Leyenda \"Operación sujeta a detracción\"", Texto: "Operación sujeta a detracción"},
-	"2007": {Code: "2007", Label: "Operación sujeta al IVAP", Description: "Leyenda \"Operación sujeta al IVAP\"", Texto: ""},
+	"2007": {Code: "2007", Label: "Operación sujeta al IVAP", Description: "Leyenda \"Operación sujeta al IVAP\"", Texto: "Operación sujeta al IVAP"},
 	"2008": {Code: "2008", Label: "Venta exonerada - zona comercial de Tacna", Description: "Leyenda: “VENTA EXONERADA DEL IGV-ISC-IPM. PROHIBIDA LA VENTA FUERA DE LA ZONA COMERCIAL DE TACNA”", Texto: ""},
 	"2009": {Code: "2009", Label: "Primera venta de mercancía identificable", Description: "Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”", Texto: ""},
 	"2010": {Code: "2010", Label: "Restitución simplificada de derechos arancelarios", Description: "Restitucion Simplificado de Derechos Arancelarios", Texto: ""},

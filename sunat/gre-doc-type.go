@@ -5,7 +5,7 @@ package sunat
 
 // Tipo de Guía de Remisión.
 //
-// Source: The discriminator perunio-facturador switches on to validate and build a guía (internal/validation/despatch.go, internal/xmlbuilder/builder.go). Two of the three are Cat.01 códigos; 'EV' is not — it is a Perunio-internal marker meaning 'guía por eventos', and the XML it produces still carries 09 or 31 in cbc:DespatchAdviceTypeCode. That is why it is `internal` with props.wireEquivalent, and why this is its own file rather than three more entries in cat01.json. SUNAT does not accept that guía through the API: R.S. 123-2022/SUNAT (numeral 5.2) says the GRE por evento 'se emite únicamente a través del SEE - SOL', and the GRE rules reject cbc:TransportEventTypeCode with ERROR 3374. EV's `emit` and `select` describe what this platform does today — the facturador builds and sends it and the issuance UI offers it — not what SUNAT accepts; withdrawing them is a product decision (perunio-facturador spec case despatch/04, deviation F8).
+// Source: The discriminator perunio-facturador switches on to validate and build a guía (internal/validation/despatch.go, internal/xmlbuilder/builder.go). Two of the three are Cat.01 códigos; 'EV' is not — it is a Perunio-internal marker meaning 'guía por eventos', and the XML it would produce carries 09 or 31 in cbc:DespatchAdviceTypeCode. That is why it is `internal` with props.wireEquivalent, and why this is its own file rather than three more entries in cat01.json. SUNAT does not accept that guía through the API: R.S. 123-2022/SUNAT (numeral 5.2) says the GRE por evento 'se emite únicamente a través del SEE - SOL', and the GRE rules reject cbc:TransportEventTypeCode with ERROR 3374. So EV carries neither `emit` nor `select`: perunio-facturador refuses to build it (spec case despatch/04) and the issuance UI no longer offers it. It stays in the file, `internal`, so guías issued as EV before that still display and filter.
 const (
 	// Guía de remisión electrónica emitida por el remitente de los bienes
 	GreDocTypeRemitente = "09"
@@ -53,13 +53,11 @@ func GreDocTypeValid(code string) bool {
 var GreDocTypeEmitCodes = []string{
 	"09",
 	"31",
-	"EV",
 }
 
 var greDocTypeEmitSet = map[string]struct{}{
 	"09": {},
 	"31": {},
-	"EV": {},
 }
 
 // GreDocTypeEmit reports whether code has the "emit" capability: the facturador may put it on the wire.
@@ -87,13 +85,11 @@ func GreDocTypeInternal(code string) bool {
 var GreDocTypeSelectCodes = []string{
 	"09",
 	"31",
-	"EV",
 }
 
 var greDocTypeSelectSet = map[string]struct{}{
 	"09": {},
 	"31": {},
-	"EV": {},
 }
 
 // GreDocTypeSelect reports whether code has the "select" capability: the issuance UI may offer it.

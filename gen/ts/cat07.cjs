@@ -7,25 +7,25 @@
 const CAT07_CODES = ["10", "11", "12", "13", "14", "15", "16", "17", "20", "21", "30", "31", "32", "33", "34", "35", "36", "37", "40"];
 
 const CAT07 = {
-  "10": { code: "10", label: "Gravado - Operación Onerosa", description: "Gravado - Operación Onerosa", gratuito: false, gravadoGratuito: false, percent: "18.00", taxSchemeCode: "1000" },
-  "11": { code: "11", label: "Gravado - Retiro por premio", description: "Gravado - Retiro por premio", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "12": { code: "12", label: "Gravado - Retiro por donación", description: "Gravado - Retiro por donación", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "13": { code: "13", label: "Gravado - Retiro", description: "Gravado - Retiro", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "14": { code: "14", label: "Gravado - Retiro por publicidad", description: "Gravado - Retiro por publicidad", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "15": { code: "15", label: "Gravado - Bonificaciones", description: "Gravado - Bonificaciones", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "16": { code: "16", label: "Gravado - Retiro por entrega a trabajadores", description: "Gravado - Retiro por entrega a trabajadores", gratuito: true, gravadoGratuito: true, percent: "18.00", taxSchemeCode: "9996" },
-  "17": { code: "17", label: "Gravado - IVAP", description: "Gravado - IVAP", gratuito: false, gravadoGratuito: false, percent: "4.00", taxSchemeCode: "1016" },
-  "20": { code: "20", label: "Exonerado - Operación Onerosa", description: "Exonerado - Operación Onerosa", gratuito: false, gravadoGratuito: false, percent: null, taxSchemeCode: "9997" },
-  "21": { code: "21", label: "Exonerado - Transferencia gratuita", description: "Exonerado - Transferencia gratuita", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "30": { code: "30", label: "Inafecto - Operación Onerosa", description: "Inafecto - Operación Onerosa", gratuito: false, gravadoGratuito: false, percent: null, taxSchemeCode: "9998" },
-  "31": { code: "31", label: "Inafecto - Retiro por Bonificación", description: "Inafecto - Retiro por Bonificación", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "32": { code: "32", label: "Inafecto - Retiro", description: "Inafecto - Retiro", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "33": { code: "33", label: "Inafecto - Retiro por Muestras Médicas", description: "Inafecto - Retiro por Muestras Médicas", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "34": { code: "34", label: "Inafecto - Retiro por Convenio Colectivo", description: "Inafecto - Retiro por Convenio Colectivo", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "35": { code: "35", label: "Inafecto - Retiro por premio", description: "Inafecto - Retiro por premio", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "36": { code: "36", label: "Inafecto - Retiro por publicidad", description: "Inafecto - Retiro por publicidad", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "37": { code: "37", label: "Inafecto - Transferencia gratuita", description: "Inafecto - Transferencia gratuita", gratuito: true, gravadoGratuito: false, percent: "0.00", taxSchemeCode: "9996" },
-  "40": { code: "40", label: "Exportación de Bienes o Servicios", description: "Exportación de Bienes o Servicios", gratuito: false, gravadoGratuito: false, percent: null, taxSchemeCode: "9995" },
+  "10": { code: "10", label: "Gravado - Operación Onerosa", description: "Gravado - Operación Onerosa", gratuito: false, gravadoGratuito: false, category: "gravado", percent: "18.00", taxSchemeCode: "1000" },
+  "11": { code: "11", label: "Gravado - Retiro por premio", description: "Gravado - Retiro por premio", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "12": { code: "12", label: "Gravado - Retiro por donación", description: "Gravado - Retiro por donación", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "13": { code: "13", label: "Gravado - Retiro", description: "Gravado - Retiro", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "14": { code: "14", label: "Gravado - Retiro por publicidad", description: "Gravado - Retiro por publicidad", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "15": { code: "15", label: "Gravado - Bonificaciones", description: "Gravado - Bonificaciones", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "16": { code: "16", label: "Gravado - Retiro por entrega a trabajadores", description: "Gravado - Retiro por entrega a trabajadores", gratuito: true, gravadoGratuito: true, category: "gravado", percent: "18.00", taxSchemeCode: "9996" },
+  "17": { code: "17", label: "Gravado - IVAP", description: "Gravado - IVAP", gratuito: false, gravadoGratuito: false, category: "gravado", percent: "4.00", taxSchemeCode: "1016" },
+  "20": { code: "20", label: "Exonerado - Operación Onerosa", description: "Exonerado - Operación Onerosa", gratuito: false, gravadoGratuito: false, category: "exonerado", percent: null, taxSchemeCode: "9997" },
+  "21": { code: "21", label: "Exonerado - Transferencia gratuita", description: "Exonerado - Transferencia gratuita", gratuito: true, gravadoGratuito: false, category: "exonerado", percent: "0.00", taxSchemeCode: "9996" },
+  "30": { code: "30", label: "Inafecto - Operación Onerosa", description: "Inafecto - Operación Onerosa", gratuito: false, gravadoGratuito: false, category: "inafecto", percent: null, taxSchemeCode: "9998" },
+  "31": { code: "31", label: "Inafecto - Retiro por Bonificación", description: "Inafecto - Retiro por Bonificación", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "32": { code: "32", label: "Inafecto - Retiro", description: "Inafecto - Retiro", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "33": { code: "33", label: "Inafecto - Retiro por Muestras Médicas", description: "Inafecto - Retiro por Muestras Médicas", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "34": { code: "34", label: "Inafecto - Retiro por Convenio Colectivo", description: "Inafecto - Retiro por Convenio Colectivo", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "35": { code: "35", label: "Inafecto - Retiro por premio", description: "Inafecto - Retiro por premio", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "36": { code: "36", label: "Inafecto - Retiro por publicidad", description: "Inafecto - Retiro por publicidad", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "37": { code: "37", label: "Inafecto - Transferencia gratuita", description: "Inafecto - Transferencia gratuita", gratuito: true, gravadoGratuito: false, category: "inafecto", percent: "0.00", taxSchemeCode: "9996" },
+  "40": { code: "40", label: "Exportación de Bienes o Servicios", description: "Exportación de Bienes o Servicios", gratuito: false, gravadoGratuito: false, category: "exportacion", percent: null, taxSchemeCode: "9995" },
 };
 
 /** Every entry, in catálogo order. Same object identities as CAT07. */
@@ -55,6 +55,29 @@ function isCat07SelectCode(value) {
 const CAT07_GRATUITO_CODES = ["11", "12", "13", "14", "15", "16", "21", "31", "32", "33", "34", "35", "36", "37"];
 
 const CAT07_GRAVADO_GRATUITO_CODES = ["11", "12", "13", "14", "15", "16"];
+
+/** Tipo de Afectación del IGV → category. */
+const CAT07_CATEGORY = {
+  "10": "gravado",
+  "11": "gravado",
+  "12": "gravado",
+  "13": "gravado",
+  "14": "gravado",
+  "15": "gravado",
+  "16": "gravado",
+  "17": "gravado",
+  "20": "exonerado",
+  "21": "exonerado",
+  "30": "inafecto",
+  "31": "inafecto",
+  "32": "inafecto",
+  "33": "inafecto",
+  "34": "inafecto",
+  "35": "inafecto",
+  "36": "inafecto",
+  "37": "inafecto",
+  "40": "exportacion",
+};
 
 /** Tipo de Afectación del IGV → percent. */
 const CAT07_PERCENT = {
@@ -102,4 +125,4 @@ const CAT07_TAX_SCHEME_CODE = {
   "40": "9995",
 };
 
-module.exports = { CAT07_CODES, CAT07, CAT07_ENTRIES, isCat07Code, cat07, CAT07_EMIT_CODES, CAT07_EMIT_ENTRIES, isCat07EmitCode, CAT07_SELECT_CODES, CAT07_SELECT_ENTRIES, isCat07SelectCode, CAT07_GRATUITO_CODES, CAT07_GRAVADO_GRATUITO_CODES, CAT07_PERCENT, CAT07_TAX_SCHEME_CODE };
+module.exports = { CAT07_CODES, CAT07, CAT07_ENTRIES, isCat07Code, cat07, CAT07_EMIT_CODES, CAT07_EMIT_ENTRIES, isCat07EmitCode, CAT07_SELECT_CODES, CAT07_SELECT_ENTRIES, isCat07SelectCode, CAT07_GRATUITO_CODES, CAT07_GRAVADO_GRATUITO_CODES, CAT07_CATEGORY, CAT07_PERCENT, CAT07_TAX_SCHEME_CODE };

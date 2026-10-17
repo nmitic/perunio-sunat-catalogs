@@ -1,0 +1,515 @@
+{
+  "$schema": "../meta/catalog.schema.json",
+  "id": "cat61",
+  "sunatCatalog": "61",
+  "name": "Documentos relacionados aplicables a las GRE (versión 2.0)",
+  "source": "Anexo 8 (catálogo 61) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx: the cbc:DocumentTypeCode of each cac:AdditionalDocumentReference of a guía. Its 'GRE Aplicable' column becomes `gre-r` (remitente, 09) and `gre-t` (transportista, 31); ERROR 2692 rejects a código outside the guía's own list, and the name is what cbc:DocumentType should carry (OBSERV 4371 without it). flags.issuerRemitente and flags.issuerTransportista mark the códigos whose cac:IssuerParty RUC is mandatory on each guía (ERRORs 3380 and 3382: 01, 03, 04, 09, 12, 48 and 92 on the remitente; 01, 03, 04, 09, 12, 31 and 48 on the transportista). The códigos shared with Cat.01 (01, 03, 04, 09, 12, 31, 48) name the same documents there. No row is struck through. SUNAT's trailing spaces and the dangling ' - ' after 75's MINSA are trimmed.",
+  "codePattern": "^[0-9]{2}$",
+  "entries": [
+    {
+      "code": "01",
+      "label": "Factura",
+      "description": "Factura",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "Factura"
+    },
+    {
+      "code": "03",
+      "label": "Boleta de Venta",
+      "description": "Boleta de Venta",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "Boleta"
+    },
+    {
+      "code": "04",
+      "label": "Liquidación de Compra",
+      "description": "Liquidación de Compra",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "LiquidacionCompra"
+    },
+    {
+      "code": "09",
+      "label": "Guía de Remisión Remitente",
+      "description": "Guía de Remisión Remitente",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "GuiaRemitente"
+    },
+    {
+      "code": "12",
+      "label": "Ticket o cinta emitido por máquina registradora",
+      "description": "Ticket o cinta emitido por máquina registradora",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "Ticket"
+    },
+    {
+      "code": "31",
+      "label": "Guía de Remisión Transportista",
+      "description": "Guía de Remisión Transportista",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "GuiaTransportista"
+    },
+    {
+      "code": "48",
+      "label": "Comprobante de Operaciones – Ley N° 29972",
+      "description": "Comprobante de Operaciones – Ley N° 29972",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": true
+      },
+      "props": {},
+      "goName": "ComprobanteOperaciones"
+    },
+    {
+      "code": "49",
+      "label": "Constancia de Depósito - IVAP (Ley 28211)",
+      "description": "Constancia de Depósito - IVAP (Ley 28211)",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "ConstanciaDepositoIVAP"
+    },
+    {
+      "code": "50",
+      "label": "Declaración Aduanera de Mercancías",
+      "description": "Declaración Aduanera de Mercancías",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "DeclaracionAduanera"
+    },
+    {
+      "code": "52",
+      "label": "Declaración Simplificada (DS)",
+      "description": "Declaración Simplificada (DS)",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "DeclaracionSimplificada"
+    },
+    {
+      "code": "65",
+      "label": "Autorización de Circulación para transportar MATPEL – Callao",
+      "description": "Autorización de Circulación para transportar MATPEL – Callao",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "AutorizacionMatpelCallao"
+    },
+    {
+      "code": "66",
+      "label": "Autorización de Circulación para transporte de carga y mercancías en Lima Metropolitana",
+      "description": "Autorización de Circulación para transporte de carga y mercancías en Lima Metropolitana",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "AutorizacionCargaLima"
+    },
+    {
+      "code": "67",
+      "label": "Permiso de Operación Especial para el servicio de transporte de MATPEL - MTC",
+      "description": "Permiso de Operación Especial para el servicio de transporte de MATPEL - MTC",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "PermisoMatpelMTC"
+    },
+    {
+      "code": "68",
+      "label": "Habilitación Sanitaria de Transporte Terrestre de Productos Pesqueros y Acuícolas",
+      "description": "Habilitación Sanitaria de Transporte Terrestre de Productos Pesqueros y Acuícolas",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "HabilitacionSanitariaPesquera"
+    },
+    {
+      "code": "69",
+      "label": "Permiso / Autorización de operación de transporte de mercancías",
+      "description": "Permiso / Autorización de operación de transporte de mercancías",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "PermisoTransporteMercancias"
+    },
+    {
+      "code": "71",
+      "label": "Resolución de Adjudicación de bienes – SUNAT",
+      "description": "Resolución de Adjudicación de bienes – SUNAT",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "ResolucionAdjudicacion"
+    },
+    {
+      "code": "72",
+      "label": "Resolución de Comiso de bienes – SUNAT",
+      "description": "Resolución de Comiso de bienes – SUNAT",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "ResolucionComiso"
+    },
+    {
+      "code": "73",
+      "label": "Guía de Transporte Forestal o de Fauna - SERFOR",
+      "description": "Guía de Transporte Forestal o de Fauna - SERFOR",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "GuiaForestalSerfor"
+    },
+    {
+      "code": "74",
+      "label": "Guía de Tránsito – SUCAMEC",
+      "description": "Guía de Tránsito – SUCAMEC",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "GuiaTransitoSucamec"
+    },
+    {
+      "code": "75",
+      "label": "Autorización para operar como empresa de Saneamiento Ambiental – MINSA",
+      "description": "Autorización para operar como empresa de Saneamiento Ambiental – MINSA",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "AutorizacionSaneamientoMinsa"
+    },
+    {
+      "code": "76",
+      "label": "Autorización para manejo y recojo de residuos sólidos peligrosos y no peligrosos",
+      "description": "Autorización para manejo y recojo de residuos sólidos peligrosos y no peligrosos",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "AutorizacionResiduosSolidos"
+    },
+    {
+      "code": "77",
+      "label": "Certificado fitosanitario la movilización de plantas, productos vegetales, y otros artículos reglamentados",
+      "description": "Certificado fitosanitario la movilización de plantas, productos vegetales, y otros artículos reglamentados",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "CertificadoFitosanitario"
+    },
+    {
+      "code": "78",
+      "label": "Registro Único de Usuarios y Transportistas de Alcohol Etílico",
+      "description": "Registro Único de Usuarios y Transportistas de Alcohol Etílico",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "RegistroAlcoholEtilico"
+    },
+    {
+      "code": "80",
+      "label": "Constancia de Depósito – Detracción",
+      "description": "Constancia de Depósito – Detracción",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "ConstanciaDetraccion"
+    },
+    {
+      "code": "81",
+      "label": "Código de autorización emitida por el SCOP",
+      "description": "Código de autorización emitida por el SCOP",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "AutorizacionSCOP"
+    },
+    {
+      "code": "82",
+      "label": "Declaración jurada de mudanza",
+      "description": "Declaración jurada de mudanza",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "DeclaracionMudanza"
+    },
+    {
+      "code": "91",
+      "label": "Manifiesto de carga (MC)",
+      "description": "Manifiesto de carga (MC)",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "ManifiestoCarga"
+    },
+    {
+      "code": "92",
+      "label": "Cita/Orden Entrega Mercancías del Terminal Portuario",
+      "description": "Cita/Orden Entrega Mercancías del Terminal Portuario",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-r"
+      ],
+      "flags": {
+        "issuerRemitente": true,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "CitaTerminalPortuario"
+    },
+    {
+      "code": "93",
+      "label": "Documento ZOFRATACNA",
+      "description": "Documento ZOFRATACNA",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "DocumentoZofratacna"
+    },
+    {
+      "code": "94",
+      "label": "Solicitud traslado - ZED",
+      "description": "Solicitud traslado - ZED",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "SolicitudTrasladoZED"
+    },
+    {
+      "code": "95",
+      "label": "Solicitud de traslado - ZOFRATACNA",
+      "description": "Solicitud de traslado - ZOFRATACNA",
+      "capabilities": [
+        "emit",
+        "select",
+        "gre-t"
+      ],
+      "flags": {
+        "issuerRemitente": false,
+        "issuerTransportista": false
+      },
+      "props": {},
+      "goName": "SolicitudTrasladoZofratacna"
+    }
+  ]
+}

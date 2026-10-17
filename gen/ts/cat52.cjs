@@ -8,7 +8,7 @@ const CAT52_CODES = ["1000", "1002", "2000", "2001", "2002", "2003", "2004", "20
 
 const CAT52 = {
   "1000": { code: "1000", label: "Monto en letras", description: "Monto en Letras", texto: null },
-  "1002": { code: "1002", label: "Transferencia gratuita", description: "Leyenda \"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE\"", texto: null },
+  "1002": { code: "1002", label: "Transferencia gratuita", description: "Leyenda \"TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE\"", texto: "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE" },
   "2000": { code: "2000", label: "Comprobante de percepción", description: "Leyenda “COMPROBANTE DE PERCEPCIÓN”", texto: null },
   "2001": { code: "2001", label: "Bienes transferidos en la Amazonía", description: "Leyenda “BIENES TRANSFERIDOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA\"", texto: null },
   "2002": { code: "2002", label: "Servicios prestados en la Amazonía", description: "Leyenda “SERVICIOS PRESTADOS EN LA AMAZONÍA REGIÓN SELVA PARA SER CONSUMIDOS EN LA MISMA”", texto: null },
@@ -16,7 +16,7 @@ const CAT52 = {
   "2004": { code: "2004", label: "Agencia de viaje - paquete turístico", description: "Leyenda “Agencia de Viaje - Paquete turístico”", texto: null },
   "2005": { code: "2005", label: "Venta realizada por emisor itinerante", description: "Leyenda “Venta realizada por emisor itinerante”", texto: null },
   "2006": { code: "2006", label: "Operación sujeta a detracción", description: "Leyenda \"Operación sujeta a detracción\"", texto: "Operación sujeta a detracción" },
-  "2007": { code: "2007", label: "Operación sujeta al IVAP", description: "Leyenda \"Operación sujeta al IVAP\"", texto: null },
+  "2007": { code: "2007", label: "Operación sujeta al IVAP", description: "Leyenda \"Operación sujeta al IVAP\"", texto: "Operación sujeta al IVAP" },
   "2008": { code: "2008", label: "Venta exonerada - zona comercial de Tacna", description: "Leyenda: “VENTA EXONERADA DEL IGV-ISC-IPM. PROHIBIDA LA VENTA FUERA DE LA ZONA COMERCIAL DE TACNA”", texto: null },
   "2009": { code: "2009", label: "Primera venta de mercancía identificable", description: "Leyenda: “PRIMERA VENTA DE MERCANCÍA IDENTIFICABLE ENTRE USUARIOS DE LA ZONA COMERCIAL”", texto: null },
   "2010": { code: "2010", label: "Restitución simplificada de derechos arancelarios", description: "Restitucion Simplificado de Derechos Arancelarios", texto: null },
@@ -45,7 +45,7 @@ function isCat52EmitCode(value) {
 /** Código de Leyenda → texto. */
 const CAT52_TEXTO = {
   "1000": null,
-  "1002": null,
+  "1002": "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE",
   "2000": null,
   "2001": null,
   "2002": null,
@@ -53,7 +53,7 @@ const CAT52_TEXTO = {
   "2004": null,
   "2005": null,
   "2006": "Operación sujeta a detracción",
-  "2007": null,
+  "2007": "Operación sujeta al IVAP",
   "2008": null,
   "2009": null,
   "2010": null,

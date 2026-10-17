@@ -11,5 +11,7 @@
   "full-reversal": "This nota motivo reverses the whole referenced document.",
   "line-selection": "This nota motivo credits only the lines the user selects.",
   "gre-weight": "May be used as the unidad de medida for a guía de remisión's gross weight.",
-  "isc-unit": "May be used as the unidad de medida of an ISC sistema 02 (específico) line, where the impuesto is a fixed amount per unit."
+  "isc-unit": "May be used as the unidad de medida of an ISC sistema 02 (específico) line, where the impuesto is a fixed amount per unit.",
+  "gre-r": "Cat.61: may be declared as a documento relacionado on a guía de remisión remitente (09).",
+  "gre-t": "Cat.61: may be declared as a documento relacionado on a guía de remisión transportista (31)."
 }

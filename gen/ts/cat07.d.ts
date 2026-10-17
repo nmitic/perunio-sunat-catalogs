@@ -13,6 +13,7 @@ export interface Cat07Entry {
   readonly description: string;
   readonly gratuito: boolean;
   readonly gravadoGratuito: boolean;
+  readonly category: string;
   readonly percent: null | string;
   readonly taxSchemeCode: Cat05Code;
 }
@@ -37,6 +38,9 @@ export declare function isCat07SelectCode(value: string): value is Cat07SelectCo
 export declare const CAT07_GRATUITO_CODES: readonly ["11", "12", "13", "14", "15", "16", "21", "31", "32", "33", "34", "35", "36", "37"];
 
 export declare const CAT07_GRAVADO_GRATUITO_CODES: readonly ["11", "12", "13", "14", "15", "16"];
+
+/** Tipo de Afectación del IGV → category. */
+export declare const CAT07_CATEGORY: Readonly<Record<Cat07Code, string>>;
 
 /** Tipo de Afectación del IGV → percent. */
 export declare const CAT07_PERCENT: Readonly<Record<Cat07Code, null | string>>;

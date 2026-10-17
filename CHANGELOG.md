@@ -4,6 +4,54 @@ Consumers pin a tag, so every release note should say what a service will see
 after bumping — especially any code that stopped being `select` or `emit`, since
 that narrows what the UI offers or what the pipeline accepts.
 
+## v1.4.0
+
+What `perunio-facturador` FOLLOWUPS.md FU-3 asked for, plus the two catálogos
+FU-4 (guía documentos relacionados) and FU-7 (detracción 004) will read.
+
+- **New Cat.61** (documentos relacionados of a GRE 2.0), from
+  `reglas-validacion-gre-2026-09-25.xlsx`.
+  - All 31 códigos are `emit` and `select`. The two new capabilities scope them
+    to a guía: `gre-r` for the remitente (09) and `gre-t` for the transportista
+    (31). ERROR 2692 rejects a código outside its guía's list.
+  - The flags `issuerRemitente` and `issuerTransportista` mark the códigos
+    whose `cac:IssuerParty` RUC is mandatory (ERRORs 3380/3382). The two sets
+    differ: 92 needs it only on the remitente, and 31 only on the transportista.
+  - Go: `sunat.Cat61*`, `Cat61GreR`, `Cat61GreT`, `Cat61IssuerRemitente`,
+    `Cat61IssuerTransportista`. TS: `sunat-catalogs/cat61`, with
+    `CAT61_GRE_R_CODES` and `CAT61_GRE_T_CODES`.
+- **New Cat.55**, with only the six Detracciones: Recursos Hidrobiológicos
+  concepts (3001–3006).
+  - None is `emit` yet. They become `emit` with the release that restores
+    Cat.54 004's `select`.
+  - Go: `sunat.Cat55MatriculaEmbarcacion` …
+    `sunat.Cat55CantidadEspecie`.
+- **Cat.52** `texto` for 1002 ("TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO
+  PRESTADO GRATUITAMENTE") and 2007 ("Operación sujeta al IVAP").
+- **Cat.07** `props.category`: `gravado` (10–17), `exonerado` (20–21),
+  `inafecto` (30–37) or `exportacion` (40). Go: `sunat.Cat07Category`. TS:
+  `CAT07[code].category`.
+- **gre-doc-type EV** loses `emit` and `select` and keeps `internal`. The
+  facturador already refuses to build a guía por eventos (SEE-SOL only, R.S.
+  123-2022 numeral 5.2).
+
+### What a service sees after bumping
+
+- **perunio-frontend:**
+  - `GRE_DOC_TYPE_SELECT_CODES` / `GreDocTypeSelectCode` no longer contain
+    `EV`, so the guía type picker stops offering it. Code that types an `'EV'`
+    literal as `GreDocTypeSelectCode` stops compiling. Widen it to
+    `GreDocTypeCode`, which still has EV, so old guías display and filter.
+- **perunio-facturador:**
+  - Nothing changes by itself: `Cat52Texto`, `Cat07Category`, `Cat55` and
+    `Cat61` are new reads.
+  - `sunat.GreDocTypeEvento` still exists, and `GreDocTypeEmit("EV")` is now
+    false.
+  - Once the builder reads `Cat52Texto` for 1002 instead of its literal, the
+    1002 leyenda text in the spec goldens changes. SUNAT validates only the
+    code.
+- **perunio-backend:** nothing.
+
 ## v1.3.1
 
 - Cat.54 **004** (recursos hidrobiológicos) loses `select`; it keeps `emit`.

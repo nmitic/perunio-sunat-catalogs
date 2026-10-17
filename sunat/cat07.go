@@ -5,7 +5,7 @@ package sunat
 
 // Cat.07 — Tipo de Afectación del IGV.
 //
-// Source: Anexo 8 (catálogo 07) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx, which lists código, descripción and código de tributo together: all 19 códigos and their tributos match, unchanged since the February 2026 workbook. Código 37 (Inafecto - Transferencia gratuita, tributo 9996) is in it; both frontend lists once stopped at 36 by omission, pricing such a line as onerosa. SUNAT writes 17 as '1016 o 9996' and 40 as '9995 o 9996' — the second of each applies only to a gratuito line, which is what codes 11-16, 21 and 31-37 already are, so props.taxSchemeCode carries the first. props.percent is the cbc:Percent the line declares, and null means the element is omitted entirely; SUNAT requires the rate tag on every tributo that has one (ERROR 2992) and a non-zero one on IGV/IVAP and gravado-gratuito lines (2993), so gravado-gratuito declares the 18.00 it would have carried. Its format check (3102) accepts the 0.00 that exonerado and inafecto gratuito declare. 18.00 is the general IGV rate; the 10.5 special rate depends on the emisor's padrón, not on the afectación (see cat05). SUNAT's own sheet mixes hyphens and en dashes in the descripciones; normalised to a plain hyphen here.
+// Source: Anexo 8 (catálogo 07) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx, which lists código, descripción and código de tributo together: all 19 códigos and their tributos match, unchanged since the February 2026 workbook. Código 37 (Inafecto - Transferencia gratuita, tributo 9996) is in it; both frontend lists once stopped at 36 by omission, pricing such a line as onerosa. SUNAT writes 17 as '1016 o 9996' and 40 as '9995 o 9996' — the second of each applies only to a gratuito line, which is what codes 11-16, 21 and 31-37 already are, so props.taxSchemeCode carries the first. props.percent is the cbc:Percent the line declares, and null means the element is omitted entirely; SUNAT requires the rate tag on every tributo that has one (ERROR 2992) and a non-zero one on IGV/IVAP and gravado-gratuito lines (2993), so gravado-gratuito declares the 18.00 it would have carried. Its format check (3102) accepts the 0.00 that exonerado and inafecto gratuito declare. 18.00 is the general IGV rate; the 10.5 special rate depends on the emisor's padrón, not on the afectación (see cat05). SUNAT's own sheet mixes hyphens and en dashes in the descripciones; normalised to a plain hyphen here. props.category groups the códigos the way the workbook's descripciones do (gravado 10-17, exonerado 20-21, inafecto 30-37, exportación 40), so a consumer that buckets lines (the resumen diario's gratuitas split, for one) never reads the código's first digit.
 const (
 	// Gravado - Operación Onerosa
 	Cat07GravadoOnerosa = "10"
@@ -54,6 +54,7 @@ type Cat07Entry struct {
 	Description     string
 	Gratuito        bool
 	GravadoGratuito bool
+	Category        string
 	Percent         string
 	TaxSchemeCode   string
 }
@@ -82,25 +83,25 @@ var Cat07Codes = []string{
 }
 
 var cat07 = map[string]Cat07Entry{
-	"10": {Code: "10", Label: "Gravado - Operación Onerosa", Description: "Gravado - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Percent: "18.00", TaxSchemeCode: "1000"},
-	"11": {Code: "11", Label: "Gravado - Retiro por premio", Description: "Gravado - Retiro por premio", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"12": {Code: "12", Label: "Gravado - Retiro por donación", Description: "Gravado - Retiro por donación", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"13": {Code: "13", Label: "Gravado - Retiro", Description: "Gravado - Retiro", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"14": {Code: "14", Label: "Gravado - Retiro por publicidad", Description: "Gravado - Retiro por publicidad", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"15": {Code: "15", Label: "Gravado - Bonificaciones", Description: "Gravado - Bonificaciones", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"16": {Code: "16", Label: "Gravado - Retiro por entrega a trabajadores", Description: "Gravado - Retiro por entrega a trabajadores", Gratuito: true, GravadoGratuito: true, Percent: "18.00", TaxSchemeCode: "9996"},
-	"17": {Code: "17", Label: "Gravado - IVAP", Description: "Gravado - IVAP", Gratuito: false, GravadoGratuito: false, Percent: "4.00", TaxSchemeCode: "1016"},
-	"20": {Code: "20", Label: "Exonerado - Operación Onerosa", Description: "Exonerado - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Percent: "", TaxSchemeCode: "9997"},
-	"21": {Code: "21", Label: "Exonerado - Transferencia gratuita", Description: "Exonerado - Transferencia gratuita", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"30": {Code: "30", Label: "Inafecto - Operación Onerosa", Description: "Inafecto - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Percent: "", TaxSchemeCode: "9998"},
-	"31": {Code: "31", Label: "Inafecto - Retiro por Bonificación", Description: "Inafecto - Retiro por Bonificación", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"32": {Code: "32", Label: "Inafecto - Retiro", Description: "Inafecto - Retiro", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"33": {Code: "33", Label: "Inafecto - Retiro por Muestras Médicas", Description: "Inafecto - Retiro por Muestras Médicas", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"34": {Code: "34", Label: "Inafecto - Retiro por Convenio Colectivo", Description: "Inafecto - Retiro por Convenio Colectivo", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"35": {Code: "35", Label: "Inafecto - Retiro por premio", Description: "Inafecto - Retiro por premio", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"36": {Code: "36", Label: "Inafecto - Retiro por publicidad", Description: "Inafecto - Retiro por publicidad", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"37": {Code: "37", Label: "Inafecto - Transferencia gratuita", Description: "Inafecto - Transferencia gratuita", Gratuito: true, GravadoGratuito: false, Percent: "0.00", TaxSchemeCode: "9996"},
-	"40": {Code: "40", Label: "Exportación de Bienes o Servicios", Description: "Exportación de Bienes o Servicios", Gratuito: false, GravadoGratuito: false, Percent: "", TaxSchemeCode: "9995"},
+	"10": {Code: "10", Label: "Gravado - Operación Onerosa", Description: "Gravado - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Category: "gravado", Percent: "18.00", TaxSchemeCode: "1000"},
+	"11": {Code: "11", Label: "Gravado - Retiro por premio", Description: "Gravado - Retiro por premio", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"12": {Code: "12", Label: "Gravado - Retiro por donación", Description: "Gravado - Retiro por donación", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"13": {Code: "13", Label: "Gravado - Retiro", Description: "Gravado - Retiro", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"14": {Code: "14", Label: "Gravado - Retiro por publicidad", Description: "Gravado - Retiro por publicidad", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"15": {Code: "15", Label: "Gravado - Bonificaciones", Description: "Gravado - Bonificaciones", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"16": {Code: "16", Label: "Gravado - Retiro por entrega a trabajadores", Description: "Gravado - Retiro por entrega a trabajadores", Gratuito: true, GravadoGratuito: true, Category: "gravado", Percent: "18.00", TaxSchemeCode: "9996"},
+	"17": {Code: "17", Label: "Gravado - IVAP", Description: "Gravado - IVAP", Gratuito: false, GravadoGratuito: false, Category: "gravado", Percent: "4.00", TaxSchemeCode: "1016"},
+	"20": {Code: "20", Label: "Exonerado - Operación Onerosa", Description: "Exonerado - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Category: "exonerado", Percent: "", TaxSchemeCode: "9997"},
+	"21": {Code: "21", Label: "Exonerado - Transferencia gratuita", Description: "Exonerado - Transferencia gratuita", Gratuito: true, GravadoGratuito: false, Category: "exonerado", Percent: "0.00", TaxSchemeCode: "9996"},
+	"30": {Code: "30", Label: "Inafecto - Operación Onerosa", Description: "Inafecto - Operación Onerosa", Gratuito: false, GravadoGratuito: false, Category: "inafecto", Percent: "", TaxSchemeCode: "9998"},
+	"31": {Code: "31", Label: "Inafecto - Retiro por Bonificación", Description: "Inafecto - Retiro por Bonificación", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"32": {Code: "32", Label: "Inafecto - Retiro", Description: "Inafecto - Retiro", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"33": {Code: "33", Label: "Inafecto - Retiro por Muestras Médicas", Description: "Inafecto - Retiro por Muestras Médicas", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"34": {Code: "34", Label: "Inafecto - Retiro por Convenio Colectivo", Description: "Inafecto - Retiro por Convenio Colectivo", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"35": {Code: "35", Label: "Inafecto - Retiro por premio", Description: "Inafecto - Retiro por premio", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"36": {Code: "36", Label: "Inafecto - Retiro por publicidad", Description: "Inafecto - Retiro por publicidad", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"37": {Code: "37", Label: "Inafecto - Transferencia gratuita", Description: "Inafecto - Transferencia gratuita", Gratuito: true, GravadoGratuito: false, Category: "inafecto", Percent: "0.00", TaxSchemeCode: "9996"},
+	"40": {Code: "40", Label: "Exportación de Bienes o Servicios", Description: "Exportación de Bienes o Servicios", Gratuito: false, GravadoGratuito: false, Category: "exportacion", Percent: "", TaxSchemeCode: "9995"},
 }
 
 // Cat07 returns the entry for code and whether it is a known Cat.07 code.
@@ -225,6 +226,11 @@ func Cat07Gratuito(code string) bool {
 // Cat07GravadoGratuito reports the gravadoGratuito flag for code. False for unknown codes.
 func Cat07GravadoGratuito(code string) bool {
 	return cat07[code].GravadoGratuito
+}
+
+// Cat07Category returns the category of code, or "" if the code is unknown.
+func Cat07Category(code string) string {
+	return cat07[code].Category
 }
 
 // Cat07Percent returns the percent of code, or "" if the code is unknown.
