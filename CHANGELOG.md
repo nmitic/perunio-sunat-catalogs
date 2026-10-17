@@ -4,6 +4,21 @@ Consumers pin a tag, so every release note should say what a service will see
 after bumping — especially any code that stopped being `select` or `emit`, since
 that narrows what the UI offers or what the pipeline accepts.
 
+## v1.4.1
+
+- Cat.54 **004** (recursos hidrobiológicos) regains `select`. perunio-facturador
+  now builds a 1002: each line carries the six Cat.55 concepts, and validation
+  checks them field by field.
+- Cat.55 3001–3006 become `emit`.
+- The Cat.54 `source` note no longer calls the per-transport-unit rule (art.
+  2.1) unmodelled. The issuance form now asks about it.
+
+### What a service sees after bumping
+
+`CAT54_SELECT_CODES` / `sunat.Cat54SelectCodes` contain 004 again, so the
+detracción pickers offer it. `CAT55_EMIT_CODES` lists 3001–3006. No rate,
+umbral or anexo changed.
+
 ## v1.4.0
 
 What `perunio-facturador` FOLLOWUPS.md FU-3 asked for, plus the two catálogos

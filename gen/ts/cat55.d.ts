@@ -17,3 +17,8 @@ export declare const CAT55_ENTRIES: readonly Cat55Entry[];
 export declare function isCat55Code(value: string): value is Cat55Code;
 /** Entry for an untrusted string, or undefined. */
 export declare function cat55(value: string): Cat55Entry | undefined;
+
+export declare const CAT55_EMIT_CODES: readonly ["3001", "3002", "3003", "3004", "3005", "3006"];
+export type Cat55EmitCode = (typeof CAT55_EMIT_CODES)[number];
+export declare const CAT55_EMIT_ENTRIES: readonly Cat55Entry[];
+export declare function isCat55EmitCode(value: string): value is Cat55EmitCode;

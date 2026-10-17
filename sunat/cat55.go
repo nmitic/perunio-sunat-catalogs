@@ -5,7 +5,7 @@ package sunat
 
 // Cat.55 — Código de identificación del concepto tributario (propiedades del ítem).
 //
-// Source: Anexo 8 (catálogo 55) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: the cbc:NameCode of a line's cac:AdditionalItemProperty. Only the six Detracciones: Recursos Hidrobiológicos concepts are here (3001-3006, none struck through): a factura or boleta under tipo de operación 1002 (Cat.54 004) must declare all six on its lines (ERRORs 3063, 3130-3135). The other ~100 concepts (transporte terrestre, hospedajes, vehículos, gas natural…) are added when a Perunio feature emits them. The label drops the workbook's 'Detracciones: Recursos Hidrobiológicos-' prefix, which description keeps. None is `emit` yet: perunio-facturador still refuses 004 (perunio-facturador FOLLOWUPS.md FU-7).
+// Source: Anexo 8 (catálogo 55) from the 'Catálogos' sheet of perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx: the cbc:NameCode of a line's cac:AdditionalItemProperty. Only the six Detracciones: Recursos Hidrobiológicos concepts are here (3001-3006, none struck through): a factura or boleta under tipo de operación 1002 (Cat.54 004) must declare all six on its lines (ERRORs 3063, 3130-3135). The other ~100 concepts (transporte terrestre, hospedajes, vehículos, gas natural…) are added when a Perunio feature emits them. The label drops the workbook's 'Detracciones: Recursos Hidrobiológicos-' prefix, which description keeps. All six are `emit` since v1.4.1: perunio-facturador declares them on every line of a 1002 (internal/xmlbuilder/invoice.go, buildHidrobiologicosProperties).
 const (
 	// Detracciones: Recursos Hidrobiológicos-Matrícula de la embarcación
 	Cat55MatriculaEmbarcacion = "3001"
@@ -56,5 +56,30 @@ func Cat55(code string) (Cat55Entry, bool) {
 // Cat55Valid reports whether code is a known Cat.55 code.
 func Cat55Valid(code string) bool {
 	_, ok := cat55[code]
+	return ok
+}
+
+// Cat55EmitCodes lists the Cat.55 codes with the "emit" capability.
+var Cat55EmitCodes = []string{
+	"3001",
+	"3002",
+	"3003",
+	"3004",
+	"3005",
+	"3006",
+}
+
+var cat55EmitSet = map[string]struct{}{
+	"3001": {},
+	"3002": {},
+	"3003": {},
+	"3004": {},
+	"3005": {},
+	"3006": {},
+}
+
+// Cat55Emit reports whether code has the "emit" capability: the facturador may put it on the wire.
+func Cat55Emit(code string) bool {
+	_, ok := cat55EmitSet[code]
 	return ok
 }

@@ -27,4 +27,10 @@ function cat55(value) {
   return isCat55Code(value) ? CAT55[value] : undefined;
 }
 
-module.exports = { CAT55_CODES, CAT55, CAT55_ENTRIES, isCat55Code, cat55 };
+const CAT55_EMIT_CODES = ["3001", "3002", "3003", "3004", "3005", "3006"];
+const CAT55_EMIT_ENTRIES = [CAT55["3001"], CAT55["3002"], CAT55["3003"], CAT55["3004"], CAT55["3005"], CAT55["3006"]];
+function isCat55EmitCode(value) {
+  return CAT55_EMIT_CODES.includes(value);
+}
+
+module.exports = { CAT55_CODES, CAT55, CAT55_ENTRIES, isCat55Code, cat55, CAT55_EMIT_CODES, CAT55_EMIT_ENTRIES, isCat55EmitCode };
