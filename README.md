@@ -162,14 +162,14 @@ out.
 
 ## Sources
 
-Each file's `source` names its authority. As of v1.2.0:
+Each file's `source` names its authority. As of v1.3.0:
 
 | catálogos | authority |
 |---|---|
 | Cat.01–16, 51–54 | 'Catálogos' sheet of `perunio-facturador/resources/reglas/reglas-validacion-cpe-2026-08-26.xlsx` |
 | Cat.18, 20, and how a guía sees Cat.01 and 06 | 'Catálogos' sheet of `perunio-facturador/resources/reglas/reglas-validacion-gre-2026-09-25.xlsx` |
 | Cat.05 `taxCategoryId` | 'Valor de Códigos cbc:ID Catálogo N° 05' tables of `perunio-facturador/resources/guias/guia-xml-factura-2.1-2017-05.pdf` |
-| Cat.54 `porcentaje`, `umbral` | R.S. 183-2004/SUNAT and its modifications (071-2018, 082-2018, 000086-2025). No workbook publishes them |
+| Cat.54 `porcentaje`, `umbral`, `anexo`, `porcentajeAlternativo` | R.S. 183-2004/SUNAT and its modifications (071-2018, 082-2018, 000086-2025), R.S. 073-2006, 022-2013. No workbook publishes them. The rules they feed — thresholds, exclusions, XML — are in `perunio-facturador/DETRACCIONES.md` |
 
 SUNAT marks pending changes in the workbook itself. Text or a código that leaves
 on a future date is struck through, and the *Control de Cambios* sheet gives the

@@ -12,8 +12,10 @@ export interface Cat54Entry {
   readonly label: string;
   readonly description: string;
   readonly pinnedOperationType: boolean;
+  readonly anexo: null | string;
   readonly operationType: Cat51Code;
   readonly porcentaje: null | number;
+  readonly porcentajeAlternativo: null | number;
   readonly umbral: number;
 }
 
@@ -36,11 +38,17 @@ export declare function isCat54SelectCode(value: string): value is Cat54SelectCo
 
 export declare const CAT54_PINNED_OPERATION_TYPE_CODES: readonly ["004", "027", "028"];
 
+/** Bienes y Servicios sujetos a Detracción (SPOT) → anexo. */
+export declare const CAT54_ANEXO: Readonly<Record<Cat54Code, null | string>>;
+
 /** Bienes y Servicios sujetos a Detracción (SPOT) → operationType. */
 export declare const CAT54_OPERATION_TYPE: Readonly<Record<Cat54Code, Cat51Code>>;
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) → porcentaje. */
 export declare const CAT54_PORCENTAJE: Readonly<Record<Cat54Code, null | number>>;
+
+/** Bienes y Servicios sujetos a Detracción (SPOT) → porcentajeAlternativo. */
+export declare const CAT54_PORCENTAJE_ALTERNATIVO: Readonly<Record<Cat54Code, null | number>>;
 
 /** Bienes y Servicios sujetos a Detracción (SPOT) → umbral. */
 export declare const CAT54_UMBRAL: Readonly<Record<Cat54Code, number>>;

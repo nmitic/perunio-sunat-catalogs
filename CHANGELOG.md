@@ -4,6 +4,27 @@ Consumers pin a tag, so every release note should say what a service will see
 after bumping — especially any code that stopped being `select` or `emit`, since
 that narrows what the UI offers or what the pipeline accepts.
 
+## v1.3.0
+
+Cat.54 gains two props. No código changed rate, umbral or capability.
+
+- `anexo` — where the código sits in R.S. 183-2004/SUNAT: `"1"`, `"2"`, `"3"`,
+  `"carga"` (R.S. 073-2006), `"inmueble"` (R.S. 022-2013), `"especial"` (002,
+  028, 099, each under its own regime) or `null` (013, 015, no longer in any
+  anexo). It decides the comprobante exclusion: a boleta, or any comprobante
+  that grants no crédito fiscal, excludes Anexos 2 and 3 but never Anexo 1.
+  Go: `sunat.Cat54Anexo`; TS: `CAT54[code].anexo` and `CAT54_ANEXO`.
+- `porcentajeAlternativo` — the rate when the conditional one does not hold.
+  Only 004 has one (10 %, when the proveedor is not on SUNAT's 4 % listado).
+
+The rules these props feed are written up in
+`perunio-facturador/DETRACCIONES.md`.
+
+### What a service sees after bumping
+
+Nothing changes by itself: both props are new reads. Coming from v1.1.0, the
+v1.2.0 notes below still apply.
+
 ## v1.2.0
 
 Every catálogo re-checked against the SUNAT rule workbooks now in
